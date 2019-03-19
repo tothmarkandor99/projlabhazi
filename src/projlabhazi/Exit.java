@@ -1,5 +1,7 @@
 package projlabhazi;
 
-public class Exit {
+public class Exit extends Object {
+	public boolean receive(Orangutan o) {
 
+	}
 }

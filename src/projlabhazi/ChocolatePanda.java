@@ -1,5 +1,11 @@
 package projlabhazi;
 
-public class ChocolatePanda {
-
+public class ChocolatePanda extends Panda {
+	public void jump() {
+		
+	}
+	
+	public void step() {
+		
+	}
 }

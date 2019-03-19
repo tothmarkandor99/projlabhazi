@@ -1,5 +1,5 @@
 package projlabhazi;
 
-public class Steppable {
-
+public interface Steppable {
+	public void step();
 }
