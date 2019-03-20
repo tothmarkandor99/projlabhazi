@@ -5,9 +5,7 @@ public class ArmChair extends Object implements Interact {
 	private int sleepTime;
 	
 	@Override
-	public void interact(Object o) {
-		
-	}
+	public void interact(Object o) { }
 
 	@Override
 	public void interact(Panda p) {
@@ -27,7 +25,15 @@ public class ArmChair extends Object implements Interact {
 	}
 	
 	public void step() {
+		if (p == null) 
+			return;
 		
+		for (int i = 0; i < getTile().getSides(); i++) {
+			if (getTile().getNeighbour(i).getObject() != null) {
+				interact(getTile().getNeighbour(i).getObject());
+			}
+		}
+		sleepTime--;
 	}
 
 }

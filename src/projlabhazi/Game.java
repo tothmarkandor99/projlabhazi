@@ -10,7 +10,7 @@ public class Game implements Steppable {
 	private ArrayList<Tile> tiles;
 	
 	public Game() {
-		//TODO:
+		//TODO: adattagokat létrehozni
 	}
 	
 	public void addScore() {

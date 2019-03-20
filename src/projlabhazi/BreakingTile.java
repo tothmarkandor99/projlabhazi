@@ -23,13 +23,17 @@ public class BreakingTile extends Tile {
 
 
 	public void crack() {
+		life--;
 		if (life == 0) {
 			Break((Character)getObject());
 		}
 	}
 	
 	public void Break(Character c) {
-		
+		c.die();
+		for (int i = 0; i < getSides(); i++) {
+			getNeighbour(i).removeNeighbour(this);
+		}		
 	}
 	
 }
