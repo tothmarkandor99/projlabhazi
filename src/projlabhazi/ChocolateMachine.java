@@ -1,7 +1,7 @@
 package projlabhazi;
 
-public class ChocolateMachine extends Object implements Interact{
-	public void beep() {
+public class ChocolateMachine extends Object implements Interact {
+	public void beep() { //TODO: Ez különbözõképpen van két szekvenciadiagrammon
 		for (int i = 0; i < tile.getSides(); i++) {
 			if (tile.getNeighbour(i).getObject() instanceof ChocolatePanda) {
 				((ChocolatePanda)tile.getNeighbour(i).getObject()).jump();
@@ -10,7 +10,14 @@ public class ChocolateMachine extends Object implements Interact{
 	}
 	
 	public void step() {
-		
+		//TODO: random
+		if (true) { //TODO: random
+			for (int i = 0; i < tile.getSides(); i++) {
+				if (tile.getNeighbour(i).getObject() != null) {
+					this.interact(tile.getNeighbour(i).getObject());
+				}
+			}
+		}
 	}
 
 	@Override
@@ -21,13 +28,4 @@ public class ChocolateMachine extends Object implements Interact{
 		p.jump();
 	}
 
-	@Override
-	public boolean receive(Orangutan o) {
-
-	}
-
-	@Override
-	public boolean receive(Panda p) {
-
-	}
 }

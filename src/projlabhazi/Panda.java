@@ -18,7 +18,8 @@ public abstract class Panda extends Character {
 	}
 	
 	public boolean receive(Orangutan o) {
-		
+		o.add(this);
+		return true;
 	}
 	
 	public void setPrev(Character c) {

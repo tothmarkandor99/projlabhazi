@@ -2,7 +2,7 @@ package projlabhazi;
 
 public class Orangutan extends Character {
 	public void add(Panda p) {
-		
+		tile.setObject(p);
 	}
 	
 	public void countPanda() {
