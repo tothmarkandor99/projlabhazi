@@ -35,7 +35,9 @@ public class Game implements Steppable {
 	
 	@Override
 	public void step() {
-		
+		if (remainingPandas == 0) {
+			endGame();
+		}
 	}
 	
 }
