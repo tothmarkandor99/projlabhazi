@@ -1,5 +1,7 @@
 package projlabhazi;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public abstract class Panda extends Character {
 	protected Character prev;
 	
@@ -27,7 +29,10 @@ public abstract class Panda extends Character {
 		return prev;
 	}
 	
-	public void step() {
-		
+	public void step() { //TODO: Mi?
+		if (prev == null) {
+			int nextDirection = ThreadLocalRandom.current().nextInt(0, tile.getSides());
+			tile.put(this, nextDirection);
+		}
 	}
 }

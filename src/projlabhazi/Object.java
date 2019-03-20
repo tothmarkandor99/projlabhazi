@@ -1,7 +1,7 @@
 package projlabhazi;
 
 public abstract class Object implements Receiver, Steppable {
-	private Tile tile;
+	protected Tile tile;
 	
 	@Override
 	public boolean receive(Orangutan o) {
