@@ -3,15 +3,9 @@ package projlabhazi;
 public abstract class Object implements Receiver, Steppable {
 	protected Tile tile;
 	
-	@Override
-	public boolean receive(Orangutan o) {
+	public abstract boolean receive(Orangutan o);
 
-	}
-
-	@Override
-	public boolean receive(Panda p) {
-
-	}
+	public abstract boolean receive(Panda p);
 
 	public void setTile(Tile t) {
 		tile = t;
@@ -21,7 +15,5 @@ public abstract class Object implements Receiver, Steppable {
 		return tile;
 	}
 
-	public void step() {
-		
-	}
+	public abstract void step();
 }
