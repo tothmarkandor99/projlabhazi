@@ -22,7 +22,7 @@ public class Game implements Steppable {
 	}
 	
 	public void toStart() {
-		
+		orangutan.setTile(entrance.getTile());
 	}
 	
 	public void newGame() {

@@ -8,16 +8,14 @@ public class Tile implements Receiver {
 	public boolean receive(Orangutan o) {
 		if (object == null)
 			return false;
-		object = o;
-		return true;
+		return receive(o);
 	}
 
 	@Override
 	public boolean receive(Panda p) {
 		if (object == null)
 			return false;
-		object = p;
-		return true;
+		return receive(p);
 	}
 
 	public void removeNeighbour(Tile tile) { //TODO: ezt lehet nem így kéne
@@ -34,7 +32,11 @@ public class Tile implements Receiver {
 		}
 	}
 	
-	public boolean put(Character c, int i) {
+	public boolean put(Character c, int i) { //TODO: ez így biztos nem lesz jó
+		if (c instanceof Panda)
+			return neighbours[i].receive((Panda)c);
+		if (c instanceof Orangutan)
+			return neighbours[i].receive((Orangutan)c);
 		return false;
 	}
 	
