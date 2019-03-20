@@ -13,7 +13,7 @@ public class Orangutan extends Character {
 			pcs++;
 			temp = temp.next;
 		}
-		return pcs;
+		return pcs;	
 	}
 	
 	public void step() {
