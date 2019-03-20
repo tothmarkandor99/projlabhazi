@@ -5,17 +5,11 @@ import java.util.concurrent.ThreadLocalRandom;
 public abstract class Panda extends Character {
 	protected Character prev;
 	
-	public void jump() {
-		
-	}
+	public void jump() {}
 	
-	public void scare() {
-		
-	}
+	public void scare() {}
 	
-	public void sleep() {
-		
-	}
+	public void sleep() {}
 	
 	public boolean receive(Orangutan o) {
 		o.add(this);
@@ -30,7 +24,7 @@ public abstract class Panda extends Character {
 		return prev;
 	}
 	
-	public void step() { //TODO: Mi?
+	public void step() { //TODO: és ha a prev nem null?
 		if (prev == null) {
 			int nextDirection = ThreadLocalRandom.current().nextInt(0, tile.getSides());
 			tile.put(this, nextDirection);

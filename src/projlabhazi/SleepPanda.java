@@ -5,7 +5,7 @@ public class SleepPanda extends Panda {
 	
 	@Override
 	public void sleep() {
-		
+		this.prev.Notify();
 	}
 	
 	public void setSleep(boolean b) {
@@ -17,6 +17,8 @@ public class SleepPanda extends Panda {
 	}
 	
 	public void step() {
-		
+		if (!sleep) {
+			super.step();
+		}
 	}
 }
