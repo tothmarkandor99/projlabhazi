@@ -3,6 +3,7 @@ package projlabhazi;
 public class SleepPanda extends Panda {
 	private boolean sleep;
 	
+	@Override
 	public void sleep() {
 		
 	}

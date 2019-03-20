@@ -9,7 +9,11 @@ public class ArmChair extends Object implements Interact {
 
 	@Override
 	public void interact(Panda p) {
-		
+		if (this.p != null)
+			return;
+		p.sleep();
+		setPanda(p);
+		setSleepTime(10); //TODO: véletlenszám
 	}
 	
 	public void setPanda(Panda p) {
