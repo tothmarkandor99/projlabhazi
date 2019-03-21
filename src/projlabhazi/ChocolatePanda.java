@@ -5,7 +5,4 @@ public class ChocolatePanda extends Panda {
 		tile.crack();
 	}
 	
-	public void step() {
-		
-	}
 }

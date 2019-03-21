@@ -2,7 +2,7 @@ package projlabhazi;
 
 public abstract class Character extends Object {
 	protected Character next;
-	private Game game;
+	protected Game game; //Eltér a dokumentációtól
 	
 	public void release() {
 		
@@ -13,7 +13,7 @@ public abstract class Character extends Object {
 	}
 	
 	public void Notify() {
-		
+
 	}
 	
 	public void moveTo(Tile t) {
