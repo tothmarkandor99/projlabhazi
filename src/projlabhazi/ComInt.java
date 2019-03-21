@@ -1,9 +1,12 @@
 package projlabhazi;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ComInt { //interactive command interpreter for testing
+public class ComInt { // interactive command interpreter for testing
 
 	public static void main(String[] args) {
 		HashMap<Integer, Panda> Pandas = new HashMap<Integer, Panda>();
@@ -11,19 +14,27 @@ public class ComInt { //interactive command interpreter for testing
 		HashMap<Integer, Object> Objects = new HashMap<Integer, Object>();
 		Entrance entrance = null;
 		Game game = null;
-		
+
 		int counter = 0;
-		
-		String line = System.console().readLine();
-		String[] input = line.split(" ");
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String line = "";
+		String[] input = new String[0];
 		while (true) {
+			try {
+				line = br.readLine();
+				input = line.split(" ");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			if (input.length < 1)
 				continue;
 			switch (input[0].toLowerCase()) {
 			case "exit":
 				return;
 			case "newgame":
-				//TODO: game-et inicializálni a Tiles-szal valahogy
+				// TODO: game-et inicializálni a Tiles-szal valahogy
 				break;
 			case "createtile":
 				if (input.length < 2)
@@ -35,12 +46,10 @@ public class ComInt { //interactive command interpreter for testing
 				Tiles.remove(Integer.parseInt(input[1]));
 				break;
 			case "addneighbour":
-				Tiles.get(Integer.parseInt(input[1]))
-					.addNeighbour(Tiles.get(Integer.parseInt(input[2])));
+				Tiles.get(Integer.parseInt(input[1])).addNeighbour(Tiles.get(Integer.parseInt(input[2])));
 				break;
 			case "removeneighbour":
-				Tiles.get(Integer.parseInt(input[1]))
-				.removeNeighbour(Tiles.get(Integer.parseInt(input[2])));
+				Tiles.get(Integer.parseInt(input[1])).removeNeighbour(Tiles.get(Integer.parseInt(input[2])));
 				break;
 			case "createpanda":
 				if (input.length < 2)
@@ -91,12 +100,10 @@ public class ComInt { //interactive command interpreter for testing
 				Objects.remove(Integer.parseInt(input[1]));
 				break;
 			case "putpanda":
-				Tiles.get(Integer.parseInt(input[1]))
-					.setObject(Pandas.get(Integer.parseInt(input[2])));
+				Tiles.get(Integer.parseInt(input[1])).setObject(Pandas.get(Integer.parseInt(input[2])));
 				break;
 			case "putobject":
-				Tiles.get(Integer.parseInt(input[1]))
-					.setObject(Objects.get(Integer.parseInt(input[2])));
+				Tiles.get(Integer.parseInt(input[1])).setObject(Objects.get(Integer.parseInt(input[2])));
 				break;
 			case "listall":
 				listPandas(Pandas);
@@ -110,21 +117,24 @@ public class ComInt { //interactive command interpreter for testing
 				break;
 			}
 		}
-		
+
 	}
-	
+
 	private static void listPandas(HashMap<Integer, Panda> Pandas) {
 		System.out.println("List of pandas:");
 		for (Map.Entry<Integer, Panda> panda : Pandas.entrySet()) {
 			System.out.println(" - Id: " + panda.getKey() + " - panda");
 		}
 	}
+
 	private static void listTiles(HashMap<Integer, Tile> Tiles) {
 		System.out.println("List of tiles:");
 		for (Map.Entry<Integer, Tile> tile : Tiles.entrySet()) {
-			System.out.println(" - Id: " + tile.getKey() + " - tile " /*+ tile.getValue().getObject() == null ? "" : tile.getValue().getObject()*/);
+			System.out.println(" - Id: " + tile.getKey()
+					+ " - tile " /* + tile.getValue().getObject() == null ? "" : tile.getValue().getObject() */);
 		}
 	}
+
 	private static void listObjects(HashMap<Integer, Object> Objects) {
 		System.out.println("List of objects:");
 		for (Map.Entry<Integer, Object> object : Objects.entrySet()) {
@@ -132,6 +142,3 @@ public class ComInt { //interactive command interpreter for testing
 		}
 	}
 }
-
-
-
