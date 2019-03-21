@@ -6,14 +6,17 @@ public class Orangutan extends Character {
 		next = p;
 	}
 	
-	public int countPanda() { //Eltérés a dokumentációhoz képest
+	public void countPanda() { //Eltérés a dokumentációhoz képest
 		Character temp = next;
 		int pcs = 0;
 		while (temp != null) {
 			pcs++;
-			temp = temp.next;
+			Character tempNext = temp.getNext();
+			temp.die();
+			temp = tempNext;
 		}
-		return pcs;	
+		game.addScore();
+		game.toStart();
 	}
 	
 	public void step() {
