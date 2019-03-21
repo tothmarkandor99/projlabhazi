@@ -30,4 +30,23 @@ public abstract class Panda extends Character {
 			tile.put(this, nextDirection);
 		}
 	}
+	
+	public void Notify() {
+		if (next != null) {
+			next.release();
+			next = null;
+		}
+	}
+	
+	public void release() {
+		prev = null;
+	}
+	
+	public void die() {
+		if (prev != null) {
+			prev.Notify();
+			//TODO: Timer.removeSteppable(this);
+			game.pandaDies();
+		}
+	}
 }
