@@ -22,4 +22,6 @@ public class Wardrobe extends Object{
 	public boolean receive(Panda p) {
 		return nextNeighbour.receive(p);
 	}
+
+
 }

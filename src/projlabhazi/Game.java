@@ -9,12 +9,8 @@ public class Game implements Steppable {
 	private Orangutan orangutan;
 	private ArrayList<Tile> tiles;
 	
-	public Game() {
-		//TODO: adattagokat létrehozni
-	}
-	
 	public void addScore() {
-		
+		score += 20;
 	}
 	
 	public void pandaDies() {
@@ -22,15 +18,24 @@ public class Game implements Steppable {
 	}
 	
 	public void toStart() {
-		orangutan.setTile(entrance.getTile());
+		Tile entr = entrance.getTile();
+		for (int i = 0; i < entr.getSides(); i++) {
+			if (entr.getNeighbour(i).receive(orangutan) == true) {
+				orangutan.moveTo(entr);
+				break;
+			}
+		}
 	}
 	
 	public void newGame() {
+		//TODO: pálya felépítése
+		orangutan = new Orangutan();
 		
+		//TODO: Timer start
 	}
 	
 	public void endGame() {
-		
+		//TODO: Timer stop
 	}
 	
 	@Override

@@ -4,20 +4,14 @@ public abstract class Character extends Object {
 	protected Character next;
 	protected Game game; //Eltér a dokumentációtól
 	
-	public void release() {
-		
-	}
+	public abstract void release();
 	
-	public void die() {
-		
-	}
+	public void die() {	}
 	
-	public void Notify() {
-
-	}
+	public void Notify() { }
 	
 	public void moveTo(Tile t) {
-		
+		next.moveTo(tile);
 	}
 	
 	public void setNext(Character c) {

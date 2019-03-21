@@ -24,4 +24,11 @@ public class Orangutan extends Character {
 			this.moveTo(tile.getNeighbour(0)); //TODO: user input
 		}
 	}
+	
+	public void release() {
+		if (next != null) {
+			next.release();
+		}
+		next = null;
+	}
 }

@@ -24,7 +24,7 @@ public abstract class Panda extends Character {
 		return prev;
 	}
 	
-	public void step() { //TODO: és ha a prev nem null?
+	public void step() {
 		if (prev == null) {
 			int nextDirection = ThreadLocalRandom.current().nextInt(0, tile.getSides());
 			tile.put(this, nextDirection);
