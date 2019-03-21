@@ -10,8 +10,18 @@ public class Game implements Steppable {
 	private ArrayList<Tile> tiles;
 	private Timer timer;
 	
-	public Timer getTimer () {
+	private int lastInput = 0; //Teszteléshez TODO: kivenni
+	
+	public Timer getTimer () { //Teszteléshez TODO: kivenni
 		return timer;
+	}
+	
+	public int getLastInput() { //Teszteléshez TODO: kivenni
+		return lastInput;
+	}
+	
+	public void simulateInput(int i) { //Teszteléshez TODO: kivenni és átalakítani wrapper osztállyá
+		lastInput = i;
 	}
 	
 	Game(ArrayList<Tile> tiles, Entrance entrance) { //Ez nincs benn a dokumentációban
@@ -48,7 +58,7 @@ public class Game implements Steppable {
 	public void newGame() {
 		//TODO: pálya felépítése
 		orangutan = new Orangutan();
-		
+		lastInput = -1;
 		//TODO: Timer start
 	}
 	

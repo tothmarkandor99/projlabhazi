@@ -3,6 +3,7 @@ package projlabhazi;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,6 +36,7 @@ public class ComInt { // interactive command interpreter for testing
 				return;
 			case "newgame":
 				// TODO: game-et inicializálni a Tiles-szal valahogy
+				game = new Game((ArrayList<Tile>)Tiles.values(), entrance);
 				break;
 			case "createtile":
 				if (input.length < 2)
@@ -138,7 +140,7 @@ public class ComInt { // interactive command interpreter for testing
 	private static void listObjects(HashMap<Integer, Object> Objects) {
 		System.out.println("List of objects:");
 		for (Map.Entry<Integer, Object> object : Objects.entrySet()) {
-			System.out.println(" - Id: " + object.getKey() + " - object : " + object.getClass());
+			System.out.println(" - Id: " + object.getKey() + " - object : " + object.getKey().getClass());
 		}
 	}
 }
