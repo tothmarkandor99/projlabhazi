@@ -45,7 +45,7 @@ public abstract class Panda extends Character {
 	public void die() {
 		if (prev != null) {
 			prev.Notify();
-			//TODO: Timer.removeSteppable(this);
+			game.getTimer().removeSteppable(this);
 			game.pandaDies();
 		}
 	}

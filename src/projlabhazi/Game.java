@@ -8,6 +8,24 @@ public class Game implements Steppable {
 	private Entrance entrance;
 	private Orangutan orangutan;
 	private ArrayList<Tile> tiles;
+	private Timer timer;
+	
+	public Timer getTimer () {
+		return timer;
+	}
+	
+	Game(ArrayList<Tile> tiles, Entrance entrance) { //Ez nincs benn a dokumentációban
+		this.tiles = tiles;
+		this.entrance = entrance;
+		timer = new Timer();
+		score = 0;
+		remainingPandas = 0;
+		for (Tile tile : tiles) {
+			if (tile.getObject() instanceof Panda) {
+				remainingPandas++;
+			}
+		}
+	}
 	
 	public void addScore() {
 		score += 20;
