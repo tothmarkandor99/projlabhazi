@@ -1,6 +1,10 @@
 package projlabhazi;
 
 public class SleepPanda extends Panda {
+	public SleepPanda(Game g) {
+		super(g);
+	}
+
 	private boolean sleep;
 	
 	@Override

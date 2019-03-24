@@ -1,8 +1,16 @@
 package projlabhazi;
 
 public class Tile implements Receiver {
-	private Tile[] neighbours;
+	private Tile[] neighbours = new Tile[0];
 	private Object object;
+	
+	public void print() {  //Teszteléshez TODO: kivenni
+		if (object == null) {
+			System.out.println("üres");
+		} else {
+			System.out.println(object.getClass());
+		}
+	}
 	
 	@Override
 	public boolean receive(Orangutan o) {

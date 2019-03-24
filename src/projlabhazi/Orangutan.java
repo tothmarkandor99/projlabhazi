@@ -1,6 +1,10 @@
 package projlabhazi;
 
 public class Orangutan extends Character {
+	public Orangutan(Game g) {
+		super(g);
+	}
+	
 	public void add(Panda p) {
 		p.next = next;
 		next = p;
@@ -24,6 +28,7 @@ public class Orangutan extends Character {
 			return; //Teszteléshez TODO: kivenni
 		if (tile.put(this, game.getLastInput())) { //TODO: user input
 			this.moveTo(tile.getNeighbour(game.getLastInput())); //TODO: user input
+			game.simulateInput(-1);
 		}
 	}
 	

@@ -1,0 +1,20 @@
+createtile
+createtile
+createtile
+createtile
+createtile
+createtile
+addneighbour 0 1
+addneighbour 0 2
+addneighbour 0 3
+addneighbour 1 2
+addneighbour 1 4
+addneighbour 2 3
+addneighbour 2 4
+addneighbour 2 5
+addneighbour 3 5
+addneighbour 4 5
+setentrance 0
+createobject exit
+createpanda game
+putpanda 7 1

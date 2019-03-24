@@ -12,6 +12,14 @@ public class Game implements Steppable {
 	
 	private int lastInput = 0; //Teszteléshez TODO: kivenni
 	
+	public void printTiles() { //Teszteléshez TODO: kivenni
+		System.out.println("Last input:" + lastInput);
+		for (int i = 0; i < tiles.size(); i++) {
+			System.out.print(i + "\t");
+			tiles.get(i).print();
+		}
+	}
+	
 	public Timer getTimer () { //Teszteléshez TODO: kivenni
 		return timer;
 	}
@@ -20,14 +28,25 @@ public class Game implements Steppable {
 		return lastInput;
 	}
 	
+	public int getScore() {
+		return score;
+	}
+	
 	public void simulateInput(int i) { //Teszteléshez TODO: kivenni és átalakítani wrapper osztállyá
 		lastInput = i;
 	}
 	
-	Game(ArrayList<Tile> tiles, Entrance entrance) { //Ez nincs benn a dokumentációban
+	Game(Timer t) { //Ez nincs benn a dokumentációban
+		timer = t;
+	}
+	
+	public void Initialize(ArrayList<Tile> tiles, Tile entranceTile) {
 		this.tiles = tiles;
-		this.entrance = entrance;
-		timer = new Timer();
+		this.entrance = new Entrance();
+		entrance.setTile(entranceTile);
+		entranceTile.setObject(entrance);
+		orangutan = new Orangutan(this);
+		timer.addSteppable(orangutan);
 		score = 0;
 		remainingPandas = 0;
 		for (Tile tile : tiles) {
@@ -57,7 +76,7 @@ public class Game implements Steppable {
 	
 	public void newGame() {
 		//TODO: pálya felépítése
-		orangutan = new Orangutan();
+		entrance.getTile().setObject(orangutan);
 		lastInput = -1;
 		//TODO: Timer start
 	}

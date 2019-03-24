@@ -13,8 +13,9 @@ public class ComInt { // interactive command interpreter for testing
 		HashMap<Integer, Panda> Pandas = new HashMap<Integer, Panda>();
 		HashMap<Integer, Tile> Tiles = new HashMap<Integer, Tile>();
 		HashMap<Integer, Object> Objects = new HashMap<Integer, Object>();
-		Entrance entrance = null;
-		Game game = null;
+		Tile entranceTile = null;
+		Timer timer = new Timer();
+		Game game = new Game(timer);
 
 		int counter = 0;
 
@@ -36,7 +37,12 @@ public class ComInt { // interactive command interpreter for testing
 				return;
 			case "newgame":
 				// TODO: game-et inicializálni a Tiles-szal valahogy
-				game = new Game((ArrayList<Tile>)Tiles.values(), entrance);
+				ArrayList<Tile> tempTiles = new ArrayList<Tile>();
+				for (Map.Entry<Integer, Tile> tile : Tiles.entrySet()) {
+					tempTiles.add(tile.getValue());
+				}
+				game.Initialize(tempTiles, entranceTile);
+				game.newGame();
 				break;
 			case "createtile":
 				if (input.length < 2)
@@ -49,23 +55,28 @@ public class ComInt { // interactive command interpreter for testing
 				break;
 			case "addneighbour":
 				Tiles.get(Integer.parseInt(input[1])).addNeighbour(Tiles.get(Integer.parseInt(input[2])));
+				Tiles.get(Integer.parseInt(input[2])).addNeighbour(Tiles.get(Integer.parseInt(input[1])));
 				break;
 			case "removeneighbour":
 				Tiles.get(Integer.parseInt(input[1])).removeNeighbour(Tiles.get(Integer.parseInt(input[2])));
+				Tiles.get(Integer.parseInt(input[2])).removeNeighbour(Tiles.get(Integer.parseInt(input[1])));
 				break;
 			case "createpanda":
 				if (input.length < 2)
 					continue;
 				switch (input[1].toLowerCase()) {
 				case "chocolate":
-					Pandas.put(counter++, new ChocolatePanda());
+					Pandas.put(counter++, new ChocolatePanda(game));
+					timer.addSteppable(Pandas.get(counter - 1));
 					break;
 				case "game":
-					Pandas.put(counter++, new GamePanda());
-					break;
+					Pandas.put(counter++, new GamePanda(game));
+					timer.addSteppable(Pandas.get(counter - 1));
+				break;
 				case "sleep":
-					Pandas.put(counter++, new SleepPanda());
-					break;
+					Pandas.put(counter++, new SleepPanda(game));
+					timer.addSteppable(Pandas.get(counter - 1));
+				break;
 				default:
 					break;
 				}
@@ -74,26 +85,30 @@ public class ComInt { // interactive command interpreter for testing
 				Pandas.remove(Integer.parseInt(input[1]));
 				break;
 			case "setentrance":
-				entrance = new Entrance();
-				entrance.setTile(Tiles.get(Integer.parseInt(input[1])));
+				entranceTile = (Tiles.get(Integer.parseInt(input[1])));
 				break;
 			case "createobject":
 				switch (input[1].toLowerCase()) {
 				case "armchair":
 					Objects.put(counter++, new ArmChair());
-					break;
+					timer.addSteppable(Objects.get(counter - 1));
+			break;
 				case "chocolatemachine":
 					Objects.put(counter++, new ChocolateMachine());
-					break;
+					timer.addSteppable(Objects.get(counter - 1));
+				break;
 				case "gamemachine":
 					Objects.put(counter++, new GameMachine());
-					break;
+					timer.addSteppable(Objects.get(counter - 1));
+				break;
 				case "wardrobe":
 					Objects.put(counter++, new Wardrobe());
-					break;
+					timer.addSteppable(Objects.get(counter - 1));
+				break;
 				case "exit":
 					Objects.put(counter++, new Exit());
-					break;
+					timer.addSteppable(Objects.get(counter - 1));
+				break;
 				default:
 					break;
 				}
@@ -114,6 +129,12 @@ public class ComInt { // interactive command interpreter for testing
 				break;
 			case "step":
 				game.getTimer().tick();
+				break;
+			case "setinput":
+				game.simulateInput(Integer.parseInt(input[1]));
+				break;
+			case "printtiles":
+				game.printTiles();
 				break;
 			default:
 				break;
