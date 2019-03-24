@@ -33,6 +33,10 @@ public class Game implements Steppable {
 		return inputDir;
 	}
 	
+	public void addInputDir(int i) { //Teszteléshez TODO: kivenni
+		inputDir += i;
+	}
+	
 	public boolean getInputSpace() { //Teszteléshez TODO: kivenni
 		return inputSpace;
 	}
@@ -57,9 +61,9 @@ public class Game implements Steppable {
 		this.tiles = tiles;
 		this.entrance = new Entrance();
 		entrance.setTile(entranceTile);
-		entranceTile.setObject(entrance);
 		orangutan = new Orangutan(this);
-		orangutan.setTile(entranceTile);
+		entrance.getTile().setObject(orangutan);
+		orangutan.setTile(entrance.getTile());
 		timer.addSteppable(orangutan);
 		score = 0;
 		remainingPandas = 0;

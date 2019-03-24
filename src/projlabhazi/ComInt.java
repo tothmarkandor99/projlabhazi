@@ -118,9 +118,11 @@ public class ComInt { // interactive command interpreter for testing
 				break;
 			case "putpanda":
 				Tiles.get(Integer.parseInt(input[1])).setObject(Pandas.get(Integer.parseInt(input[2])));
+				Pandas.get(Integer.parseInt(input[2])).setTile(Tiles.get(Integer.parseInt(input[1])));
 				break;
 			case "putobject":
 				Tiles.get(Integer.parseInt(input[1])).setObject(Objects.get(Integer.parseInt(input[2])));
+				Objects.get(Integer.parseInt(input[2])).setTile(Tiles.get(Integer.parseInt(input[1])));
 				break;
 			case "listall":
 				listPandas(Pandas);

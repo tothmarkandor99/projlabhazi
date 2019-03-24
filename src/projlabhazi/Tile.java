@@ -8,7 +8,7 @@ public class Tile implements Receiver {
 		if (object == null) {
 			System.out.println("üres");
 		} else {
-			System.out.println(object.getClass());
+			System.out.println(object.getClass() + "\t" + (object.getTile() == null ? "üres" : "Tile"));
 		}
 	}
 	
