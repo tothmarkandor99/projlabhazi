@@ -4,3 +4,5 @@ addneighbour 0 1
 addneighbour 1 0
 setentrance 0
 newgame
+space
+step
