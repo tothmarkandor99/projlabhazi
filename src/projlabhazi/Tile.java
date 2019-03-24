@@ -1,8 +1,16 @@
 package projlabhazi;
 
 public class Tile implements Receiver {
-	private Tile[] neighbours;
+	private Tile[] neighbours = new Tile[0];
 	private Object object;
+	
+	public void print() {  //Teszteléshez TODO: kivenni
+		if (object == null) {
+			System.out.println("üres");
+		} else {
+			System.out.println(object.getClass());
+		}
+	}
 	
 	@Override
 	public boolean receive(Orangutan o) {
@@ -18,6 +26,14 @@ public class Tile implements Receiver {
 		return object.receive(p);
 	}
 
+	public void addNeighbour(Tile tile) { //Ez nem volt benn a dokumentációban
+		Tile[] newNeighbours = new Tile[neighbours.length + 1];
+		for (int i = 0; i < neighbours.length; i++) {
+			newNeighbours[i] = neighbours[i];
+		}
+		newNeighbours[newNeighbours.length - 1] = tile;
+	}
+	
 	public void removeNeighbour(Tile tile) { //TODO: ezt lehet nem így kéne
 		int i = 0;
 		while (i < neighbours.length && neighbours[i] != tile) {

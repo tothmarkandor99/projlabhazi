@@ -4,6 +4,10 @@ public abstract class Character extends Object {
 	protected Character next;
 	protected Game game; //Eltér a dokumentációtól
 	
+	public Character(Game g) {
+		game = g;
+	}
+	
 	public abstract void release();
 	
 	public void die() {	}

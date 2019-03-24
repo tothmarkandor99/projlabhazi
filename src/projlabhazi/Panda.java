@@ -11,6 +11,10 @@ public abstract class Panda extends Character {
 	
 	public void sleep() {}
 	
+	public Panda(Game g) {
+		super(g);
+	}
+	
 	public boolean receive(Orangutan o) {
 		o.add(this);
 		return true;
@@ -26,8 +30,9 @@ public abstract class Panda extends Character {
 	
 	public void step() {
 		if (prev == null) {
-			int nextDirection = ThreadLocalRandom.current().nextInt(0, tile.getSides());
-			tile.put(this, nextDirection);
+			//TODO: teszteléshez kivéve, a pandák ne mozogjanak maguktól
+			//int nextDirection = ThreadLocalRandom.current().nextInt(0, tile.getSides());
+			//tile.put(this, nextDirection);
 		}
 	}
 	
@@ -45,7 +50,7 @@ public abstract class Panda extends Character {
 	public void die() {
 		if (prev != null) {
 			prev.Notify();
-			//TODO: Timer.removeSteppable(this);
+			game.getTimer().removeSteppable(this);
 			game.pandaDies();
 		}
 	}
