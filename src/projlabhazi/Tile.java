@@ -32,6 +32,7 @@ public class Tile implements Receiver {
 			newNeighbours[i] = neighbours[i];
 		}
 		newNeighbours[newNeighbours.length - 1] = tile;
+		neighbours = newNeighbours;
 	}
 	
 	public void removeNeighbour(Tile tile) { //TODO: ezt lehet nem így kéne

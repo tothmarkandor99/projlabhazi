@@ -55,6 +55,7 @@ public class ComInt { // interactive command interpreter for testing
 				break;
 			case "addneighbour":
 				Tiles.get(Integer.parseInt(input[1])).addNeighbour(Tiles.get(Integer.parseInt(input[2])));
+				System.out.println("Tile " + input[1] + " has " + Tiles.get(Integer.parseInt(input[1])).getSides() + " neighbours");
 				break;
 			case "removeneighbour":
 				Tiles.get(Integer.parseInt(input[1])).removeNeighbour(Tiles.get(Integer.parseInt(input[2])));
