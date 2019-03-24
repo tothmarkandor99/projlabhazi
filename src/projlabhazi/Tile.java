@@ -51,11 +51,19 @@ public class Tile implements Receiver {
 		}
 	}
 	
-	public boolean put(Character c, int i) { //TODO: ez így biztos nem lesz jó
-		if (c instanceof Panda)
-			return neighbours[i].receive((Panda)c);
-		if (c instanceof Orangutan)
-			return neighbours[i].receive((Orangutan)c);
+	public boolean put(Panda p, int i) { //Eltér a dokumentációtól
+		if (neighbours[i].receive(p)) {
+			setObject(null);
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean put(Orangutan o, int i) { //TODO: ez így biztos nem lesz jó
+		if (neighbours[i].receive(o)) {
+			setObject(null);
+			return true;
+		}
 		return false;
 	}
 	
