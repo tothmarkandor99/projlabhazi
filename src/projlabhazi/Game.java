@@ -14,7 +14,11 @@ public class Game implements Steppable {
 	private boolean inputSpace = false; //Teszteléshez TODO: kivenni
 	
 	public void printTiles() { //Teszteléshez TODO: kivenni
-		System.out.println("Last input:" + inputDir % orangutan.getTile().getSides());
+		if (orangutan.getTile().getSides() == 0) {
+			System.out.println("Az orángutánnak nincs szomszédos mezõ");
+		} else {
+			System.out.println("Last input:" + inputDir % orangutan.getTile().getSides());
+		}
 		for (int i = 0; i < tiles.size(); i++) {
 			System.out.print(i + "\t");
 			tiles.get(i).print();
@@ -55,6 +59,7 @@ public class Game implements Steppable {
 		entrance.setTile(entranceTile);
 		entranceTile.setObject(entrance);
 		orangutan = new Orangutan(this);
+		orangutan.setTile(entranceTile);
 		timer.addSteppable(orangutan);
 		score = 0;
 		remainingPandas = 0;

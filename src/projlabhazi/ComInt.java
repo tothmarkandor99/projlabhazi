@@ -84,6 +84,7 @@ public class ComInt { // interactive command interpreter for testing
 				break;
 			case "setentrance":
 				entranceTile = (Tiles.get(Integer.parseInt(input[1])));
+				System.out.println("HAL " + entranceTile.getSides());
 				break;
 			case "createobject":
 				switch (input[1].toLowerCase()) {
