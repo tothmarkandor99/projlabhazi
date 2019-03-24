@@ -15,7 +15,10 @@ public abstract class Character extends Object {
 	public void Notify() { }
 	
 	public void moveTo(Tile t) {
-		next.moveTo(tile);
+		this.setTile(t);
+		if (next != null) {
+			next.moveTo(tile);
+		}
 	}
 	
 	public void setNext(Character c) {
