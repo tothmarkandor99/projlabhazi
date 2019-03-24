@@ -1,8 +1,15 @@
 createtile
 createtile
+createtile
 addneighbour 0 1
 addneighbour 1 0
+addneighbour 0 2
+addneighbour 2 0
+addneighbour 1 2
+addneighbour 2 1
 setentrance 0
+createpanda game
+putpanda 1 3
 newgame
 space
 step

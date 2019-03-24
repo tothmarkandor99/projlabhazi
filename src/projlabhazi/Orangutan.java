@@ -20,7 +20,7 @@ public class Orangutan extends Character {
 		this.next = p;
 	}
 	
-	public void countPanda() { //Eltérés a dokumentációhoz képest
+	public void countPanda() {
 		Character temp = next;
 		int pcs = 0;
 		while (temp != null) {

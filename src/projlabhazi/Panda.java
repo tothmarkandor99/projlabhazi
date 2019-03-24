@@ -16,7 +16,9 @@ public abstract class Panda extends Character {
 	}
 	
 	public boolean receive(Orangutan o) {
-		o.add(this);
+		if (next == null) {
+			o.add(this);
+		}
 		return false;
 	}
 	

@@ -117,14 +117,14 @@ public class ComInt { // interactive command interpreter for testing
 				Objects.remove(Integer.parseInt(input[1]));
 				break;
 			case "putpanda":
-				Tiles.get(Integer.parseInt(input[1])).setObject(Pandas.get(Integer.parseInt(input[2])));
-				Pandas.get(Integer.parseInt(input[2])).setTile(Tiles.get(Integer.parseInt(input[1])));
+				Tiles.get(Integer.parseInt(input[2])).setObject(Pandas.get(Integer.parseInt(input[1])));
+				Pandas.get(Integer.parseInt(input[1])).setTile(Tiles.get(Integer.parseInt(input[2])));
 				break;
 			case "putobject":
-				Tiles.get(Integer.parseInt(input[1])).setObject(Objects.get(Integer.parseInt(input[2])));
-				Objects.get(Integer.parseInt(input[2])).setTile(Tiles.get(Integer.parseInt(input[1])));
+				Tiles.get(Integer.parseInt(input[2])).setObject(Objects.get(Integer.parseInt(input[1])));
+				Objects.get(Integer.parseInt(input[1])).setTile(Tiles.get(Integer.parseInt(input[2])));
 				break;
-			case "listall":
+			case "listall": // A teszteléshez inicializált listák tartalmát írja ki
 				listPandas(Pandas);
 				listTiles(Tiles);
 				listObjects(Objects);
@@ -140,7 +140,7 @@ public class ComInt { // interactive command interpreter for testing
 			case "space":
 				game.simulateInput(true);
 				break;
-			case "printtiles":
+			case "printtiles": // A játék elindítása után a csempéken álló objektumokat listázza ki
 				game.printTiles();
 				break;
 			case "showscore":

@@ -29,6 +29,7 @@ public class Tile implements Receiver {
 	}
 
 	public void addNeighbour(Tile tile) { //Ez nem volt benn a dokumentációban
+		//TODO: ArrayListre-átalakítani
 		Tile[] newNeighbours = new Tile[neighbours.length + 1];
 		for (int i = 0; i < neighbours.length; i++) {
 			newNeighbours[i] = neighbours[i];
@@ -37,7 +38,7 @@ public class Tile implements Receiver {
 		neighbours = newNeighbours;
 	}
 	
-	public void removeNeighbour(Tile tile) { //TODO: ezt lehet nem így kéne
+	public void removeNeighbour(Tile tile) { //TODO: ArrayListre-átalakítani
 		int i = 0;
 		while (i < neighbours.length && neighbours[i] != tile) {
 			i++;
@@ -51,7 +52,7 @@ public class Tile implements Receiver {
 		}
 	}
 	
-	public boolean put(Panda p, int i) { //Eltér a dokumentációtól
+	public boolean put(Panda p, int i) {
 		if (neighbours[i].receive(p)) {
 			setObject(null);
 			return true;
@@ -59,7 +60,7 @@ public class Tile implements Receiver {
 		return false;
 	}
 	
-	public boolean put(Orangutan o, int i) { //TODO: ez így biztos nem lesz jó
+	public boolean put(Orangutan o, int i) {
 		if (neighbours[i].receive(o)) {
 			setObject(null);
 			return true;
