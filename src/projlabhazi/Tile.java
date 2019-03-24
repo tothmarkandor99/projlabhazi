@@ -14,8 +14,10 @@ public class Tile implements Receiver {
 	
 	@Override
 	public boolean receive(Orangutan o) {
-		if (object == null)
+		if (object == null) {
+			setObject(o);
 			return true;
+		}
 		return object.receive(o);
 	}
 
