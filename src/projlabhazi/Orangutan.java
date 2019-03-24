@@ -6,8 +6,10 @@ public class Orangutan extends Character {
 	}
 	
 	public void add(Panda p) {
-		p.next = next;
-		next = p;
+		p.next = this.next;
+		this.next = p;
+		//TODO: itt kell a swap-et megvalósítani
+		
 	}
 	
 	public void countPanda() { //Eltérés a dokumentációhoz képest
