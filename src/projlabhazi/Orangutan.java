@@ -24,11 +24,10 @@ public class Orangutan extends Character {
 	}
 	
 	public void step() {
-		if (game.getLastInput() == -1) //Teszteléshez TODO: kivenni
+		if (game.getInputSpace() == false) //Teszteléshez TODO: kivenni
 			return; //Teszteléshez TODO: kivenni
-		if (tile.put(this, game.getLastInput())) { //TODO: user input
-			this.moveTo(tile.getNeighbour(game.getLastInput())); //TODO: user input
-			game.simulateInput(-1);
+		if (tile.put(this, game.getInputDir() % tile.getSides())) { //TODO: user input
+			this.moveTo(tile.getNeighbour(game.getInputDir() % tile.getSides())); //TODO: user input
 		}
 	}
 	

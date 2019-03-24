@@ -55,11 +55,9 @@ public class ComInt { // interactive command interpreter for testing
 				break;
 			case "addneighbour":
 				Tiles.get(Integer.parseInt(input[1])).addNeighbour(Tiles.get(Integer.parseInt(input[2])));
-				Tiles.get(Integer.parseInt(input[2])).addNeighbour(Tiles.get(Integer.parseInt(input[1])));
 				break;
 			case "removeneighbour":
 				Tiles.get(Integer.parseInt(input[1])).removeNeighbour(Tiles.get(Integer.parseInt(input[2])));
-				Tiles.get(Integer.parseInt(input[2])).removeNeighbour(Tiles.get(Integer.parseInt(input[1])));
 				break;
 			case "createpanda":
 				if (input.length < 2)
@@ -130,11 +128,19 @@ public class ComInt { // interactive command interpreter for testing
 			case "step":
 				game.getTimer().tick();
 				break;
-			case "setinput":
-				game.simulateInput(Integer.parseInt(input[1]));
+			case "turn":
+				if (input.length < 2)
+					return;
+				game.simulateTurn(input[1].toLowerCase() == "left" ? true : false);
+				break;
+			case "space":
+				game.simulateInput(true);
 				break;
 			case "printtiles":
 				game.printTiles();
+				break;
+			case "showscore":
+				System.out.println("Jelenlegi pontszám: " + game.getScore());
 				break;
 			default:
 				break;
