@@ -3,9 +3,11 @@ package projlabhazi;
 public class Orangutan extends Character {
 	public Orangutan(Game g) {
 		super(g);
+		ComInt.sendMessage("Orangutan.Orangutan");ComInt.indent++;
 	}
 	
 	public void add(Panda p) {
+		ComInt.sendMessage("Orangutan.add");ComInt.indent++;
 		// Orangutan és felvett panda megcserélése
 		// Elõször a karakterek mezõ referenciáit cseréljük meg
 		Tile tempTile = this.getTile();
@@ -26,6 +28,7 @@ public class Orangutan extends Character {
 	}
 	
 	public void countPanda() { //Megöli és megszámolja a begyûjtött pandákat
+		ComInt.sendMessage("Orangutan.countPanda");ComInt.indent++;
 		Panda temp = next;
 		int pcs = 0;
 		while (temp != null) {
@@ -39,6 +42,7 @@ public class Orangutan extends Character {
 	}
 	
 	public void step() { //A felhasználói bemenet alapján próbálja mozgatni a pandát
+		ComInt.sendMessage("Orangutan.step");ComInt.indent++;
 		if (tile.getSides() != 0) {
 			while (game.getInputDir() < 0) {
 				game.addInputDir(tile.getSides());
@@ -50,6 +54,7 @@ public class Orangutan extends Character {
 	}
 	
 	public void release() { //Elengedi az utána álló pandát
+		ComInt.sendMessage("Orangutan.release");ComInt.indent++;
 		if (next != null) {
 			next.release();
 		}
@@ -57,6 +62,7 @@ public class Orangutan extends Character {
 	}
 	
 	public void die() {
+		ComInt.sendMessage("Orangutan.die");ComInt.indent++;
 		game.endGame();
 	}
 }

@@ -2,6 +2,7 @@ package projlabhazi;
 
 public class GameMachine extends Object {
 	public void ring() { //Minden szomszédjával megpróbál interaktálni 
+		ComInt.sendMessage("GameMachine.ring");ComInt.indent++;
 		for (int i = 0; i < tile.getSides(); i++) {
 			if (tile.getNeighbour(i).getObject() != null) {
 				this.interact(tile.getNeighbour(i).getObject());
@@ -10,11 +11,13 @@ public class GameMachine extends Object {
 	}
 	
 	public void interact(Object o) {
+		ComInt.sendMessage("GameMachine.interact");ComInt.indent++;
 		o.scare();
 	}
 
 
 	public void step() {
+		ComInt.sendMessage("GameMachine.step");ComInt.indent++;
 		if (true) { //teszteléshez kivéve TODO: random
 			this.ring();
 		}

@@ -5,9 +5,12 @@ public class Tile implements Receiver {
 	private Object object;
 	public int id; // teszteléshez TODO: kivenni
 	
-	
+	public Tile() {
+		ComInt.sendMessage("Tile.Tile");ComInt.indent++;
+	}
 	
 	public void print() {  //Teszteléshez TODO: kivenni
+		ComInt.sendMessage("Tile.print");ComInt.indent++;
 		if (object == null) {
 			System.out.print("\t" + id + " üres");
 		} else {
@@ -17,6 +20,7 @@ public class Tile implements Receiver {
 	
 	@Override
 	public boolean receive(Orangutan o) { // Tud-e a csempe orángutánt fogadni
+		ComInt.sendMessage("Tile.receive");ComInt.indent++;
 		if (object == null) {
 			return true; // Ha üres, akkor biztosan
 		}
@@ -25,10 +29,12 @@ public class Tile implements Receiver {
 
 	@Override
 	public boolean receive(Panda p) {// Tud-e a csempe pandát fogadni
+		ComInt.sendMessage("Tile.receive");
 		return object == null; // Panda csak üres mezõre léphet (magától)
 	}
 
 	public void addNeighbour(Tile tile) { //Ez nem volt benn a dokumentációban
+		ComInt.sendMessage("Tile.addNeighbour");ComInt.indent++;
 		//TODO: ArrayListre-átalakítani, akkor nem lesz ilyen bonyolult
 		Tile[] newNeighbours = new Tile[neighbours.length + 1];
 		for (int i = 0; i < neighbours.length; i++) {
@@ -39,6 +45,7 @@ public class Tile implements Receiver {
 	}
 	
 	public void removeNeighbour(Tile tile) { //TODO: ArrayListre-átalakítani, akkor nem lesz ilyen bonyolult
+		ComInt.sendMessage("Tile.removeNeighbour");ComInt.indent++;
 		int i = 0;
 		while (i < neighbours.length && neighbours[i] != tile) {
 			i++;
@@ -53,28 +60,36 @@ public class Tile implements Receiver {
 	}
 	
 	public boolean put(Panda p, int i) { //Megvizsgálja hogy az adott irányban levõ csempére lehet-e pandát tenni
+		ComInt.sendMessage("Tile.put");ComInt.indent++;
 		return neighbours[i].receive(p);
 	}
 	
 	public boolean put(Orangutan o, int i) { //Megvizsgálja hogy az adott irányban levõ csempére lehet-e orángutánt tenni
+		System.out.println("Tile.put");ComInt.indent++;
 		return neighbours[i].receive(o);
 	}
 	
-	public void crack() { } // Sima csempe nem tud eltörni
+	public void crack() {
+		System.out.println("Tile.crack");ComInt.indent++;
+	} // Sima csempe nem tud eltörni
 	
 	public void setObject(Object o) {
+		System.out.println("Tile.setObject");ComInt.indent++;
 		object = o;
 	}
 	
 	public Object getObject() {
+		System.out.println("Tile.getObject");ComInt.indent++;
 		return object;
 	}
 	
 	public int getSides() { // Hány szomszédja van
+		System.out.println("Tile.getSides");ComInt.indent++;
 		return neighbours.length;
 	}
 	
 	public Tile getNeighbour(int i) { // Az i. szomszédját adja vissza
+		System.out.println("Tile.getNeighbour");ComInt.indent++;
 		return neighbours[i];
 	}
 	

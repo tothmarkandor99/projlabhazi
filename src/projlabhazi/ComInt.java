@@ -8,7 +8,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ComInt { // interactive command interpreter for testing
+	public static int indent = 0; // teszteléshez TODO: kivenni, most nincs is használva
 
+	public static void sendMessage(String m) {
+		/*for (int i = 0; i < indent; i++) {
+			System.out.print("\t");
+		}*/
+		System.out.println(m);
+	}
+	
 	public static void main(String[] args) {
 		HashMap<Integer, Panda> Pandas = new HashMap<Integer, Panda>();
 		HashMap<Integer, Tile> Tiles = new HashMap<Integer, Tile>();
@@ -55,7 +63,6 @@ public class ComInt { // interactive command interpreter for testing
 				break;
 			case "addneighbour":
 				Tiles.get(Integer.parseInt(input[1])).addNeighbour(Tiles.get(Integer.parseInt(input[2])));
-				System.out.println("Tile " + input[1] + " has " + Tiles.get(Integer.parseInt(input[1])).getSides() + " neighbours");
 				break;
 			case "removeneighbour":
 				Tiles.get(Integer.parseInt(input[1])).removeNeighbour(Tiles.get(Integer.parseInt(input[2])));
@@ -143,7 +150,7 @@ public class ComInt { // interactive command interpreter for testing
 				game.printTiles();
 				break;
 			case "showscore":
-				System.out.println("Jelenlegi pontszï¿½m: " + game.getScore());
+				System.out.println("Jelenlegi pontszám: " + game.getScore());
 				break;
 			case "liststeppables":
 				timer.listAll();
