@@ -12,7 +12,9 @@ public abstract class Character extends Object {
 	
 	public void die() {	}
 	
-	public void Notify() { }
+	public void Notify() {
+		next.release();
+	}
 	
 	public void moveTo(Tile t) {
 		this.setTile(t);

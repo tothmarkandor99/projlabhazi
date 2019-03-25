@@ -13,6 +13,7 @@ public abstract class Panda extends Character {
 	
 	public Panda(Game g) {
 		super(g);
+		prev = null;
 	}
 	
 	public boolean receive(Orangutan o) {
@@ -38,20 +39,23 @@ public abstract class Panda extends Character {
 		}
 	}
 	
+	@Override
 	public void Notify() {
-		if (next != null) {
-			next.release();
-			next = null;
-		}
+		prev.setNext(null);
+		this.release();
 	}
 	
-	public void release() {
-		prev = null;
+	public void release() { //Rekurzív
+		if (next != null) {
+			next.release();
+		}
+		setNext(null);
+		setPrev(null);
 	}
 	
 	public void die() {
 		if (prev != null) {
-			prev.Notify();
+			this.Notify();
 			game.getTimer().removeSteppable(this);
 			game.pandaDies();
 		}
