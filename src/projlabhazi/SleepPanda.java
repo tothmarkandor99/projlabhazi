@@ -8,8 +8,10 @@ public class SleepPanda extends Panda {
 	private boolean sleep;
 	
 	@Override
-	public void sleep() {
-		this.prev.Notify();
+	public boolean sleep() {
+		if (prev != null)
+			this.prev.Notify();
+		return true;
 	}
 	
 	public void setSleep(boolean b) {

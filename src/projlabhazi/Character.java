@@ -14,6 +14,7 @@ public abstract class Character extends Object {
 	
 	public void Notify() {
 		next.release();
+		this.setNext(null);
 	}
 	
 	public void moveTo(Tile t) {
@@ -23,7 +24,8 @@ public abstract class Character extends Object {
 		if (next != null) {
 			next.moveTo(tempTile);
 		} else {
-			tempTile.setObject(null);
+			if (tempTile != null)
+				tempTile.setObject(null);
 		}
 	}
 	

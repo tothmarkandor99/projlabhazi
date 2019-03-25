@@ -1,0 +1,13 @@
+createtile
+createtile
+createtile
+createpanda game
+addneighbour 0 1
+addneighbour 1 0
+addneighbour 1 2
+addneighbour 2 1
+addneighbour 2 0
+addneighbour 0 2
+putpanda 3 1
+setentrance 0
+newgame

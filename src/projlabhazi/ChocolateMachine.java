@@ -20,12 +20,9 @@ public class ChocolateMachine extends Object implements Interact {
 		}
 	}
 
-	@Override
-	public void interact(Object o) {}
 
-	@Override
-	public void interact(Panda p) {
-		p.jump();
+	public void interact(Object o) {
+		o.jump();
 	}
 
 }

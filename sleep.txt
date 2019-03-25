@@ -1,0 +1,27 @@
+createtile
+createtile
+createtile
+createtile
+createtile
+addneighbour 0 1
+addneighbour 0 4
+addneighbour 1 2
+addneighbour 1 4
+addneighbour 1 0
+addneighbour 2 3
+addneighbour 2 4
+addneighbour 2 1
+addneighbour 3 4
+addneighbour 3 2
+addneighbour 4 0
+addneighbour 4 1
+addneighbour 4 2
+addneighbour 4 3
+createpanda game
+putpanda 5 1
+createpanda sleep
+putpanda 6 2
+createobject armchair
+putobject 7 4
+setentrance 0
+newgame

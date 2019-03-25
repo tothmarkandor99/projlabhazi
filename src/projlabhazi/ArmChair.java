@@ -1,22 +1,26 @@
 package projlabhazi;
 
 public class ArmChair extends Object implements Interact {
-	private Panda p;
+	private SleepPanda p;
 	private int sleepTime;
 	
-	@Override
-	public void interact(Object o) { }
-
-	@Override
-	public void interact(Panda p) {
-		if (this.p != null)
-			return;
-		p.sleep();
-		setPanda(p);
-		setSleepTime(10); //TODO: véletlenszám
+	public ArmChair() {
+		
 	}
 	
-	public void setPanda(Panda p) {
+	@Override
+	public void interact(Object o) { 
+		if (this.p != null)
+			return;
+		if (o.sleep()) {
+			setPanda((SleepPanda)o);
+			p.getTile().setObject(null);
+			p.setTile(null);
+			setSleepTime(2); //TODO: véletlenszám
+		}
+	}
+
+	public void setPanda(SleepPanda p) {
 		this.p = p;
 	}
 	
@@ -29,13 +33,21 @@ public class ArmChair extends Object implements Interact {
 	}
 	
 	public void step() {
+		sleepTime--;
 		if (p == null) {		
 			for (int i = 0; i < getTile().getSides(); i++) {
-				if (getTile().getNeighbour(i).getObject() != null) {
+				if (p == null && getTile().getNeighbour(i).getObject() != null) {
 					interact(getTile().getNeighbour(i).getObject());
 				}
 			}
-			sleepTime--;
+		} else if (sleepTime <= 0) {
+			int i;
+			for (i = 0; i < this.getTile().getSides(); i++) {
+				if (this.getTile().getNeighbour(i).receive(p)) {
+					p.moveTo(this.getTile().getNeighbour(i));
+					break;
+				}
+			}
 		}
 	}
 

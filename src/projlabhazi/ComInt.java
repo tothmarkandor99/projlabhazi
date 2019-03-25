@@ -36,7 +36,7 @@ public class ComInt { // interactive command interpreter for testing
 			case "exit":
 				return;
 			case "newgame":
-				// TODO: game-et inicializálni a Tiles-szal valahogy
+				// TODO: game-et inicializï¿½lni a Tiles-szal valahogy
 				ArrayList<Tile> tempTiles = new ArrayList<Tile>();
 				for (Map.Entry<Integer, Tile> tile : Tiles.entrySet()) {
 					tempTiles.add(tile.getValue());
@@ -46,6 +46,7 @@ public class ComInt { // interactive command interpreter for testing
 			case "createtile":
 				if (input.length == 1) {
 					Tiles.put(counter++, new Tile());
+					Tiles.get(counter - 1).id = counter - 1;
 				} else if (input[1].toLowerCase().equals("breaking")) {
 					Tiles.put(counter++, new BreakingTile());
 				}
@@ -91,23 +92,23 @@ public class ComInt { // interactive command interpreter for testing
 				case "armchair":
 					Objects.put(counter++, new ArmChair());
 					timer.addSteppable(Objects.get(counter - 1));
-			break;
+					break;
 				case "chocolatemachine":
 					Objects.put(counter++, new ChocolateMachine());
 					timer.addSteppable(Objects.get(counter - 1));
-				break;
+					break;
 				case "gamemachine":
 					Objects.put(counter++, new GameMachine());
 					timer.addSteppable(Objects.get(counter - 1));
-				break;
+					break;
 				case "wardrobe":
 					Objects.put(counter++, new Wardrobe());
 					timer.addSteppable(Objects.get(counter - 1));
-				break;
+					break;
 				case "exit":
 					Objects.put(counter++, new Exit());
 					timer.addSteppable(Objects.get(counter - 1));
-				break;
+					break;
 				default:
 					break;
 				}
@@ -123,7 +124,7 @@ public class ComInt { // interactive command interpreter for testing
 				Tiles.get(Integer.parseInt(input[2])).setObject(Objects.get(Integer.parseInt(input[1])));
 				Objects.get(Integer.parseInt(input[1])).setTile(Tiles.get(Integer.parseInt(input[2])));
 				break;
-			case "listall": // A teszteléshez inicializált listák tartalmát írja ki
+			case "listall": // A tesztelï¿½shez inicializï¿½lt listï¿½k tartalmï¿½t ï¿½rja ki
 				listPandas(Pandas);
 				listTiles(Tiles);
 				listObjects(Objects);
@@ -139,11 +140,14 @@ public class ComInt { // interactive command interpreter for testing
 					return;
 				game.simulateTurn(input[1].toLowerCase() == "left" ? true : false);
 				break;
-			case "printtiles": // A játék elindítása után a csempéken álló objektumokat listázza ki
+			case "printtiles": // A jï¿½tï¿½k elindï¿½tï¿½sa utï¿½n a csempï¿½ken ï¿½llï¿½ objektumokat listï¿½zza ki
 				game.printTiles();
 				break;
 			case "showscore":
-				System.out.println("Jelenlegi pontszám: " + game.getScore());
+				System.out.println("Jelenlegi pontszï¿½m: " + game.getScore());
+				break;
+			case "liststeppables":
+				timer.listAll();
 				break;
 			default:
 				break;
@@ -165,7 +169,7 @@ public class ComInt { // interactive command interpreter for testing
 			System.out.print(" - Id: " + tile.getKey()
 					+ " - " + tile.getValue().getClass() + "\t");
 			if (tile.getValue().getObject() == null) {
-				System.out.print("üres");
+				System.out.print("ï¿½res");
 			} else {
 				System.out.print(tile.getValue().getObject().getClass());
 			}
@@ -179,7 +183,7 @@ public class ComInt { // interactive command interpreter for testing
 	private static void listObjects(HashMap<Integer, Object> Objects) {
 		System.out.println("List of objects:");
 		for (Map.Entry<Integer, Object> object : Objects.entrySet()) {
-			System.out.println(" - Id: " + object.getKey() + " - object : " + object.getKey().getClass());
+			System.out.println(" - Id: " + object.getKey() + " - object : " + object.getValue().getClass());
 		}
 	}
 }

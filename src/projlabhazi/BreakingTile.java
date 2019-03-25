@@ -3,6 +3,10 @@ package projlabhazi;
 public class BreakingTile extends Tile {
 	private int life;
 	
+	public BreakingTile() {
+		life = 3; //TODO: visszaírni 20-ra
+	}
+	
 	public void print() {  //Teszteléshez TODO: kivenni
 		super.print();
 	}
@@ -37,7 +41,7 @@ public class BreakingTile extends Tile {
 		c.die();
 		for (int i = 0; i < getSides(); i++) {
 			getNeighbour(i).removeNeighbour(this);
-		}		
+		}
 	}
 	
 }

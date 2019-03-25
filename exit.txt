@@ -1,0 +1,21 @@
+createtile
+createtile
+createtile
+createtile
+addneighbour 0 1
+addneighbour 1 0
+addneighbour 1 2
+addneighbour 2 1
+addneighbour 2 3
+addneighbour 3 2
+setentrance 0
+createobject exit
+putobject 4 3
+createpanda game
+putpanda 5 1
+createpanda game
+putpanda 6 2
+newgame
+step
+turn right
+printtiles

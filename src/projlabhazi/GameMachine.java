@@ -9,11 +9,10 @@ public class GameMachine extends Object {
 		}
 	}
 	
-	public void interact(Object o) {}
-		
-	public void interact(Panda p) {
-		p.scare();
+	public void interact(Object o) {
+		o.scare();
 	}
+
 
 	public void step() {
 		//TODO: random

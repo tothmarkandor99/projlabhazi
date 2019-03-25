@@ -13,6 +13,7 @@ public class Game implements Steppable {
 	private int inputDir = 0; //Teszteléshez TODO: kivenni
 	
 	public void printTiles() { //Teszteléshez TODO: kivenni
+		System.out.println("EntranceTile: " + entranceTile.id);
 		if (orangutan.getTile().getSides() == 0) {
 			System.out.println("Az orángutánnak nincs szomszédos mezõ");
 		} else {
@@ -63,7 +64,9 @@ public class Game implements Steppable {
 		score = 0;
 		remainingPandas = countPandas;
 		orangutan = new Orangutan(this);
-		toStart();
+		orangutan.setTile(entranceTile);
+		entranceTile.setObject(orangutan);
+		timer.start();
 	}
 	
 	public void addScore(int s) {
@@ -75,7 +78,6 @@ public class Game implements Steppable {
 	}
 	
 	public void toStart() {
-		orangutan.setTile(new Tile());
 		orangutan.moveTo(entranceTile);
 	}
 	

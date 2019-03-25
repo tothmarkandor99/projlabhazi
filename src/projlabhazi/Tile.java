@@ -3,12 +3,15 @@ package projlabhazi;
 public class Tile implements Receiver {
 	private Tile[] neighbours = new Tile[0];
 	private Object object;
+	public int id; // teszteléshez TODO: kivenni
+	
+	
 	
 	public void print() {  //Teszteléshez TODO: kivenni
 		if (object == null) {
-			System.out.print("üres");
+			System.out.print("\t" + id + " üres");
 		} else {
-			System.out.print(object.getClass() + "\t" + (object.getTile() == null ? "üres" : "Tile"));
+			System.out.print("\t" + id + " " + object.getClass());
 		}
 	}
 	

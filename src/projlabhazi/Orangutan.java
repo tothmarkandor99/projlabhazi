@@ -6,28 +6,32 @@ public class Orangutan extends Character {
 	}
 	
 	public void add(Panda p) {
-		//TODO: itt kell a swap-et megvalósítani
 		// Orangutan és panda megcserélése
 		// Elõször a karakterek mezõ referenciáit cseréljük meg
 		Tile tempTile = this.getTile();
 		this.setTile(p.getTile());
 		p.setTile(tempTile);
+		
 		// Aztán a mezõk karakter referenciáit
 		this.getTile().setObject(this);
 		p.getTile().setObject(p);
+		
 		// Új panda beillesztése a pandaláncba
-		p.next = this.next;
-		this.next = p;
+		p.setNext(this.next);
+		if (this.getNext() != null)
+			this.getNext().setPrev(p);
+		this.setNext(p);
+		
 		p.prev = this;
 	}
 	
 	public void countPanda() {
-		Character temp = next;
+		Panda temp = next;
 		int pcs = 0;
 		while (temp != null) {
 			pcs++;
-			Character tempNext = temp.getNext();
-			temp.die();
+			Panda tempNext = temp.getNext();
+			temp.kill();
 			temp = tempNext;
 		}
 		game.addScore(pcs * 20);
@@ -49,10 +53,11 @@ public class Orangutan extends Character {
 		if (next != null) {
 			next.release();
 		}
-		next = null;
+		setNext(null);
 	}
 	
 	public void die() {
+		System.out.println("Meghaltam");
 		game.endGame();
 	}
 }
