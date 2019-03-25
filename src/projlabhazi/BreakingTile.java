@@ -3,6 +3,10 @@ package projlabhazi;
 public class BreakingTile extends Tile {
 	private int life;
 	
+	public void print() {  //Teszteléshez TODO: kivenni
+		super.print();
+	}
+
 	@Override
 	public boolean receive(Orangutan o) {
 		if (getObject() == null)

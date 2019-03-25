@@ -11,7 +11,6 @@ public class Game implements Steppable {
 	private Timer timer;
 	
 	private int inputDir = 0; //Teszteléshez TODO: kivenni
-	private boolean inputSpace = false; //Teszteléshez TODO: kivenni
 	
 	public void printTiles() { //Teszteléshez TODO: kivenni
 		if (orangutan.getTile().getSides() == 0) {
@@ -37,20 +36,16 @@ public class Game implements Steppable {
 		inputDir += i;
 	}
 	
-	public boolean getInputSpace() { //Teszteléshez TODO: kivenni
-		return inputSpace;
-	}
-	
 	public int getScore() { //Tesztelésheza TODO: kivenni
 		return score;
 	}
 	
-	public void simulateTurn(boolean left) { //Teszteléshez TODO: kivenni és átalakítani wrapper osztállyá
+	public void simulateTurn(boolean left) { //Teszteléshez TODO: kivenni
 		inputDir += left ? 1 : -1; 
 	}
-	
-	public void simulateInput(boolean space) { //Teszteléshez TODO: kivenni és átalakítani wrapper osztállyá
-		inputSpace = space;
+
+	public Orangutan getOrangutan( ) { //Tesztelésheza TODO: kivenni
+		return orangutan;
 	}
 	
 	Game(Timer t) { //Ez nincs benn a dokumentációban
@@ -96,7 +91,6 @@ public class Game implements Steppable {
 		//TODO: pálya felépítése
 		entrance.getTile().setObject(orangutan);
 		inputDir = 0;
-		inputSpace = false;
 		//TODO: Timer start
 	}
 	

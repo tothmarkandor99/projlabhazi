@@ -45,10 +45,11 @@ public class ComInt { // interactive command interpreter for testing
 				game.newGame();
 				break;
 			case "createtile":
-				if (input.length < 2)
+				if (input.length == 1) {
 					Tiles.put(counter++, new Tile());
-				else if (input[1].toLowerCase() == "breaking")
+				} else if (input[1].toLowerCase().equals("breaking")) {
 					Tiles.put(counter++, new BreakingTile());
+				}
 				break;
 			case "deletetile":
 				Tiles.remove(Integer.parseInt(input[1]));
@@ -85,7 +86,6 @@ public class ComInt { // interactive command interpreter for testing
 				break;
 			case "setentrance":
 				entranceTile = (Tiles.get(Integer.parseInt(input[1])));
-				System.out.println("HAL " + entranceTile.getSides());
 				break;
 			case "createobject":
 				switch (input[1].toLowerCase()) {
@@ -129,16 +129,16 @@ public class ComInt { // interactive command interpreter for testing
 				listTiles(Tiles);
 				listObjects(Objects);
 				break;
-			case "step":
+			case "tick":
 				game.getTimer().tick();
+				break;
+			case "step":
+				game.getOrangutan().step();
 				break;
 			case "turn":
 				if (input.length < 2)
 					return;
 				game.simulateTurn(input[1].toLowerCase() == "left" ? true : false);
-				break;
-			case "space":
-				game.simulateInput(true);
 				break;
 			case "printtiles": // A játék elindítása után a csempéken álló objektumokat listázza ki
 				game.printTiles();
@@ -163,8 +163,14 @@ public class ComInt { // interactive command interpreter for testing
 	private static void listTiles(HashMap<Integer, Tile> Tiles) {
 		System.out.println("List of tiles:");
 		for (Map.Entry<Integer, Tile> tile : Tiles.entrySet()) {
-			System.out.println(" - Id: " + tile.getKey()
-					+ " - tile " /* + tile.getValue().getObject() == null ? "" : tile.getValue().getObject() */);
+			System.out.print(" - Id: " + tile.getKey()
+					+ " - " + tile.getValue().getClass() + "\t");
+			if (tile.getValue().getObject() == null) {
+				System.out.println("üres");
+			} else {
+				System.out.println(tile.getValue().getObject().getClass());
+			}
+			
 		}
 	}
 

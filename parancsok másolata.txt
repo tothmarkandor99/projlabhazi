@@ -9,7 +9,6 @@ addneighbour 1 2
 addneighbour 2 1
 setentrance 0
 createpanda game
-putpanda 1 3
+putpanda 3 1
 newgame
 space
-step
