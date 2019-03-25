@@ -41,8 +41,8 @@ public abstract class Panda extends Character {
 	
 	@Override
 	public void Notify() {
-		prev.setNext(null);
-		this.release();
+		next.release();
+		this.setNext(null);
 	}
 	
 	public void release() { //Rekurzív
@@ -55,7 +55,7 @@ public abstract class Panda extends Character {
 	
 	public void die() {
 		if (prev != null) {
-			this.Notify();
+			prev.Notify();
 			game.getTimer().removeSteppable(this);
 			game.pandaDies();
 		}
