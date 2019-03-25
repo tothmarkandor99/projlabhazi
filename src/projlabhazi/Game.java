@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Game implements Steppable {
 	private int score;
 	private int remainingPandas;
-	private Entrance entrance;
+	private Tile entranceTile; // Eltér a dokumentációtól
 	private Orangutan orangutan;
 	private ArrayList<Tile> tiles;
 	private Timer timer;
@@ -56,25 +56,18 @@ public class Game implements Steppable {
 		timer = t;
 	}
 	
-	public void Initialize(ArrayList<Tile> tiles, Tile entranceTile) {
+	public void newGame(ArrayList<Tile> tiles, Tile entranceTile, int countPandas) { //Eltér a dokumentációtól
 		this.tiles = tiles;
-		this.entrance = new Entrance();
-		entrance.setTile(entranceTile);
-		orangutan = new Orangutan(this);
-		entrance.getTile().setObject(orangutan);
-		orangutan.setTile(entrance.getTile());
+		this.entranceTile = entranceTile;
 		timer.addSteppable(orangutan);
 		score = 0;
-		remainingPandas = 0;
-		for (Tile tile : tiles) {
-			if (tile.getObject() instanceof Panda) {
-				remainingPandas++;
-			}
-		}
+		remainingPandas = countPandas;
+		orangutan = new Orangutan(this);
+		toStart();
 	}
 	
-	public void addScore() {
-		score += 20;
+	public void addScore(int s) {
+		score += s;
 	}
 	
 	public void pandaDies() {
@@ -82,24 +75,12 @@ public class Game implements Steppable {
 	}
 	
 	public void toStart() {
-		Tile entr = entrance.getTile();
-		for (int i = 0; i < entr.getSides(); i++) {
-			if (entr.getNeighbour(i).receive(orangutan) == true) {
-				orangutan.moveTo(entr);
-				break;
-			}
-		}
-	}
-	
-	public void newGame() {
-		//TODO: pálya felépítése
-		entrance.getTile().setObject(orangutan);
-		inputDir = 0;
-		//TODO: Timer start
+		orangutan.setTile(new Tile());
+		orangutan.moveTo(entranceTile);
 	}
 	
 	public void endGame() {
-		//TODO: Timer stop
+		timer.stop();
 	}
 	
 	@Override

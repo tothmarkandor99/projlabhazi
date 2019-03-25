@@ -18,6 +18,7 @@ public class Orangutan extends Character {
 		// Új panda beillesztése a pandaláncba
 		p.next = this.next;
 		this.next = p;
+		p.prev = this;
 	}
 	
 	public void countPanda() {
@@ -29,7 +30,7 @@ public class Orangutan extends Character {
 			temp.die();
 			temp = tempNext;
 		}
-		game.addScore();
+		game.addScore(pcs * 20);
 		game.toStart();
 	}
 	
@@ -49,5 +50,9 @@ public class Orangutan extends Character {
 			next.release();
 		}
 		next = null;
+	}
+	
+	public void die() {
+		game.endGame();
 	}
 }

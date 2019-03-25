@@ -8,6 +8,7 @@ public abstract class Object implements Receiver, Steppable {
 	}
 
 	public boolean receive(Panda p) {
+		System.out.println("Ez rossz");
 		return false;
 	}
 

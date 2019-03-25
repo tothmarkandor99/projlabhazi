@@ -4,6 +4,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Panda extends Character {
 	protected Character prev;
+	protected Panda next;
 	
 	public void jump() {}
 	
@@ -17,7 +18,7 @@ public abstract class Panda extends Character {
 	}
 	
 	public boolean receive(Orangutan o) {
-		if (next == null) {
+		if (prev == null) {
 			o.add(this);
 		}
 		return false;
@@ -59,5 +60,6 @@ public abstract class Panda extends Character {
 			game.getTimer().removeSteppable(this);
 			game.pandaDies();
 		}
+		getTile().setObject(null);
 	}
 }

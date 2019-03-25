@@ -15,7 +15,6 @@ public class Tile implements Receiver {
 	@Override
 	public boolean receive(Orangutan o) {
 		if (object == null) {
-			setObject(o);
 			return true;
 		}
 		return object.receive(o);
@@ -24,7 +23,7 @@ public class Tile implements Receiver {
 	@Override
 	public boolean receive(Panda p) {
 		if (object == null)
-			return false;
+			return true;
 		return object.receive(p);
 	}
 
@@ -54,7 +53,7 @@ public class Tile implements Receiver {
 	
 	public boolean put(Panda p, int i) {
 		if (neighbours[i].receive(p)) {
-			setObject(null);
+			//setObject(null);
 			return true;
 		}
 		return false;
@@ -62,7 +61,7 @@ public class Tile implements Receiver {
 	
 	public boolean put(Orangutan o, int i) {
 		if (neighbours[i].receive(o)) {
-			setObject(null);
+			//setObject(null);
 			return true;
 		}
 		return false;

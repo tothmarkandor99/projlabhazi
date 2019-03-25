@@ -1,7 +1,7 @@
 package projlabhazi;
 
 public abstract class Character extends Object {
-	protected Character next;
+	protected Panda next;
 	protected Game game; //Eltér a dokumentációtól
 	
 	public Character(Game g) {
@@ -17,18 +17,21 @@ public abstract class Character extends Object {
 	}
 	
 	public void moveTo(Tile t) {
+		Tile tempTile = this.getTile();
 		this.setTile(t);
 		t.setObject(this);
 		if (next != null) {
-			next.moveTo(tile);
+			next.moveTo(tempTile);
+		} else {
+			tempTile.setObject(null);
 		}
 	}
 	
-	public void setNext(Character c) {
+	public void setNext(Panda c) {
 		next = c;
 	}
 	
-	public Character getNext() {
+	public Panda getNext() {
 		return next;
 	}
 }

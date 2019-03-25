@@ -1,0 +1,19 @@
+createtile
+createtile
+createtile
+createtile
+createtile
+createobject wardrobe
+createobject wardrobe
+putobject 5 1
+putobject 6 3
+addneighbour 0 1
+addneighbour 1 0
+addneighbour 1 2
+addneighbour 2 1
+addneighbour 2 3
+addneighbour 3 2
+addneighbour 3 4
+addneighbour 4 3
+setentrance 0
+newgame

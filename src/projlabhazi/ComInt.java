@@ -41,8 +41,7 @@ public class ComInt { // interactive command interpreter for testing
 				for (Map.Entry<Integer, Tile> tile : Tiles.entrySet()) {
 					tempTiles.add(tile.getValue());
 				}
-				game.Initialize(tempTiles, entranceTile);
-				game.newGame();
+				game.newGame(tempTiles, entranceTile, Pandas.size());
 				break;
 			case "createtile":
 				if (input.length == 1) {

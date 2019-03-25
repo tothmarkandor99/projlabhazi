@@ -22,4 +22,12 @@ public class Timer {
 	public void removeSteppable(Steppable s) {
 		steppables.remove(s);
 	}
+	
+	public void stop() {
+		//TODO: implementálni
+	}
+	
+	public void start() {
+		//TODO: implementálni
+	}
 }

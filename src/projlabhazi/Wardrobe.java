@@ -1,27 +1,32 @@
 package projlabhazi;
 
+import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
+import javafx.scene.shape.MoveTo;
+
 public class Wardrobe extends Object{
-	private Wardrobe[] wardrobes;
+	private static ArrayList<Wardrobe> wardrobes = new ArrayList<Wardrobe>();
 	private Wardrobe nextWardrobe;
-	private Tile nextNeighbour;
+	
+	public Wardrobe() {
+		wardrobes.add(this);
+	}
 	
 	public boolean receive(Orangutan o) {
-		nextWardrobe = wardrobes[ThreadLocalRandom.current().nextInt(0, wardrobes.length)];
+		nextWardrobe = wardrobes.get(ThreadLocalRandom.current().nextInt(0, wardrobes.size()));
 		int i;
 		for (i = 0; i < nextWardrobe.getTile().getSides(); i++) {
-			if (nextWardrobe.getTile().getNeighbour(i).receive(o) == true) {
-				nextNeighbour = nextWardrobe.getTile().getNeighbour(i);
+			if (nextWardrobe.getTile().getNeighbour(i).receive(o)) {
+				o.moveTo(nextWardrobe.getTile().getNeighbour(i));
 				break;
 			}
 		}
-		return i == nextWardrobe.getTile().getSides();
+		return false;
 	}
 	
 	public boolean receive(Panda p) {
-		return nextNeighbour.receive(p);
+		return false;
 	}
-
 
 }
