@@ -21,6 +21,10 @@ public class Game implements Steppable {
 		for (int i = 0; i < tiles.size(); i++) {
 			System.out.print(i + "\t");
 			tiles.get(i).print();
+			System.out.print("\t Neighbours:");
+			for(int j=0; j<tiles.get(i).getSides(); j++) 
+				System.out.print(" " + j +": "+tiles.get(i).getNeighbour(j).getClass());
+			System.out.println();
 		}
 	}
 	

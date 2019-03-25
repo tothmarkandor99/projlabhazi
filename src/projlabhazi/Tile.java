@@ -6,9 +6,9 @@ public class Tile implements Receiver {
 	
 	public void print() {  //Teszteléshez TODO: kivenni
 		if (object == null) {
-			System.out.println("üres");
+			System.out.print("üres");
 		} else {
-			System.out.println(object.getClass() + "\t" + (object.getTile() == null ? "üres" : "Tile"));
+			System.out.print(object.getClass() + "\t" + (object.getTile() == null ? "üres" : "Tile"));
 		}
 	}
 	

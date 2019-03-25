@@ -166,11 +166,14 @@ public class ComInt { // interactive command interpreter for testing
 			System.out.print(" - Id: " + tile.getKey()
 					+ " - " + tile.getValue().getClass() + "\t");
 			if (tile.getValue().getObject() == null) {
-				System.out.println("üres");
+				System.out.print("üres");
 			} else {
-				System.out.println(tile.getValue().getObject().getClass());
+				System.out.print(tile.getValue().getObject().getClass());
 			}
-			
+			System.out.print("\tNeighbours: ");
+			for(int i=0; i<tile.getValue().getSides(); i++) 
+				System.out.print("\t" + i +": " + tile.getValue().getNeighbour(i).getClass());
+			System.out.println();
 		}
 	}
 
