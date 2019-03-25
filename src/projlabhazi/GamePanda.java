@@ -5,7 +5,7 @@ public class GamePanda extends Panda {
 		super(g);
 	}
 
-	public void scare() {
+	public void scare() { //Csak GamePanda tud megijedni
 		prev.Notify();
 	}
 	

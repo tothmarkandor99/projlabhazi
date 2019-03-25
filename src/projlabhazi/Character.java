@@ -17,15 +17,15 @@ public abstract class Character extends Object {
 		this.setNext(null);
 	}
 	
-	public void moveTo(Tile t) {
+	public void moveTo(Tile t) { // A karaktert a t csempére viszi át, feltételezve, hogy szabad odalépnie
 		Tile tempTile = this.getTile();
 		this.setTile(t);
 		t.setObject(this);
 		if (next != null) {
-			next.moveTo(tempTile);
+			next.moveTo(tempTile); // Rekurzívan lépteti az utána sorban álló pandákat is
 		} else {
 			if (tempTile != null)
-				tempTile.setObject(null);
+				tempTile.setObject(null); //Ahol állt, onnan kiveszi magát
 		}
 	}
 	

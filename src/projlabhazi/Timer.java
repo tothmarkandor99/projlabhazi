@@ -12,13 +12,13 @@ public class Timer {
 	}
 	
 	public void tick() {
-		for (Steppable steppable : toRemove) {
-			steppables.remove(steppable);
-		}
-		toRemove.clear();
 		for (Steppable steppable : steppables) {
 			steppable.step();
 		}
+		for (Steppable steppable : toRemove) { //Tick eseményre van olyan objektum, aki leiratkozhat a Timer-rõl, ezért hogy ne változzon a steppables kollekció a tick során, a leiratkozókat csak feljegyezzük, majd minden tick végén egyszerre eltávolítjuk
+			steppables.remove(steppable);
+		}
+		toRemove.clear();
 	}
 	
 	public void addSteppable(Steppable s) {
@@ -38,7 +38,7 @@ public class Timer {
 		//TODO: implementálni
 	}
 	
-	public void listAll() {
+	public void listAll() { //teszteléshez TODO: kivenni
 		for (Steppable steppable : steppables) {
 			System.out.println(steppable.getClass());
 		}

@@ -41,7 +41,7 @@ public class Game implements Steppable {
 		inputDir += i;
 	}
 	
-	public int getScore() { //Tesztelésheza TODO: kivenni
+	public int getScore() { //Teszteléshez TODO: kivenni
 		return score;
 	}
 	
@@ -57,7 +57,8 @@ public class Game implements Steppable {
 		timer = t;
 	}
 	
-	public void newGame(ArrayList<Tile> tiles, Tile entranceTile, int countPandas) { //Eltér a dokumentációtól
+	public void newGame(ArrayList<Tile> tiles, Tile entranceTile, int countPandas) { //Eltér a dokumentációtól, teszteléshez átalakítva
+		//Külsõ forrásból inicializálja a játékot
 		this.tiles = tiles;
 		this.entranceTile = entranceTile;
 		timer.addSteppable(orangutan);

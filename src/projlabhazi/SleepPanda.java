@@ -8,8 +8,8 @@ public class SleepPanda extends Panda {
 	private boolean sleep;
 	
 	@Override
-	public boolean sleep() {
-		if (prev != null)
+	public boolean sleep() { //Csak a SleepPanda tud aludni
+		if (prev != null) // Ha láncban van, elszakítja tõle kezdve a láncot
 			this.prev.Notify();
 		return true;
 	}
@@ -22,7 +22,7 @@ public class SleepPanda extends Panda {
 		return sleep;
 	}
 	
-	public void step() {
+	public void step() { // Ha nem alszik, sima pandaként mozog
 		if (!sleep) {
 			super.step();
 		}

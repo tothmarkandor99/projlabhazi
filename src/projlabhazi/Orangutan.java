@@ -6,7 +6,7 @@ public class Orangutan extends Character {
 	}
 	
 	public void add(Panda p) {
-		// Orangutan és panda megcserélése
+		// Orangutan és felvett panda megcserélése
 		// Elõször a karakterek mezõ referenciáit cseréljük meg
 		Tile tempTile = this.getTile();
 		this.setTile(p.getTile());
@@ -25,7 +25,7 @@ public class Orangutan extends Character {
 		p.prev = this;
 	}
 	
-	public void countPanda() {
+	public void countPanda() { //Megöli és megszámolja a begyûjtött pandákat
 		Panda temp = next;
 		int pcs = 0;
 		while (temp != null) {
@@ -38,7 +38,7 @@ public class Orangutan extends Character {
 		game.toStart();
 	}
 	
-	public void step() {
+	public void step() { //A felhasználói bemenet alapján próbálja mozgatni a pandát
 		if (tile.getSides() != 0) {
 			while (game.getInputDir() < 0) {
 				game.addInputDir(tile.getSides());
@@ -49,7 +49,7 @@ public class Orangutan extends Character {
 		}
 	}
 	
-	public void release() {
+	public void release() { //Elengedi az utána álló pandát
 		if (next != null) {
 			next.release();
 		}
@@ -57,7 +57,6 @@ public class Orangutan extends Character {
 	}
 	
 	public void die() {
-		System.out.println("Meghaltam");
 		game.endGame();
 	}
 }

@@ -36,7 +36,6 @@ public class ComInt { // interactive command interpreter for testing
 			case "exit":
 				return;
 			case "newgame":
-				// TODO: game-et inicializï¿½lni a Tiles-szal valahogy
 				ArrayList<Tile> tempTiles = new ArrayList<Tile>();
 				for (Map.Entry<Integer, Tile> tile : Tiles.entrySet()) {
 					tempTiles.add(tile.getValue());
@@ -124,7 +123,7 @@ public class ComInt { // interactive command interpreter for testing
 				Tiles.get(Integer.parseInt(input[2])).setObject(Objects.get(Integer.parseInt(input[1])));
 				Objects.get(Integer.parseInt(input[1])).setTile(Tiles.get(Integer.parseInt(input[2])));
 				break;
-			case "listall": // A tesztelï¿½shez inicializï¿½lt listï¿½k tartalmï¿½t ï¿½rja ki
+			case "listall": // A teszteléshez inicializált listák tartalmát írja ki
 				listPandas(Pandas);
 				listTiles(Tiles);
 				listObjects(Objects);
@@ -140,7 +139,7 @@ public class ComInt { // interactive command interpreter for testing
 					return;
 				game.simulateTurn(input[1].toLowerCase() == "left" ? true : false);
 				break;
-			case "printtiles": // A jï¿½tï¿½k elindï¿½tï¿½sa utï¿½n a csempï¿½ken ï¿½llï¿½ objektumokat listï¿½zza ki
+			case "printtiles": // A játék elindítása után a csempéken álló objektumokat listázza ki
 				game.printTiles();
 				break;
 			case "showscore":

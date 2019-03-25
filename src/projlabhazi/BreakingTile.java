@@ -4,7 +4,7 @@ public class BreakingTile extends Tile {
 	private int life;
 	
 	public BreakingTile() {
-		life = 3; //TODO: visszaírni 20-ra
+		life = 20;
 	}
 	
 	public void print() {  //Teszteléshez TODO: kivenni
@@ -12,7 +12,7 @@ public class BreakingTile extends Tile {
 	}
 
 	@Override
-	public boolean receive(Orangutan o) {
+	public boolean receive(Orangutan o) { // Tud-e orángutánt fogadni
 		if (getObject() == null)
 			return false;
 		setObject(o);
@@ -21,7 +21,7 @@ public class BreakingTile extends Tile {
 	}
 
 	@Override
-	public boolean receive(Panda p) {
+	public boolean receive(Panda p) {// Tud-e pandát fogadni
 		if (getObject() == null)
 			return false;
 		setObject(p);
@@ -30,15 +30,15 @@ public class BreakingTile extends Tile {
 	}
 
 
-	public void crack() {
+	public void crack() { // A csempe kicsit kopik
 		life--;
 		if (life == 0) {
-			Break((Character)getObject());
+			Break((Character)getObject()); //Csak Character állhat BreakingTile-on
 		}
 	}
 	
-	public void Break(Character c) {
-		c.die();
+	public void Break(Character c) { // Csempe eltörik
+		c.die(); //Aki rajt állt, meghal
 		for (int i = 0; i < getSides(); i++) {
 			getNeighbour(i).removeNeighbour(this);
 		}

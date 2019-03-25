@@ -5,7 +5,7 @@ public class ChocolatePanda extends Panda {
 		super(g);
 	}
 
-	public void jump() {
+	public void jump() { //Csak õ tud ugrani
 		tile.crack();
 	}
 	

@@ -37,12 +37,12 @@ public abstract class Panda extends Character {
 	}
 	
 	@Override
-	public void Notify() {
+	public void Notify() { //Elengedi a mögötte álló pandák kezét és az elõtte álló karakter kezés
 		next.release();
 		this.setNext(null);
 	}
 	
-	public void release() { //Rekurzív
+	public void release() { //Rekurzívan elengedi az egymás mögött álló pandák kezét
 		if (next != null) {
 			next.release();
 		}
@@ -50,8 +50,8 @@ public abstract class Panda extends Character {
 		setPrev(null);
 	}
 	
-	public void die() {
-		if (prev != null) {
+	public void die() { // A panda a játék során meghal
+		if (prev != null) { //A mögötte állók elengedik egymás kezét
 			prev.Notify();
 		}
 		game.getTimer().removeSteppable(this);
@@ -59,7 +59,7 @@ public abstract class Panda extends Character {
 		getTile().setObject(null);
 	}
 	
-	public void kill() {
+	public void kill() { // A pandát megszámolás során megöljük. Megölünk a láncban minden más pandát is
 		game.getTimer().removeSteppable(this);
 		game.pandaDies();
 		if (getPrev() != null)
