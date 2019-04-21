@@ -1,5 +1,7 @@
 package projlabhazi;
 
+import java.util.Random;
+
 public class GameMachine extends Object {
 	public void ring() { //Minden szomszédjával megpróbál interaktálni 
 		ComInt.sendMessage("GameMachine.ring");ComInt.indent++;
@@ -18,8 +20,16 @@ public class GameMachine extends Object {
 
 	public void step() {
 		ComInt.sendMessage("GameMachine.step");ComInt.indent++;
-		if (true) { //teszteléshez kivéve TODO: random
-			this.ring();
+		switch (randomState) {
+		case 0:
+			ring();
+			break;
+		case 2:
+			if (new Random().nextBoolean())
+				ring();
+			break;
+		default:
+			break;
 		}
 	}
 }

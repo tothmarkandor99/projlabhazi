@@ -21,7 +21,7 @@ public class ComInt { // interactive command interpreter for testing
 		HashMap<Integer, Panda> Pandas = new HashMap<Integer, Panda>();
 		HashMap<Integer, Tile> Tiles = new HashMap<Integer, Tile>();
 		HashMap<Integer, Object> Objects = new HashMap<Integer, Object>();
-		Tile entranceTile = null;
+		ArrayList<Tile> entranceTiles = new ArrayList<Tile>();
 		Timer timer = new Timer();
 		Game game = new Game(timer);
 
@@ -48,7 +48,7 @@ public class ComInt { // interactive command interpreter for testing
 				for (Map.Entry<Integer, Tile> tile : Tiles.entrySet()) {
 					tempTiles.add(tile.getValue());
 				}
-				game.newGame(tempTiles, entranceTile, Pandas.size());
+				game.newGame(tempTiles, entranceTiles, Pandas.size());
 				break;
 			case "createtile":
 				if (input.length == 1) {
@@ -91,7 +91,7 @@ public class ComInt { // interactive command interpreter for testing
 				Pandas.remove(Integer.parseInt(input[1]));
 				break;
 			case "setentrance":
-				entranceTile = (Tiles.get(Integer.parseInt(input[1])));
+				entranceTiles.add(Tiles.get(Integer.parseInt(input[1])));
 				break;
 			case "createobject":
 				switch (input[1].toLowerCase()) {
@@ -175,7 +175,7 @@ public class ComInt { // interactive command interpreter for testing
 			System.out.print(" - Id: " + tile.getKey()
 					+ " - " + tile.getValue().getClass() + "\t");
 			if (tile.getValue().getObject() == null) {
-				System.out.print("ï¿½res");
+				System.out.print("üres");
 			} else {
 				System.out.print(tile.getValue().getObject().getClass());
 			}

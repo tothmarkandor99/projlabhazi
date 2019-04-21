@@ -1,5 +1,7 @@
 package projlabhazi;
 
+import java.util.Random;
+
 public class ArmChair extends Object implements Interact {
 	private SleepPanda p;
 	private int sleepTime;
@@ -15,7 +17,11 @@ public class ArmChair extends Object implements Interact {
 			setPanda((SleepPanda)o);
 			p.getTile().setObject(null); // Áthelyezzük a SleepPandát az ArmChair-be
 			p.setTile(null);
-			setSleepTime(10); //TODO: véletlenszám
+			if (randomState == 2) {
+				setSleepTime(new Random().nextInt(10));
+			} else {
+				setSleepTime(10);
+			}
 		}
 	}
 

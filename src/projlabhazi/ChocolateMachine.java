@@ -1,5 +1,7 @@
 package projlabhazi;
 
+import java.util.Random;
+
 public class ChocolateMachine extends Object implements Interact {
 	public void beep() { //Minden szomszédjával megpróbál interaktálni 
 		ComInt.sendMessage("ChocolateMachine.beep");ComInt.indent++;
@@ -12,8 +14,16 @@ public class ChocolateMachine extends Object implements Interact {
 	
 	public void step() { //Véletlen idõközönként
 		ComInt.sendMessage("ChocolateMachine.step");ComInt.indent++;
-		if (true) { //teszteléshez kivéve TODO: random
+		switch (randomState) {
+		case 0:
 			beep();
+			break;
+		case 2:
+			if (new Random().nextBoolean())
+				beep();
+			break;
+		default:
+			break;
 		}
 	}
 

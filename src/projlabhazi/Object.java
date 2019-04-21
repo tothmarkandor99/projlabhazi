@@ -2,7 +2,8 @@ package projlabhazi;
 
 public abstract class Object implements Receiver, Steppable {
 	protected Tile tile;
-	
+	protected int randomState = 0; // 0-on, 1-off, 2-random TODO: enum-ra cserélni
+
 	public void jump() {
 		ComInt.sendMessage("Object.jump");ComInt.indent++;
 	}
@@ -38,5 +39,21 @@ public abstract class Object implements Receiver, Steppable {
 
 	public void step() {
 		ComInt.sendMessage("Object.step");ComInt.indent++;
+	}
+	
+	public void setRandomState(int randomState) {
+		switch (randomState) {
+		case 0:
+			this.randomState = 0;
+			break;
+		case 1:
+			this.randomState = 1;
+			break;
+		case 2:
+			this.randomState = 2;
+			break;
+		default:
+			break;
+		}
 	}
 }

@@ -5,20 +5,17 @@ import java.util.ArrayList;
 public class Game implements Steppable {
 	private int score;
 	private int remainingPandas;
-	private Tile entranceTile; // Eltér a dokumentációtól
-	private Orangutan orangutan;
+	private ArrayList<Tile> entranceTiles; // Eltér a dokumentációtól
+	private ArrayList<Orangutan> orangutans;
+	private Orangutan activeOrangutan;
 	private ArrayList<Tile> tiles;
 	private Timer timer;
 	
 	private int inputDir = 0; //Teszteléshez TODO: kivenni
 	
 	public void printTiles() { //Teszteléshez TODO: kivenni
-		ComInt.sendMessage("EntranceTile: " + entranceTile.id);
-		if (orangutan.getTile().getSides() == 0) {
-			System.out.println("Az orángutánnak nincs szomszédos mezõ");
-		} else {
-			System.out.println("Last input:" + inputDir % orangutan.getTile().getSides());
-		}
+		ComInt.sendMessage("Orangutans: " + entranceTiles.size());
+
 		for (int i = 0; i < tiles.size(); i++) {
 			System.out.print(i + "\t");
 			tiles.get(i).print();
@@ -56,7 +53,7 @@ public class Game implements Steppable {
 
 	public Orangutan getOrangutan( ) { //Tesztelésheza TODO: kivenni
 		ComInt.sendMessage("Game.getOrangutan");ComInt.indent++;
-		return orangutan;
+		return activeOrangutan;
 	}
 	
 	Game(Timer t) { //Ez nincs benn a dokumentációban
@@ -64,17 +61,20 @@ public class Game implements Steppable {
 		timer = t;
 	}
 	
-	public void newGame(ArrayList<Tile> tiles, Tile entranceTile, int countPandas) { //Eltér a dokumentációtól, teszteléshez átalakítva
+	public void newGame(ArrayList<Tile> tiles, ArrayList<Tile> entranceTiles, int countPandas) { //Eltér a dokumentációtól, teszteléshez átalakítva
 		ComInt.sendMessage("Game.newGame");ComInt.indent++;
 		//Külsõ forrásból inicializálja a játékot
 		this.tiles = tiles;
-		this.entranceTile = entranceTile;
-		timer.addSteppable(orangutan);
+		this.entranceTiles = entranceTiles;
 		score = 0;
 		remainingPandas = countPandas;
-		orangutan = new Orangutan(this);
-		orangutan.setTile(entranceTile);
-		entranceTile.setObject(orangutan);
+		for (Tile entranceTile : entranceTiles) {
+			activeOrangutan = new Orangutan(this);
+			activeOrangutan.setTile(entranceTile);
+			entranceTile.setObject(activeOrangutan);
+			orangutans.add(activeOrangutan);
+			timer.addSteppable(activeOrangutan);
+		}
 		timer.start();
 	}
 	
@@ -90,7 +90,17 @@ public class Game implements Steppable {
 	
 	public void toStart() {
 		ComInt.sendMessage("Game.toStart");ComInt.indent++;
-		orangutan.moveTo(entranceTile);
+		for (Orangutan orangutan : orangutans) {
+			timer.removeSteppable(orangutan);
+		}
+		orangutans.clear();
+		for (Tile entranceTile : entranceTiles) {
+			activeOrangutan = new Orangutan(this);
+			activeOrangutan.setTile(entranceTile);
+			entranceTile.setObject(activeOrangutan);
+			orangutans.add(activeOrangutan);
+			timer.addSteppable(activeOrangutan);
+		}
 	}
 	
 	public void endGame() {

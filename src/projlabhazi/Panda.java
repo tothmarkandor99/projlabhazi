@@ -1,6 +1,6 @@
 package projlabhazi;
 
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.Random;
 
 public abstract class Panda extends Character {
 	protected Character prev;
@@ -34,10 +34,12 @@ public abstract class Panda extends Character {
 		ComInt.sendMessage("Panda.step");ComInt.indent++;
 		if (prev == null) {
 			//TODO: teszteléshez kivéve, a pandák ne mozogjanak maguktól
-			/*int nextDirection = ThreadLocalRandom.current().nextInt(0, tile.getSides());
-			if (tile.put(this, nextDirection)) {
-				moveTo(getTile().getNeighbour(nextDirection));
-			}*/
+			if (randomState == 2) {
+				int nextDirection = new Random().nextInt(tile.getSides());
+				if (tile.put(this, nextDirection)) {
+					moveTo(getTile().getNeighbour(nextDirection));
+				}				
+			}
 		}
 	}
 	

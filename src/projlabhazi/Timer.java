@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Timer {
 	private ArrayList<Steppable> steppables;
 	private ArrayList<Steppable> toRemove;
+	java.util.Timer timer;
 	
 	public Timer() {
 		ComInt.sendMessage("Timer.Timer");ComInt.indent++;
