@@ -155,6 +155,31 @@ public class ComInt { // interactive command interpreter for testing
 			case "liststeppables":
 				timer.listAll();
 				break;
+			case "chooseorangutan":
+				if (input.length < 2)
+					continue;
+				game.activateOrangutan(Integer.parseInt(input[1]));
+				break;
+			case "orangutanrealease":
+				game.getOrangutan().release();
+				break;
+			case "setrandom":
+				if (input.length < 3)
+					return;
+				switch (input[2]) {
+				case "on":
+					Objects.get(Integer.parseInt(input[0])).setRandomState(0);
+					break;
+				case "off":
+					Objects.get(Integer.parseInt(input[1])).setRandomState(0);
+					break;
+				case "random":
+					Objects.get(Integer.parseInt(input[2])).setRandomState(0);
+					break;
+				default:
+					break;
+				}
+				break;
 			default:
 				break;
 			}

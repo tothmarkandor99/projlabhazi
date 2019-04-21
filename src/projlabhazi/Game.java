@@ -51,7 +51,14 @@ public class Game implements Steppable {
 		inputDir += left ? 1 : -1; 
 	}
 
-	public Orangutan getOrangutan( ) { //Tesztelésheza TODO: kivenni
+	public void activateOrangutan(int i) {
+		ComInt.sendMessage("Game.activateOrangutan");ComInt.indent++;
+		if (i < 0 || i >= orangutans.size())
+			return;
+		activeOrangutan = orangutans.get(i);
+	}
+	
+	public Orangutan getOrangutan( ) { //Teszteléshez TODO: kivenni
 		ComInt.sendMessage("Game.getOrangutan");ComInt.indent++;
 		return activeOrangutan;
 	}
