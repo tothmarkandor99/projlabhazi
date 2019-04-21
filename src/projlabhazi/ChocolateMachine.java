@@ -12,7 +12,7 @@ public class ChocolateMachine extends Object implements Interact {
 		}
 	}
 	
-	public void step() { //Véletlen idõközönként
+	public void step() {
 		ComInt.sendMessage("ChocolateMachine.step");ComInt.indent++;
 		switch (randomState) {
 		case 0:
