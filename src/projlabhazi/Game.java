@@ -71,6 +71,7 @@ public class Game implements Steppable {
 	public void newGame(ArrayList<Tile> tiles, ArrayList<Tile> entranceTiles, int countPandas) { //Eltér a dokumentációtól, teszteléshez átalakítva
 		ComInt.sendMessage("Game.newGame");ComInt.indent++;
 		//Külsõ forrásból inicializálja a játékot
+		orangutans = new ArrayList<Orangutan>();
 		this.tiles = tiles;
 		this.entranceTiles = entranceTiles;
 		score = 0;

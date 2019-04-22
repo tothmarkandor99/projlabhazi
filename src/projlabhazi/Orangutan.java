@@ -8,23 +8,35 @@ public class Orangutan extends Character {
 	
 	public void add(Panda p) {
 		ComInt.sendMessage("Orangutan.add");ComInt.indent++;
-		// Orangutan és felvett panda megcserélése
-		// Elõször a karakterek mezõ referenciáit cseréljük meg
-		Tile tempTile = this.getTile();
-		this.setTile(p.getTile());
-		p.setTile(tempTile);
-		
-		// Aztán a mezõk karakter referenciáit
-		this.getTile().setObject(this);
-		p.getTile().setObject(p);
-		
-		// Új panda beillesztése a pandaláncba
-		p.setNext(this.next);
-		if (this.getNext() != null)
-			this.getNext().setPrev(p);
-		this.setNext(p);
-		
-		p.prev = this;
+		if (p.prev == null) {
+			// Orangutan és felvett panda megcserélése
+			// Elõször a karakterek mezõ referenciáit cseréljük meg
+			Tile tempTile = this.getTile();
+			this.setTile(p.getTile());
+			p.setTile(tempTile);
+			
+			// Aztán a mezõk karakter referenciáit
+			this.getTile().setObject(this);
+			p.getTile().setObject(p);
+			
+			// Új panda beillesztése a pandaláncba
+			p.setNext(this.next);
+			if (this.getNext() != null)
+				this.getNext().setPrev(p);
+			this.setNext(p);
+			
+			p.prev = this;
+		} else {
+			Panda endPanda = p;
+			while (endPanda.next != null) {
+				endPanda = endPanda.next;
+			}
+			endPanda.next = this.next;
+			this.next.setPrev(endPanda);
+			p.setPrev(this);
+			this.setNext(p);
+			p.moveTo(p.tile);
+		}
 	}
 	
 	public void countPanda() { //Megöli és megszámolja a begyûjtött pandákat

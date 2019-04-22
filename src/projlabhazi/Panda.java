@@ -14,9 +14,7 @@ public abstract class Panda extends Character {
 	
 	public boolean receive(Orangutan o) {
 		ComInt.sendMessage("Panda.receive");ComInt.indent++;
-		if (prev == null) {
-			o.add(this);
-		}
+		o.add(this);
 		return false;
 	}
 	
