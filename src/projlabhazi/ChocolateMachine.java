@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class ChocolateMachine extends Object implements Interact {
 	public void beep() { //Minden szomszédjával megpróbál interaktálni 
-		ComInt.sendMessage("ChocolateMachine.beep");ComInt.indent++;
+		ComInt.print("ChocolateMachine.beep");ComInt.indent++;
 		for (int i = 0; i < tile.getSides(); i++) {
 			if (tile.getNeighbour(i).getObject() != null) {
 				this.interact(tile.getNeighbour(i).getObject());
@@ -13,7 +13,7 @@ public class ChocolateMachine extends Object implements Interact {
 	}
 	
 	public void step() {
-		ComInt.sendMessage("ChocolateMachine.step");ComInt.indent++;
+		ComInt.print("ChocolateMachine.step");ComInt.indent++;
 		switch (randomState) {
 		case 0:
 			beep();
@@ -29,7 +29,7 @@ public class ChocolateMachine extends Object implements Interact {
 
 
 	public void interact(Object o) { //Ugrásra kényszeríti o-t
-		ComInt.sendMessage("ChocolateMachine.interact");ComInt.indent++;
+		ComInt.print("ChocolateMachine.interact");ComInt.indent++;
 		o.jump();
 	}
 

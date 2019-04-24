@@ -1,21 +1,19 @@
 package projlabhazi;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ComInt { // interactive command interpreter for testing
 	public static int indent = 0; // teszteléshez TODO: kivenni, most nincs is használva
-
-	public static void sendMessage(String m) {
-		/*for (int i = 0; i < indent; i++) {
-			System.out.print("\t");
-		}*/
-		System.out.println(m);
-	}
+	private static PrintStream ki = System.out;
 	
 	public static void main(String[] args) {
 		HashMap<Integer, Panda> Pandas = new HashMap<Integer, Panda>();
@@ -26,7 +24,8 @@ public class ComInt { // interactive command interpreter for testing
 		Game game = new Game(timer);
 
 		int counter = 0;
-
+		boolean canLoad = true;
+		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String line = "";
 		String[] input = new String[0];
@@ -40,8 +39,23 @@ public class ComInt { // interactive command interpreter for testing
 			}
 			if (input.length < 1)
 				continue;
+			canLoad = false; //Csak az elsõ parancs lehet load
 			switch (input[0].toLowerCase()) {
+			case "load":
+				if (canLoad) {
+					if (input.length < 2)
+						continue;
+					try {
+						br = new BufferedReader(new FileReader(input[1]));
+						ki = new PrintStream(new FileOutputStream(input[1] + ".ki"));
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				break;
 			case "exit":
+				ki.close();
 				return;
 			case "newgame":
 				ArrayList<Tile> tempTiles = new ArrayList<Tile>();
@@ -217,4 +231,16 @@ public class ComInt { // interactive command interpreter for testing
 			System.out.println(" - Id: " + object.getKey() + " - object : " + object.getValue().getClass());
 		}
 	}
+	
+	public static void print(String s) {
+		ki.print(s);
+	}
+	
+	public static void println(String s) {
+		ki.println(s);
+	}
+	public static void println() {
+		ki.println();
+	}
+	
 }

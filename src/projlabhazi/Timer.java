@@ -8,13 +8,13 @@ public class Timer {
 	java.util.Timer timer;
 	
 	public Timer() {
-		ComInt.sendMessage("Timer.Timer");ComInt.indent++;
+		ComInt.print("Timer.Timer");ComInt.indent++;
 		steppables = new ArrayList<Steppable>();
 		toRemove = new ArrayList<Steppable>();
 	}
 	
 	public void tick() {
-		ComInt.sendMessage("Timer.tick");ComInt.indent++;
+		ComInt.print("Timer.tick");ComInt.indent++;
 		for (Steppable steppable : steppables) {
 			steppable.step();
 		}
@@ -25,30 +25,30 @@ public class Timer {
 	}
 	
 	public void addSteppable(Steppable s) {
-		ComInt.sendMessage("Timer.addSteppable");ComInt.indent++;
+		ComInt.print("Timer.addSteppable");ComInt.indent++;
 		if (s != null)
 			steppables.add(s);
 	}
 	
 	public void removeSteppable(Steppable s) {
-		ComInt.sendMessage("Timer.removeSteppable");ComInt.indent++;
+		ComInt.print("Timer.removeSteppable");ComInt.indent++;
 		toRemove.add(s);
 	}
 	
 	public void stop() {
-		ComInt.sendMessage("Timer.stop");ComInt.indent++;
+		ComInt.print("Timer.stop");ComInt.indent++;
 		//TODO: implementálni
 	}
 	
 	public void start() {
-		ComInt.sendMessage("Timer.start");ComInt.indent++;
+		ComInt.print("Timer.start");ComInt.indent++;
 		//TODO: implementálni
 	}
 	
 	public void listAll() { //teszteléshez TODO: kivenni
-		ComInt.sendMessage("Timer.listAll");ComInt.indent++;
+		ComInt.print("Timer.listAll");ComInt.indent++;
 		for (Steppable steppable : steppables) {
-			System.out.println(steppable.getClass());
+			ComInt.println(steppable.getClass().toString());
 		}
 	}
 }
