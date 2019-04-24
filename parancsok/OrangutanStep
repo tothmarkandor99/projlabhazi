@@ -1,0 +1,20 @@
+createtile
+createtile
+createtile
+createobject armchair
+createorangutan
+addneighbour 0 1
+addneighbour 1 0
+addneighbour 1 2
+addneighbour 2 1
+putorangutan 4 0
+putobject 3 2
+setentrance 0
+newgame
+chooseorangutan 0
+step
+printtiles
+turn left
+step
+printtiles
+exit
