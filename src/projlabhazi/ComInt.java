@@ -183,13 +183,22 @@ public class ComInt { // interactive command interpreter for testing
 					return;
 				switch (input[2]) {
 				case "on":
-					Objects.get(Integer.parseInt(input[0])).setRandomState(0);
+					if (Objects.containsKey(Integer.parseInt(input[1])))
+						Objects.get(Integer.parseInt(input[1])).setRandomState(0);
+					if (Pandas.containsKey(Integer.parseInt(input[1])))
+						Pandas.get(Integer.parseInt(input[1])).setRandomState(0);
 					break;
 				case "off":
-					Objects.get(Integer.parseInt(input[1])).setRandomState(0);
+					if (Objects.containsKey(Integer.parseInt(input[1])))
+						Objects.get(Integer.parseInt(input[1])).setRandomState(1);
+					if (Pandas.containsKey(Integer.parseInt(input[1])))
+						Pandas.get(Integer.parseInt(input[1])).setRandomState(1);
 					break;
 				case "random":
-					Objects.get(Integer.parseInt(input[2])).setRandomState(0);
+					if (Objects.containsKey(Integer.parseInt(input[1])))
+						Objects.get(Integer.parseInt(input[1])).setRandomState(2);
+					if (Pandas.containsKey(Integer.parseInt(input[1])))
+						Pandas.get(Integer.parseInt(input[1])).setRandomState(2);
 					break;
 				default:
 					break;
