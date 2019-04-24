@@ -10,7 +10,7 @@ public class ArmChair extends Object implements Interact {
 	
 	@Override
 	public void interact(Object o) { // Megpróbálja elaltatni az o objektumot
-		ComInt.print("ArmChair.interact");ComInt.indent++;
+		ComInt.println("ArmChair.interact");ComInt.indent++;
 		if (this.p != null) // Ha már foglalt, más nem alhat benn
 			return;
 		if (o.sleep()) { // Ha tud aludni az objektum, csak SleepPanda lehet
@@ -26,22 +26,22 @@ public class ArmChair extends Object implements Interact {
 	}
 
 	public void setPanda(SleepPanda p) {
-		ComInt.print("ArmChair.setPanda");ComInt.indent++;
+		ComInt.println("ArmChair.setPanda");ComInt.indent++;
 		this.p = p;
 	}
 	
 	public void setSleepTime(int i) {
-		ComInt.print("ArmChair.setSleepTime");ComInt.indent++;
+		ComInt.println("ArmChair.setSleepTime");ComInt.indent++;
 		sleepTime = i;
 	}
 	
 	public int getSleepTime() {
-		ComInt.print("ArmChair.getSleepTime");ComInt.indent++;
+		ComInt.println("ArmChair.getSleepTime");ComInt.indent++;
 		return sleepTime;
 	}
 	
 	public void step() { //Megpróbál minden szomszédos mezõrõl becsábítani bárkit, lehetõleg SleepPandát
-		ComInt.print("ArmChair.step");ComInt.indent++;
+		ComInt.println("ArmChair.step");ComInt.indent++;
 		sleepTime--;
 		if (p == null) {		
 			for (int i = 0; i < getTile().getSides(); i++) {

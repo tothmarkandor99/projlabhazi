@@ -8,12 +8,12 @@ public class Wardrobe extends Object{
 	private Wardrobe nextWardrobe;
 	
 	public Wardrobe() {
-		ComInt.print("Wardrobe.Wardrobe");ComInt.indent++;
+		ComInt.println("Wardrobe.Wardrobe");ComInt.indent++;
 		wardrobes.add(this);
 	}
 	
 	public boolean receive(Orangutan o) { // Tud-e a gardrób orángutánt fogadni
-		ComInt.print("Wardrobe.receive");ComInt.indent++;
+		ComInt.println("Wardrobe.receive");ComInt.indent++;
 		if (randomState == 2)
 			nextWardrobe = wardrobes.get(new Random().nextInt(wardrobes.size())); //Véletlenszerûen választjuk ki, hogy melyik gardróbból lép majd ki az orángután
 		else
@@ -29,7 +29,7 @@ public class Wardrobe extends Object{
 	}
 	
 	public boolean receive(Panda p) { //Panda nem léphet önállóan gardróbra
-		ComInt.print("Wardrobe.receive");ComInt.indent++;
+		ComInt.println("Wardrobe.receive");ComInt.indent++;
 		return false;
 	}
 

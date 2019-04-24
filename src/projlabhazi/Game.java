@@ -14,62 +14,62 @@ public class Game implements Steppable {
 	private int inputDir = 0; //Teszteléshez TODO: kivenni
 	
 	public void printTiles() { //Teszteléshez TODO: kivenni
-		ComInt.print("Orangutans: " + entranceTiles.size());
+		ComInt.println("Orangutans: " + entranceTiles.size());
 
 		for (int i = 0; i < tiles.size(); i++) {
 			ComInt.print(i + "\t");
 			tiles.get(i).print();
 			ComInt.print("\t Neighbours:");
 			for(int j=0; j<tiles.get(i).getSides(); j++) 
-				System.out.print(" " + j +": "+tiles.get(i).getNeighbour(j).getClass());
+				ComInt.print(" " + j +": "+tiles.get(i).getNeighbour(j).getClass());
 			ComInt.println();
 		}
 	}
 	
 	public Timer getTimer () { //Teszteléshez TODO: kivenni
-		ComInt.print("Game.getTimer");ComInt.indent++;
+		ComInt.println("Game.getTimer");ComInt.indent++;
 		return timer;
 	}
 	
 	public int getInputDir() { //Teszteléshez TODO: kivenni
-		ComInt.print("Game.getInputDir");ComInt.indent++;
+		ComInt.println("Game.getInputDir");ComInt.indent++;
 		return inputDir;
 	}
 	
 	public void addInputDir(int i) { //Teszteléshez TODO: kivenni
-		ComInt.print("Game.addInputDir");ComInt.indent++;
+		ComInt.println("Game.addInputDir");ComInt.indent++;
 		inputDir += i;
 	}
 	
 	public int getScore() { //Teszteléshez TODO: kivenni
-		ComInt.print("Game.getScore");ComInt.indent++;
+		ComInt.println("Game.getScore");ComInt.indent++;
 		return score;
 	}
 	
 	public void simulateTurn(boolean left) { //Teszteléshez TODO: kivenni
-		ComInt.print("Game.simulateTurn");ComInt.indent++;
+		ComInt.println("Game.simulateTurn");ComInt.indent++;
 		inputDir += left ? 1 : -1; 
 	}
 
 	public void activateOrangutan(int i) {
-		ComInt.print("Game.activateOrangutan");ComInt.indent++;
+		ComInt.println("Game.activateOrangutan");ComInt.indent++;
 		if (i < 0 || i >= orangutans.size())
 			return;
 		activeOrangutan = orangutans.get(i);
 	}
 	
 	public Orangutan getOrangutan( ) { //Teszteléshez TODO: kivenni
-		ComInt.print("Game.getOrangutan");ComInt.indent++;
+		ComInt.println("Game.getOrangutan");ComInt.indent++;
 		return activeOrangutan;
 	}
 	
 	Game(Timer t) { //Ez nincs benn a dokumentációban
-		ComInt.print("Game.Game");ComInt.indent++;
+		ComInt.println("Game.Game");ComInt.indent++;
 		timer = t;
 	}
 	
 	public void newGame(ArrayList<Tile> tiles, ArrayList<Tile> entranceTiles, int countPandas) { //Eltér a dokumentációtól, teszteléshez átalakítva
-		ComInt.print("Game.newGame");ComInt.indent++;
+		ComInt.println("Game.newGame");ComInt.indent++;
 		//Külsõ forrásból inicializálja a játékot
 		orangutans = new ArrayList<Orangutan>();
 		this.tiles = tiles;
@@ -87,17 +87,17 @@ public class Game implements Steppable {
 	}
 	
 	public void addScore(int s) {
-		ComInt.print("Game.addScore");ComInt.indent++;
+		ComInt.println("Game.addScore");ComInt.indent++;
 		score += s;
 	}
 	
 	public void pandaDies() {
-		ComInt.print("Game.pandaDies");ComInt.indent++;
+		ComInt.println("Game.pandaDies");ComInt.indent++;
 		remainingPandas--;
 	}
 	
 	public void toStart() {
-		ComInt.print("Game.toStart");ComInt.indent++;
+		ComInt.println("Game.toStart");ComInt.indent++;
 		for (Orangutan orangutan : orangutans) {
 			timer.removeSteppable(orangutan);
 		}
@@ -112,13 +112,13 @@ public class Game implements Steppable {
 	}
 	
 	public void endGame() {
-		ComInt.print("Game.endGame");ComInt.indent++;
+		ComInt.println("Game.endGame");ComInt.indent++;
 		timer.stop();
 	}
 	
 	@Override
 	public void step() {
-		ComInt.print("Game.step");ComInt.indent++;
+		ComInt.println("Game.step");ComInt.indent++;
 		if (remainingPandas == 0) {
 			endGame();
 		}

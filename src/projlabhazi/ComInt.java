@@ -36,10 +36,12 @@ public class ComInt { // interactive command interpreter for testing
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} catch (NullPointerException e) {
+				ki.close();
+				break;
 			}
 			if (input.length < 1)
 				continue;
-			canLoad = false; //Csak az elsõ parancs lehet load
 			switch (input[0].toLowerCase()) {
 			case "load":
 				if (canLoad) {
@@ -49,8 +51,7 @@ public class ComInt { // interactive command interpreter for testing
 						br = new BufferedReader(new FileReader(input[1]));
 						ki = new PrintStream(new FileOutputStream(input[1] + ".ki"));
 					} catch (FileNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						System.out.println("A fájl nem található");
 					}
 				}
 				break;
@@ -164,7 +165,7 @@ public class ComInt { // interactive command interpreter for testing
 				game.printTiles();
 				break;
 			case "showscore":
-				System.out.println("Jelenlegi pontszám: " + game.getScore());
+				ComInt.println("Jelenlegi pontszám: " + game.getScore());
 				break;
 			case "liststeppables":
 				timer.listAll();
@@ -197,38 +198,39 @@ public class ComInt { // interactive command interpreter for testing
 			default:
 				break;
 			}
+			canLoad = false; //Csak az elsõ parancs lehet load
 		}
 
 	}
 
 	private static void listPandas(HashMap<Integer, Panda> Pandas) {
-		System.out.println("List of pandas:");
+		ComInt.println("List of pandas:");
 		for (Map.Entry<Integer, Panda> panda : Pandas.entrySet()) {
-			System.out.println(" - Id: " + panda.getKey() + " - panda");
+			ComInt.println(" - Id: " + panda.getKey() + " - panda");
 		}
 	}
 
 	private static void listTiles(HashMap<Integer, Tile> Tiles) {
-		System.out.println("List of tiles:");
+		ComInt.println("List of tiles:");
 		for (Map.Entry<Integer, Tile> tile : Tiles.entrySet()) {
-			System.out.print(" - Id: " + tile.getKey()
+			ComInt.print(" - Id: " + tile.getKey()
 					+ " - " + tile.getValue().getClass() + "\t");
 			if (tile.getValue().getObject() == null) {
-				System.out.print("üres");
+				ComInt.print("üres");
 			} else {
-				System.out.print(tile.getValue().getObject().getClass());
+				ComInt.print(tile.getValue().getObject().getClass().toString());
 			}
-			System.out.print("\tNeighbours: ");
+			ComInt.print("\tNeighbours: ");
 			for(int i=0; i<tile.getValue().getSides(); i++) 
-				System.out.print("\t" + i +": " + tile.getValue().getNeighbour(i).getClass());
-			System.out.println();
+				ComInt.print("\t" + i +": " + tile.getValue().getNeighbour(i).getClass());
+			ComInt.println();
 		}
 	}
 
 	private static void listObjects(HashMap<Integer, Object> Objects) {
-		System.out.println("List of objects:");
+		ComInt.println("List of objects:");
 		for (Map.Entry<Integer, Object> object : Objects.entrySet()) {
-			System.out.println(" - Id: " + object.getKey() + " - object : " + object.getValue().getClass());
+			ComInt.println(" - Id: " + object.getKey() + " - object : " + object.getValue().getClass());
 		}
 	}
 	

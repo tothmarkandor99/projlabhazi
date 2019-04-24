@@ -6,11 +6,11 @@ public class Tile implements Receiver {
 	public int id; // teszteléshez TODO: kivenni
 	
 	public Tile() {
-		ComInt.print("Tile.Tile");ComInt.indent++;
+		ComInt.println("Tile.Tile");ComInt.indent++;
 	}
 	
 	public void print() {  //Teszteléshez TODO: kivenni
-		ComInt.print("Tile.print");ComInt.indent++;
+		ComInt.println("Tile.print");ComInt.indent++;
 		if (object == null) {
 			ComInt.print("\t" + id + " üres");
 		} else {
@@ -20,7 +20,7 @@ public class Tile implements Receiver {
 	
 	@Override
 	public boolean receive(Orangutan o) { // Tud-e a csempe orángutánt fogadni
-		ComInt.print("Tile.receive");ComInt.indent++;
+		ComInt.println("Tile.receive");ComInt.indent++;
 		if (object == null) {
 			return true; // Ha üres, akkor biztosan
 		}
@@ -29,12 +29,12 @@ public class Tile implements Receiver {
 
 	@Override
 	public boolean receive(Panda p) {// Tud-e a csempe pandát fogadni
-		ComInt.print("Tile.receive");
+		ComInt.println("Tile.receive");
 		return object == null; // Panda csak üres mezõre léphet (magától)
 	}
 
 	public void addNeighbour(Tile tile) { //Ez nem volt benn a dokumentációban
-		ComInt.print("Tile.addNeighbour");ComInt.indent++;
+		ComInt.println("Tile.addNeighbour");ComInt.indent++;
 		//TODO: ArrayListre-átalakítani, akkor nem lesz ilyen bonyolult
 		Tile[] newNeighbours = new Tile[neighbours.length + 1];
 		for (int i = 0; i < neighbours.length; i++) {
@@ -45,7 +45,7 @@ public class Tile implements Receiver {
 	}
 	
 	public void removeNeighbour(Tile tile) { //TODO: ArrayListre-átalakítani, akkor nem lesz ilyen bonyolult
-		ComInt.print("Tile.removeNeighbour");ComInt.indent++;
+		ComInt.println("Tile.removeNeighbour");ComInt.indent++;
 		int i = 0;
 		while (i < neighbours.length && neighbours[i] != tile) {
 			i++;
@@ -60,7 +60,7 @@ public class Tile implements Receiver {
 	}
 	
 	public boolean put(Panda p, int i) { //Megvizsgálja hogy az adott irányban levõ csempére lehet-e pandát tenni
-		ComInt.print("Tile.put");ComInt.indent++;
+		ComInt.println("Tile.put");ComInt.indent++;
 		return neighbours[i].receive(p);
 	}
 	
