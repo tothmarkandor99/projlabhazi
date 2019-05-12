@@ -86,6 +86,7 @@ public class Game implements Steppable {
 		
 		for (Orangutan orangutan : orangutans) {
 			timer.removeSteppable(orangutan);
+			orangutan.tile.setObject(null);
 		}
 		orangutans.clear();
 		for (Tile entranceTile : entranceTiles) {
