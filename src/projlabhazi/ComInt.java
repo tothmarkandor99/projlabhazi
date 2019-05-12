@@ -21,7 +21,16 @@ public class ComInt { // interactive command interpreter for testing
 		F.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GUI G = new GUI();
 		Timer timer = new Timer();
+		
+		ArrayList<Tile> tiles = new ArrayList<Tile>();
+		tiles.add(new Tile());
+		ArrayList<Entrance> entranceTiles = new ArrayList<Entrance>();
+		int countPandas = 0;
+		
+		
 		Game g = new Game(timer);
+		g.newGame(tiles, entranceTiles, countPandas);
+		g.getTiles().add(new Tile());
 		G.setGame(g);
 		F.add(G);
 		F.setSize(800, 600);

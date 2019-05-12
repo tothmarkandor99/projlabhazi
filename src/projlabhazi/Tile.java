@@ -8,12 +8,6 @@ public class Tile implements Receiver {
 	public Tile() {
 		
 	}
-	
-	public Tile(Tile tile) {
-		neighbours = tile.neighbours;
-		object = tile.object.clone();
-		
-	}
 
 	@Override
 	public boolean receive(Orangutan o) { // Tud-e a csempe orángutánt fogadni
