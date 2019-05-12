@@ -9,21 +9,41 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import javax.swing.JPanel;
 
 public class GUI extends JPanel {
 	private Game game;
-	private ArrayList<DrawableConnection> drawableConnections;
 	private ArrayList<DrawableTile> drawableTiles;
+	private ArrayList<DrawableConnection> drawableConnections;
+	
+	public GUI() {
+		super();
+		drawableTiles = new ArrayList<DrawableTile>();
+		drawableConnections = new ArrayList<DrawableConnection>();
+	}
 	
 	public void setGame(Game g) {
 		game = g;
 		drawableTiles.clear();
 		for (Tile tile : game.getTiles()) {
-			drawableTiles.add(new DrawableTile(tile));
+			int x, y;
+			if (drawableTiles.isEmpty()) {
+				x = DrawableTile.radius;
+				y = DrawableTile.radius;
+			} else {
+				x = drawableTiles.get(drawableTiles.size() - 1).getX() + DrawableTile.radius * 4;
+				if (x + DrawableTile.radius > this.getWidth()) {
+					x = DrawableTile.radius;
+					y = drawableTiles.get(drawableTiles.size() - 1).getY() + DrawableTile.radius * 4;
+				} else {
+					y = drawableTiles.get(drawableTiles.size() - 1).getY();
+				}
+			}
+			DrawableTile drawableTile = new DrawableTile(tile.id, x, y);
+			drawableTiles.add(drawableTile);
 		}
 		drawableConnections.clear();
+		
 	}
 	
 	@Override
@@ -38,16 +58,9 @@ public class GUI extends JPanel {
 		g.setColor(Color.WHITE);
 		String score = ((Integer)game.getScore()).toString();
 		g.drawString(score, WIDTH - 150 - 20 + 75, HEIGHT - 20);
-	}
-	
-	public void addDrawableTile(DrawableTile drawableTile) {
-		drawableTiles.add(drawableTile);
-		// TODO: kapcsolatok feltérképezése
-	}
-	
-	public void removeDrawableTile(DrawableTile drawableTile) {
-		// TODO: megszûnõ kapcsolatok törlése
-		drawableTiles.add(drawableTile);
+		
+		drawableTiles.forEach((DrawableTile drawableTile) -> {drawableTile.Draw(g);}) ;
+		drawableConnections.forEach((DrawableConnection drawableConnection) -> {drawableConnection.Draw(g);}) ;
 	}
 	
 	public void saveToFile(String fileName) {
@@ -69,15 +82,22 @@ public class GUI extends JPanel {
 			drawableTiles = (ArrayList<DrawableTile>)in.readObject();
 			
 			drawableConnections.clear();
-			for (DrawableTile tile : drawableTiles) {
-				for (int i = 0; i < tile.getSides(); i++) {
-					Tile neighbour = tile.getNeighbour(i);
-					int j = 0;
-					while (j < drawableTiles.size() && drawableTiles.get(j).id != neighbour.id) {
-						j++;
-					}
-					if (j != drawableTiles.size()) {
-						drawableConnections.add(new DrawableConnection(tile, drawableTiles.get(j)));
+			for (DrawableTile drawableTile : drawableTiles) {
+				int k = 0;
+				while (k < game.getTiles().size() || drawableTile.getId() != game.getTiles().get(k).id) {
+					k++;
+				}
+				if (k != game.getTiles().size()) {
+					Tile tile = game.getTiles().get(k);
+					for (int i = 0; i < tile.getSides(); i++) {
+						Tile neighbour = tile.getNeighbour(i);
+						int j = 0;
+						while (j < drawableTiles.size() && drawableTiles.get(j).getId() != neighbour.id) {
+							j++;
+						}
+						if (j != drawableTiles.size()) {
+							drawableConnections.add(new DrawableConnection(drawableTile, drawableTiles.get(j)));
+						}
 					}
 				}
 			}

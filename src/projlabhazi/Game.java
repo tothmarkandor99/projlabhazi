@@ -51,7 +51,6 @@ public class Game implements Steppable {
 	}
 	
 	Game(Timer t) { //Ez nincs benn a dokumentációban
-		
 		timer = t;
 	}
 	
