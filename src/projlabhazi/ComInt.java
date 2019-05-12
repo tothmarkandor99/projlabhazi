@@ -23,10 +23,18 @@ public class ComInt { // interactive command interpreter for testing
 		Timer timer = new Timer();
 		
 		ArrayList<Tile> tiles = new ArrayList<Tile>();
+		
+		Tile tile = null;
+		Tile lastTile = null;
 		for (int i = 0; i < 24; i++) {
-			Tile tile = new Tile();
+			lastTile = tile;
+			tile = new Tile();
 			tile.id = i;
 			tiles.add(tile);
+			
+			if (i > 0) {
+				tile.addNeighbour(lastTile);
+			}
 		}
 		ArrayList<Entrance> entranceTiles = new ArrayList<Entrance>();
 		int countPandas = 0;

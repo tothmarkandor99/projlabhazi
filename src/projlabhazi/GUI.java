@@ -44,7 +44,30 @@ public class GUI extends JPanel {
 			drawableTiles.add(drawableTile);
 		}
 		drawableConnections.clear();
-		
+		generateDrawableConnections();
+	}
+	
+	private void generateDrawableConnections() {
+		drawableConnections.clear();
+		for (DrawableTile drawableTile : drawableTiles) {
+			int k = 0;
+			while (k < game.getTiles().size() && drawableTile.getId() != game.getTiles().get(k).id) {
+				k++;
+			}
+			if (k != game.getTiles().size()) {
+				Tile tile = game.getTiles().get(k);
+				for (int i = 0; i < tile.getSides(); i++) {
+					Tile neighbour = tile.getNeighbour(i);
+					int j = 0;
+					while (j < drawableTiles.size() && drawableTiles.get(j).getId() != neighbour.id) {
+						j++;
+					}
+					if (j != drawableTiles.size()) {
+						drawableConnections.add(new DrawableConnection(drawableTile, drawableTiles.get(j)));
+					}
+				}
+			}
+		}
 	}
 	
 	@Override
@@ -83,25 +106,7 @@ public class GUI extends JPanel {
 			drawableTiles = (ArrayList<DrawableTile>)in.readObject();
 			
 			drawableConnections.clear();
-			for (DrawableTile drawableTile : drawableTiles) {
-				int k = 0;
-				while (k < game.getTiles().size() || drawableTile.getId() != game.getTiles().get(k).id) {
-					k++;
-				}
-				if (k != game.getTiles().size()) {
-					Tile tile = game.getTiles().get(k);
-					for (int i = 0; i < tile.getSides(); i++) {
-						Tile neighbour = tile.getNeighbour(i);
-						int j = 0;
-						while (j < drawableTiles.size() && drawableTiles.get(j).getId() != neighbour.id) {
-							j++;
-						}
-						if (j != drawableTiles.size()) {
-							drawableConnections.add(new DrawableConnection(drawableTile, drawableTiles.get(j)));
-						}
-					}
-				}
-			}
+			generateDrawableConnections();
 		} catch (FileNotFoundException e) {
 			System.out.println("Load failed");
 		} catch (IOException e) {
