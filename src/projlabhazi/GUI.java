@@ -25,7 +25,6 @@ public class GUI extends JPanel {
 	public void setGame(Game g) {
 		game = g;
 		drawableTiles.clear();
-		System.out.println(game.getTiles().size());
 		for (Tile tile : game.getTiles()) {
 			int x, y;
 			if (drawableTiles.isEmpty()) {
@@ -40,7 +39,11 @@ public class GUI extends JPanel {
 					y = drawableTiles.get(drawableTiles.size() - 1).getY();
 				}
 			}
-			DrawableTile drawableTile = new DrawableTile(tile.id, x, y);
+			DrawableTile drawableTile;
+			if (tile instanceof BreakingTile)
+				drawableTile = new DrawableBreakingTile(tile.id, x, y);
+			else
+				drawableTile = new DrawableTile(tile.id, x, y);
 			drawableTiles.add(drawableTile);
 		}
 		drawableConnections.clear();

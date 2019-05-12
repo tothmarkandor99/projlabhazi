@@ -28,7 +28,7 @@ public class ComInt { // interactive command interpreter for testing
 		Tile lastTile = null;
 		for (int i = 0; i < 24; i++) {
 			lastTile = tile;
-			tile = new Tile();
+			tile = new BreakingTile();
 			tile.id = i;
 			tiles.add(tile);
 			

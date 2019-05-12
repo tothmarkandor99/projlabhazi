@@ -31,7 +31,6 @@ public class DrawableConnection implements Drawable {
 		dx = nx * 10 * Math.cos(angle) - ny * 10 * Math.sin(angle);
 		dy = nx * 10 * Math.sin(angle) + ny * 10 * Math.cos(angle);
 		g2.drawLine((int)(to.getX() - nx * DrawableTile.radius), (int)(to.getY() - ny * DrawableTile.radius), (int)(to.getX() - nx * DrawableTile.radius - dx), (int)(to.getY() - ny * DrawableTile.radius - dy));
-		// TODO: arrow end
 	}
 
 }
