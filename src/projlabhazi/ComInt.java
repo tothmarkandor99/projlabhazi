@@ -11,15 +11,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.JFrame;
+
 public class ComInt { // interactive command interpreter for testing
-	public static int indent = 0; // teszteléshez TODO: kivenni, most nincs is használva
-	private static PrintStream ki = System.out;
+	//private static PrintStream ki = System.out;
 	
 	public static void main(String[] args) {
+		JFrame F = new JFrame();
+		F.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		GUI G = new GUI();
+		Timer timer = new Timer();
+		Game g = new Game(timer);
+		G.setGame(g);
+		F.add(G);
+		F.setSize(800, 600);
+		F.setVisible(true);
+	}
+	
+	/*public static void StartComInt() {
 		HashMap<Integer, Panda> Pandas = new HashMap<Integer, Panda>();
 		HashMap<Integer, Tile> Tiles = new HashMap<Integer, Tile>();
 		HashMap<Integer, Object> Objects = new HashMap<Integer, Object>();
-		ArrayList<Tile> entranceTiles = new ArrayList<Tile>();
+		ArrayList<Entrance> entranceTiles = new ArrayList<Entrance>();
 		Timer timer = new Timer();
 		Game game = new Game(timer);
 
@@ -106,7 +119,7 @@ public class ComInt { // interactive command interpreter for testing
 				Pandas.remove(Integer.parseInt(input[1]));
 				break;
 			case "setentrance":
-				entranceTiles.add(Tiles.get(Integer.parseInt(input[1])));
+				entranceTiles.add((Entrance)Tiles.get(Integer.parseInt(input[1])));
 				break;
 			case "createobject":
 				switch (input[1].toLowerCase()) {
@@ -209,7 +222,6 @@ public class ComInt { // interactive command interpreter for testing
 			}
 			canLoad = false; //Csak az elsõ parancs lehet load
 		}
-
 	}
 
 	private static void listPandas(HashMap<Integer, Panda> Pandas) {
@@ -252,6 +264,6 @@ public class ComInt { // interactive command interpreter for testing
 	}
 	public static void println() {
 		ki.println();
-	}
+	}*/
 	
 }

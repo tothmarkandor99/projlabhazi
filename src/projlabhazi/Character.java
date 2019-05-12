@@ -5,24 +5,24 @@ public abstract class Character extends Object {
 	protected Game game; //Eltér a dokumentációtól
 	
 	public Character(Game g) {
-		ComInt.println("Character.Character");ComInt.indent++;
+		
 		game = g;
 	}
 	
 	public abstract void release();
 	
 	public void die() {
-		ComInt.println("Character.die");ComInt.indent++;
+		
 	}
 	
 	public void Notify() {
-		ComInt.println("Character.Notify");ComInt.indent++;
+		
 		next.release();
 		this.setNext(null);
 	}
 	
 	public void moveTo(Tile t) { // A karaktert a t csempére viszi át, feltételezve, hogy szabad odalépnie
-		ComInt.println("Character.moveTo");ComInt.indent++;
+		
 		Tile tempTile = this.getTile();
 		this.setTile(t);
 		t.setObject(this);
@@ -35,12 +35,12 @@ public abstract class Character extends Object {
 	}
 	
 	public void setNext(Panda c) {
-		ComInt.println("Character.setNext");ComInt.indent++;
+		
 		next = c;
 	}
 	
 	public Panda getNext() {
-		ComInt.println("Character.getNext");ComInt.indent++;
+		
 		return next;
 	}
 }

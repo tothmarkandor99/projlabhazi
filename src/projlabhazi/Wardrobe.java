@@ -8,16 +8,18 @@ public class Wardrobe extends Object{
 	private Wardrobe nextWardrobe;
 	
 	public Wardrobe() {
-		ComInt.println("Wardrobe.Wardrobe");ComInt.indent++;
+		
 		wardrobes.add(this);
 	}
 	
+	public Wardrobe(Wardrobe wardrobe) {
+		wardrobes.add(this);
+	}
+
 	public boolean receive(Orangutan o) { // Tud-e a gardrób orángutánt fogadni
-		ComInt.println("Wardrobe.receive");ComInt.indent++;
-		if (randomState == 2)
-			nextWardrobe = wardrobes.get(new Random().nextInt(wardrobes.size())); //Véletlenszerûen választjuk ki, hogy melyik gardróbból lép majd ki az orángután
-		else
-			nextWardrobe = wardrobes.get(0) == this ? wardrobes.get(1) : wardrobes.get(0);
+		
+		nextWardrobe = wardrobes.get(new Random().nextInt(wardrobes.size())); //Véletlenszerûen választjuk ki, hogy melyik gardróbból lép majd ki az orángután
+
 		int i; //elõfordulhat, hogy olyan gardróbot sorsolunk ki, amelybõl nem lehet kilépni. Ennek kiküszöbölése bonyolultabb implementációt igényel
 		for (i = 0; i < nextWardrobe.getTile().getSides(); i++) {
 			if (nextWardrobe.getTile().getNeighbour(i).receive(o)) {
@@ -29,8 +31,12 @@ public class Wardrobe extends Object{
 	}
 	
 	public boolean receive(Panda p) { //Panda nem léphet önállóan gardróbra
-		ComInt.println("Wardrobe.receive");ComInt.indent++;
+		
 		return false;
+	}
+	
+	public Wardrobe clone() {
+		return new Wardrobe(this);
 	}
 
 }
