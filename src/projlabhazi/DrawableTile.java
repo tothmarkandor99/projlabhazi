@@ -12,11 +12,13 @@ public class DrawableTile implements Drawable {
 	private final int id;
 	private int x, y;
 	public static int radius = 20;
+	private DrawableObject object;
 	
 	public DrawableTile(int id, int x, int y){
 		this.id = id;
 		this.x = x;
 		this.y = y;
+		this.object = null;
 	}
 	
 	@Override
@@ -27,6 +29,7 @@ public class DrawableTile implements Drawable {
 		g2.fillOval(x - radius, y - radius, radius * 2, radius * 2);
 		g2.setColor(Color.BLACK);
 		g2.drawString( ((Integer)id).toString(), x, y);
+		
 	}
 
 	public int getId(){
@@ -39,6 +42,15 @@ public class DrawableTile implements Drawable {
 	
 	public int getY() {
 		return y;
+	}
+	
+	public DrawableObject getObject() {
+		return object;
+	}
+	
+	public void setObject(DrawableObject object) {
+		this.object = object;
+		object.setTile(this);
 	}
 	
 	public void saveToFile(ObjectOutputStream out) throws IOException {

@@ -52,7 +52,7 @@ public class Orangutan extends Character {
 		game.toStart();
 	}
 	
-	public void step() { //A felhasználói bemenet alapján próbálja mozgatni a pandát
+	public void step() { //A felhasználói bemenet alapján próbálja mozgatni az orángutánt
 		
 		if (tile.getSides() != 0) {
 			while (game.getInputDir() < 0) {

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Game implements Steppable {
 	private int score;
 	private int remainingPandas;
-	private ArrayList<Entrance> entranceTiles; // Eltér a dokumentációtól
+	private ArrayList<Tile> entranceTiles; // Eltér a dokumentációtól
 	private ArrayList<Orangutan> orangutans;
 	private Orangutan activeOrangutan;
 	private ArrayList<Tile> tiles;
@@ -54,7 +54,7 @@ public class Game implements Steppable {
 		timer = t;
 	}
 	
-	public void newGame(ArrayList<Tile> tiles, ArrayList<Entrance> entranceTiles, int countPandas) { //Eltér a dokumentációtól, teszteléshez átalakítva
+	public void newGame(ArrayList<Tile> tiles, ArrayList<Tile> entranceTiles, int countPandas) { //Eltér a dokumentációtól, teszteléshez átalakítva
 		
 		//Külsõ forrásból inicializálja a játékot
 		orangutans = new ArrayList<Orangutan>();

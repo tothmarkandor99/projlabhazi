@@ -45,6 +45,17 @@ public class GUI extends JPanel {
 			else
 				drawableTile = new DrawableTile(tile.id, x, y);
 			drawableTiles.add(drawableTile);
+			DrawableObject drawableObject;
+			if (tile.getObject() instanceof Orangutan) {
+				Orangutan orangutan = (Orangutan)tile.getObject();
+				int i = 0;
+				while (i < drawableTiles.size() && drawableTiles.get(i).getId() != orangutan.tile.getNeighbour(game.getInputDir() % tile.getSides()).id) {
+					i++;
+				}
+				if (i != drawableTiles.size()) {
+					drawableObject = new DrawableOrangutan(--DrawableObject.idCounter, drawableTiles.get(i));
+				}
+			}
 		}
 		drawableConnections.clear();
 		generateDrawableConnections();
