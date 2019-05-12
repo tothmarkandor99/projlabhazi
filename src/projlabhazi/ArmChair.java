@@ -35,15 +35,15 @@ public class ArmChair extends Object implements Interact {
 	}
 	
 	public void step() { //Megpróbál minden szomszédos mezõrõl becsábítani bárkit, lehetõleg SleepPandát
-		
-		sleepTime--;
+		if (sleepTime > 0)
+			sleepTime--;
 		if (p == null) {		
 			for (int i = 0; i < getTile().getSides(); i++) {
 				if (p == null && getTile().getNeighbour(i).getObject() != null) {
 					interact(getTile().getNeighbour(i).getObject());
 				}
 			}
-		} else if (sleepTime <= 0) { //Ha már valaki alszik és lejárt az idõ, megpróbálja kirakni egy üres szomszédos mezõre
+		} else if (sleepTime == 0) { //Ha már valaki alszik és lejárt az idõ, megpróbálja kirakni egy üres szomszédos mezõre
 			int i;
 			for (i = 0; i < this.getTile().getSides(); i++) {
 				if (this.getTile().getNeighbour(i).receive(p)) {

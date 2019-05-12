@@ -2,6 +2,8 @@ package projlabhazi;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 public class GUI extends JPanel {
+	private static final long serialVersionUID = 1L;
 	private Game game;
 	private ArrayList<DrawableTile> drawableTiles;
 	private ArrayList<DrawableConnection> drawableConnections;
@@ -24,6 +27,11 @@ public class GUI extends JPanel {
 	
 	public void setGame(Game g) {
 		game = g;
+		generateDrawableTiles();
+		generateDrawableConnections();
+	}
+	
+	private void generateDrawableTiles() {
 		drawableTiles.clear();
 		for (Tile tile : game.getTiles()) {
 			int x, y;
@@ -40,25 +48,50 @@ public class GUI extends JPanel {
 				}
 			}
 			DrawableTile drawableTile;
-			if (tile instanceof BreakingTile)
+			if (tile instanceof BreakingTile) {
 				drawableTile = new DrawableBreakingTile(tile.id, x, y);
-			else
-				drawableTile = new DrawableTile(tile.id, x, y);
+			} else {
+				if (game.getEntranceTiles().contains(tile)) {
+					drawableTile = new DrawableEntranceTile(tile.id, x, y);
+				} else {
+					drawableTile = new DrawableTile(tile.id, x, y);
+				}
+			}
 			drawableTiles.add(drawableTile);
-			DrawableObject drawableObject;
+			DrawableObject drawableObject = null;
 			if (tile.getObject() instanceof Orangutan) {
 				Orangutan orangutan = (Orangutan)tile.getObject();
 				int i = 0;
-				while (i < drawableTiles.size() && drawableTiles.get(i).getId() != orangutan.tile.getNeighbour(game.getInputDir() % tile.getSides()).id) {
+				while (i < drawableTiles.size() && drawableTiles.get(i).getId() != tile.getNeighbour(game.getInputDir() % tile.getSides()).id) {
 					i++;
 				}
 				if (i != drawableTiles.size()) {
-					drawableObject = new DrawableOrangutan(--DrawableObject.idCounter, drawableTiles.get(i));
+					drawableObject = new DrawableOrangutan(--DrawableObject.idCounter, drawableTiles.get(i), orangutan.getTile().id == game.getOrangutan().getTile().id);
 				}
+			} else if (tile.getObject() instanceof Exit) {
+				drawableObject = new DrawableExit(--DrawableObject.idCounter);
+			} else if (tile.getObject() instanceof GamePanda) {
+				drawableObject = new DrawableGamePanda(--DrawableObject.idCounter);
+			} else if (tile.getObject() instanceof SleepPanda) {
+				drawableObject = new DrawableSleepPanda(--DrawableObject.idCounter);
+			} else if (tile.getObject() instanceof ChocolatePanda) {
+				drawableObject = new DrawableChocolatePanda(--DrawableObject.idCounter);
+			} else if (tile.getObject() instanceof GameMachine) {
+				drawableObject = new DrawableGameMachine(--DrawableObject.idCounter);
+			} else if (tile.getObject() instanceof ChocolateMachine) {
+				drawableObject = new DrawableChocolateMachine(--DrawableObject.idCounter);
+			} else if (tile.getObject() instanceof ArmChair) {
+				DrawableArmChair drawableArmChair = new DrawableArmChair(--DrawableObject.idCounter);
+				if (((ArmChair)tile.getObject()).getSleepTime() == 0)
+					drawableArmChair.setPanda(null);
+				else 
+					drawableArmChair.setPanda(new DrawableSleepPanda(--DrawableObject.idCounter));
+				drawableObject = drawableArmChair;
+			} else if (tile.getObject() instanceof Wardrobe) {
+				drawableObject = new DrawableWardrobe(--DrawableObject.idCounter);
 			}
+			drawableTile.setObject(drawableObject);
 		}
-		drawableConnections.clear();
-		generateDrawableConnections();
 	}
 	
 	private void generateDrawableConnections() {
@@ -91,14 +124,17 @@ public class GUI extends JPanel {
 		super.paintComponent(g);
 		this.setBackground(Color.WHITE);
 		
-		g.setColor(Color.BLUE);
-		g.fillRect(WIDTH - 150 - 20, HEIGHT - 20 - 20, 150, 30);
-		g.setColor(Color.WHITE);
-		String score = ((Integer)game.getScore()).toString();
-		g.drawString(score, WIDTH - 150 - 20 + 75, HEIGHT - 20);
+		Graphics2D g2 = (Graphics2D)g;
+		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		
-		drawableConnections.forEach((DrawableConnection drawableConnection) -> {drawableConnection.Draw(g);}) ;
-		drawableTiles.forEach((DrawableTile drawableTile) -> {drawableTile.Draw(g);}) ;
+		g2.setColor(Color.BLUE);
+		g2.fillRect(WIDTH - 150 - 20, HEIGHT - 20 - 20, 150, 30);
+		g2.setColor(Color.WHITE);
+		String score = ((Integer)game.getScore()).toString();
+		g2.drawString(score, WIDTH - 150 - 20 + 75, HEIGHT - 20);
+		
+		drawableConnections.forEach((DrawableConnection drawableConnection) -> {drawableConnection.Draw(g2);}) ;
+		drawableTiles.forEach((DrawableTile drawableTile) -> {drawableTile.Draw(g2);}) ;
 	}
 	
 	public void saveToFile(String fileName) {
@@ -107,6 +143,7 @@ public class GUI extends JPanel {
 			ObjectOutputStream out = new ObjectOutputStream(file);
 			
 			out.writeObject(drawableTiles);
+			out.close();
 		} catch (IOException e) {
 			System.out.println("Save failed");
 		}
@@ -118,7 +155,7 @@ public class GUI extends JPanel {
 			ObjectInputStream in = new ObjectInputStream(file);
 			
 			drawableTiles = (ArrayList<DrawableTile>)in.readObject();
-			
+			in.close();
 			drawableConnections.clear();
 			generateDrawableConnections();
 		} catch (FileNotFoundException e) {

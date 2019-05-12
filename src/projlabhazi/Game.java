@@ -115,4 +115,8 @@ public class Game implements Steppable {
 		return tiles;
 	}
 	
+	public ArrayList<Tile> getEntranceTiles() {
+		return entranceTiles;
+	}
+	
 }
