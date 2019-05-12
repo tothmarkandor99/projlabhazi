@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 public class DrawableExit extends DrawableObject {
-
+	public static int radius = 20;
 	public DrawableExit(int id) {
 		super(id);
 	}

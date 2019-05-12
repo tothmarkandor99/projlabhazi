@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 public class DrawableArmChair extends DrawableObject {
+	public static int radius = 20;
 	private DrawablePanda panda;
 	
 	public DrawableArmChair(int id) {

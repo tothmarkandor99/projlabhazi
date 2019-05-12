@@ -8,12 +8,8 @@ public class Wardrobe extends Object{
 	private Wardrobe nextWardrobe;
 	
 	public Wardrobe() {
-		
-		wardrobes.add(this);
-	}
-	
-	public Wardrobe(Wardrobe wardrobe) {
-		wardrobes.add(this);
+		if (!wardrobes.contains(this))
+			wardrobes.add(this);
 	}
 
 	public boolean receive(Orangutan o) { // Tud-e a gardrób orángutánt fogadni
@@ -35,8 +31,5 @@ public class Wardrobe extends Object{
 		return false;
 	}
 	
-	public Wardrobe clone() {
-		return new Wardrobe(this);
-	}
 
 }

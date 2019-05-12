@@ -18,20 +18,22 @@ public class GUI extends JPanel {
 	private Game game;
 	private ArrayList<DrawableTile> drawableTiles;
 	private ArrayList<DrawableConnection> drawableConnections;
+	private int initialWidth;
 	
-	public GUI() {
+	public GUI(int initialWidth) {
 		super();
+		this.initialWidth = initialWidth;
 		drawableTiles = new ArrayList<DrawableTile>();
 		drawableConnections = new ArrayList<DrawableConnection>();
 	}
 	
 	public void setGame(Game g) {
 		game = g;
-		generateDrawableTiles();
+		generateDrawableTiles(initialWidth);
 		generateDrawableConnections();
 	}
 	
-	private void generateDrawableTiles() {
+	private void generateDrawableTiles(int WIDTH) {
 		drawableTiles.clear();
 		for (Tile tile : game.getTiles()) {
 			int x, y;
@@ -40,7 +42,7 @@ public class GUI extends JPanel {
 				y = DrawableTile.radius;
 			} else {
 				x = drawableTiles.get(drawableTiles.size() - 1).getX() + DrawableTile.radius * 4;
-				if (x + DrawableTile.radius > 800) {
+				if (x + DrawableTile.radius > WIDTH) {
 					x = DrawableTile.radius;
 					y = drawableTiles.get(drawableTiles.size() - 1).getY() + DrawableTile.radius * 4;
 				} else {
@@ -109,7 +111,7 @@ public class GUI extends JPanel {
 					while (j < drawableTiles.size() && drawableTiles.get(j).getId() != neighbour.id) {
 						j++;
 					}
-					if (j != drawableTiles.size()) {
+					if (j != drawableTiles.size() && tile.id < neighbour.id) {
 						drawableConnections.add(new DrawableConnection(drawableTile, drawableTiles.get(j)));
 					}
 				}
@@ -133,6 +135,9 @@ public class GUI extends JPanel {
 		String score = ((Integer)game.getScore()).toString();
 		g2.drawString(score, WIDTH - 150 - 20 + 75, HEIGHT - 20);
 		
+		generateDrawableTiles(WIDTH);
+		generateDrawableConnections();
+
 		drawableConnections.forEach((DrawableConnection drawableConnection) -> {drawableConnection.Draw(g2);}) ;
 		drawableTiles.forEach((DrawableTile drawableTile) -> {drawableTile.Draw(g2);}) ;
 	}

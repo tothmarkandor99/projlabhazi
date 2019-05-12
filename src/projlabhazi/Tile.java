@@ -1,9 +1,11 @@
 package projlabhazi;
 
+import java.util.ArrayList;
+
 public class Tile implements Receiver {
-	private Tile[] neighbours = new Tile[0];
+	private ArrayList<Tile> neighbours = new ArrayList<Tile>();
 	private Object object;
-	public int id; // teszteléshez TODO: kivenni
+	public int id;
 	
 	public Tile() {
 		
@@ -24,39 +26,31 @@ public class Tile implements Receiver {
 	}
 
 	public void addNeighbour(Tile tile) { //Ez nem volt benn a dokumentációban
-		
-		//TODO: ArrayListre-átalakítani, akkor nem lesz ilyen bonyolult
-		Tile[] newNeighbours = new Tile[neighbours.length + 1];
-		for (int i = 0; i < neighbours.length; i++) {
-			newNeighbours[i] = neighbours[i];
+		if (!neighbours.contains(tile)) {
+			neighbours.add(tile);
 		}
-		newNeighbours[newNeighbours.length - 1] = tile;
-		neighbours = newNeighbours;
+		if (!tile.neighbours.contains(this)) {
+			tile.neighbours.add(this);
+		}
 	}
 	
 	public void removeNeighbour(Tile tile) { //TODO: ArrayListre-átalakítani, akkor nem lesz ilyen bonyolult
-		
-		int i = 0;
-		while (i < neighbours.length && neighbours[i] != tile) {
-			i++;
+		if (neighbours.contains(tile)) {
+			neighbours.remove(tile);
 		}
-		if (i != neighbours.length) { //Megtaláltuk 
-			Tile[] newNeighbours = new Tile[neighbours.length - 1];
-			for (int j = 0; j < newNeighbours.length; j++) { //Copy except the parameter tile
-				newNeighbours[j] = neighbours[j + j >= i ? 1 : 0];
-			}
-			neighbours = newNeighbours;
+		if (tile.neighbours.contains(this)) {
+			tile.neighbours.remove(this);
 		}
 	}
 	
 	public boolean put(Panda p, int i) { //Megvizsgálja hogy az adott irányban levõ csempére lehet-e pandát tenni
 		
-		return neighbours[i].receive(p);
+		return neighbours.get(i).receive(p);
 	}
 	
 	public boolean put(Orangutan o, int i) { //Megvizsgálja hogy az adott irányban levõ csempére lehet-e orángutánt tenni
 		
-		return neighbours[i].receive(o);
+		return neighbours.get(i).receive(o);
 	}
 	
 	public void crack() {
@@ -75,12 +69,12 @@ public class Tile implements Receiver {
 	
 	public int getSides() { // Hány szomszédja van
 		
-		return neighbours.length;
+		return neighbours.size();
 	}
 	
 	public Tile getNeighbour(int i) { // Az i. szomszédját adja vissza
 		
-		return neighbours[i];
+		return neighbours.get(i);
 	}
 	
 }

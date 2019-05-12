@@ -17,7 +17,7 @@ public class DrawableConnection implements Drawable {
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2.setColor(Color.BLACK);
 		g2.drawLine(from.getX(), from.getY(), to.getX(), to.getY());
-		
+		/*
 		double dist = Math.sqrt((to.getX() - from.getX()) * (to.getX() - from.getX()) + (to.getY() - from.getY()) * (to.getY() - from.getY()));
 		double nx = (to.getX() - from.getX()) / dist;
 		double ny = (to.getY() - from.getY()) / dist;
@@ -29,6 +29,7 @@ public class DrawableConnection implements Drawable {
 		dx = nx * 10 * Math.cos(angle) - ny * 10 * Math.sin(angle);
 		dy = nx * 10 * Math.sin(angle) + ny * 10 * Math.cos(angle);
 		g2.drawLine((int)(to.getX() - nx * DrawableTile.radius), (int)(to.getY() - ny * DrawableTile.radius), (int)(to.getX() - nx * DrawableTile.radius - dx), (int)(to.getY() - ny * DrawableTile.radius - dy));
+		 */
 	}
 
 }
