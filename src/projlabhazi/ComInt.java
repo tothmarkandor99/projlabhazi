@@ -23,14 +23,17 @@ public class ComInt { // interactive command interpreter for testing
 		Timer timer = new Timer();
 		
 		ArrayList<Tile> tiles = new ArrayList<Tile>();
-		tiles.add(new Tile());
+		for (int i = 0; i < 24; i++) {
+			Tile tile = new Tile();
+			tile.id = i;
+			tiles.add(tile);
+		}
 		ArrayList<Entrance> entranceTiles = new ArrayList<Entrance>();
 		int countPandas = 0;
 		
 		
 		Game g = new Game(timer);
 		g.newGame(tiles, entranceTiles, countPandas);
-		g.getTiles().add(new Tile());
 		G.setGame(g);
 		F.add(G);
 		F.setSize(800, 600);

@@ -1,5 +1,6 @@
 package projlabhazi;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class DrawableConnection implements Drawable {
@@ -12,7 +13,7 @@ public class DrawableConnection implements Drawable {
 
 	@Override
 	public void Draw(Graphics g) {
-		// TODO: line stroke
+		g.setColor(Color.BLACK);
 		g.drawLine(from.getX(), from.getY(), to.getX(), to.getY());
 		// TODO: arrow end
 	}
