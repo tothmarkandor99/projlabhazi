@@ -6,9 +6,9 @@ public abstract class Panda extends Character {
 	protected Character prev;
 	protected Panda next;
 	
-	public Panda(Game g) {
+	public Panda(Game g, Tile tile) {
 		super(g);
-		
+		this.tile = tile;
 		prev = null;
 	}
 	

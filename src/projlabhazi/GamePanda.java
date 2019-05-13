@@ -1,8 +1,8 @@
 package projlabhazi;
 
 public class GamePanda extends Panda {
-	public GamePanda(Game g) {
-		super(g);
+	public GamePanda(Game g, Tile tile) {
+		super(g, tile);
 		
 	}
 

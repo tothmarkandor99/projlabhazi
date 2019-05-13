@@ -1,8 +1,8 @@
 package projlabhazi;
 
 public class ChocolatePanda extends Panda {
-	public ChocolatePanda(Game g) {
-		super(g);
+	public ChocolatePanda(Game g, Tile tile) {
+		super(g, tile);
 		
 	}
 

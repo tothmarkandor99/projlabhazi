@@ -119,20 +119,20 @@ public class ComInt {
 		entranceTiles.add(tiles.get(16));
 		
 		Game g = new Game(timer);
-		tiles.get(3).setObject(new GamePanda(g));
-		tiles.get(5).setObject(new ChocolatePanda(g));
-		tiles.get(10).setObject(new SleepPanda(g));
-		tiles.get(11).setObject(new ChocolatePanda(g));
-		tiles.get(22).setObject(new GamePanda(g));
-		tiles.get(33).setObject(new SleepPanda(g));
+		tiles.get(3).setObject(new GamePanda(g, tiles.get(3)));
+		tiles.get(5).setObject(new ChocolatePanda(g, tiles.get(5)));
+		tiles.get(10).setObject(new SleepPanda(g, tiles.get(10)));
+		tiles.get(11).setObject(new ChocolatePanda(g, tiles.get(11)));
+		tiles.get(22).setObject(new GamePanda(g, tiles.get(22)));
+		tiles.get(33).setObject(new SleepPanda(g, tiles.get(33)));
 		int countPandas = 6;
 		
 		tiles.get(13).setObject(new GameMachine());
 		tiles.get(27).setObject(new Exit());
-		tiles.get(28).setObject(new Wardrobe());
+		tiles.get(28).setObject(new Wardrobe(tiles.get(28)));
 		tiles.get(32).setObject(new ArmChair());
 		tiles.get(36).setObject(new ChocolateMachine());
-		tiles.get(39).setObject(new Wardrobe());
+		tiles.get(39).setObject(new Wardrobe(tiles.get(39)));
 		
 		g.newGame(tiles, entranceTiles, countPandas);
 		G.setGame(g);

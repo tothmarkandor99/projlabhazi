@@ -25,8 +25,8 @@ public class DrawableTile implements Drawable {
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2.setColor(Color.LIGHT_GRAY);
 		g2.fillOval(x - radius, y - radius, radius * 2, radius * 2);
-		//g2.setColor(Color.BLACK);
-		//g2.drawString( ((Integer)id).toString(), x, y);
+		g2.setColor(Color.BLACK);
+		g2.drawString( ((Integer)id).toString(), x, y);
 		if (object != null) 
 			object.Draw(g2);
 	}

@@ -67,7 +67,6 @@ public class Game implements Steppable {
 			activeOrangutan.setTile(entranceTile);
 			entranceTile.setObject(activeOrangutan);
 			orangutans.add(activeOrangutan);
-			timer.addSteppable(activeOrangutan);
 		}
 		timer.start();
 	}
@@ -83,18 +82,13 @@ public class Game implements Steppable {
 	}
 	
 	public void toStart() {
-		
-		for (Orangutan orangutan : orangutans) {
-			timer.removeSteppable(orangutan);
-			orangutan.tile.setObject(null);
-		}
+		activeOrangutan.tile.setObject(null);
 		orangutans.clear();
 		for (Tile entranceTile : entranceTiles) {
 			activeOrangutan = new Orangutan(this);
 			activeOrangutan.setTile(entranceTile);
 			entranceTile.setObject(activeOrangutan);
 			orangutans.add(activeOrangutan);
-			timer.addSteppable(activeOrangutan);
 		}
 	}
 	

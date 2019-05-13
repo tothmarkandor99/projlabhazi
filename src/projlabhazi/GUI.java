@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -11,7 +14,12 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 
 public class GUI extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -19,6 +27,8 @@ public class GUI extends JPanel {
 	private ArrayList<DrawableTile> drawableTiles;
 	private ArrayList<DrawableConnection> drawableConnections;
 	private int initialWidth;
+	static JLabel obj1 = new JLabel();
+	private static final int IFW = JComponent.WHEN_IN_FOCUSED_WINDOW;
 	
 	public GUI(int initialWidth) {
 		super();
@@ -31,7 +41,55 @@ public class GUI extends JPanel {
 		game = g;
 		generateDrawableTiles(initialWidth);
 		generateDrawableConnections();
+		
+		obj1.getInputMap(IFW).put(KeyStroke.getKeyStroke("LEFT"), "LEFT");
+		obj1.getInputMap(IFW).put(KeyStroke.getKeyStroke("RIGHT"), "RIGHT");
+		obj1.getInputMap(IFW).put(KeyStroke.getKeyStroke("SPACE"), "SPACE");
+		obj1.getInputMap(IFW).put(KeyStroke.getKeyStroke("R"), "R");
+		
+		obj1.getActionMap().put("LEFT", new TurnAction(true));
+		obj1.getActionMap().put("RIGHT", new TurnAction(false));
+		obj1.getActionMap().put("SPACE", new StepAction());
+		obj1.getActionMap().put("R", new ReleaseAction());
+		
+		add(obj1);
 	}
+	
+	private class TurnAction extends AbstractAction{
+		private boolean left;
+		TurnAction(boolean left) {
+			this.left = left;
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			game.simulateTurn(left);
+			generateDrawableTiles(WIDTH);
+			generateDrawableConnections();
+			repaint();
+		}
+	}
+	
+	private class StepAction extends AbstractAction{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			game.getOrangutan().step();
+			generateDrawableTiles(WIDTH);
+			generateDrawableConnections();
+			repaint();
+		}
+	}
+	
+	private class ReleaseAction extends AbstractAction{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			game.getOrangutan().release();
+			generateDrawableTiles(WIDTH);
+			generateDrawableConnections();
+			repaint();
+		}
+	}
+	
+	
 	
 	private void generateDrawableTiles(int WIDTH) {
 		drawableTiles.clear();
@@ -60,15 +118,24 @@ public class GUI extends JPanel {
 				}
 			}
 			drawableTiles.add(drawableTile);
+		}
+		for (Tile tile : game.getTiles()) {
+			int j = 0;
+			while (j < drawableTiles.size() && drawableTiles.get(j).getId() != tile.id) {
+				j++;
+			}
+			DrawableTile drawableTile = drawableTiles.get(j);
 			DrawableObject drawableObject = null;
 			if (tile.getObject() instanceof Orangutan) {
-				Orangutan orangutan = (Orangutan)tile.getObject();
 				int i = 0;
+				while (game.getInputDir() < 0)
+					game.addInputDir(tile.getSides());
 				while (i < drawableTiles.size() && drawableTiles.get(i).getId() != tile.getNeighbour(game.getInputDir() % tile.getSides()).id) {
+					System.out.println(drawableTiles.get(i).getId() + "\t" + tile.getNeighbour(game.getInputDir() % tile.getSides()).id);
 					i++;
 				}
 				if (i != drawableTiles.size()) {
-					drawableObject = new DrawableOrangutan(--DrawableObject.idCounter, drawableTiles.get(i), orangutan.getTile().id == game.getOrangutan().getTile().id);
+					drawableObject = new DrawableOrangutan(--DrawableObject.idCounter, drawableTiles.get(i), tile.id == game.getOrangutan().getTile().id);
 				}
 			} else if (tile.getObject() instanceof Exit) {
 				drawableObject = new DrawableExit(--DrawableObject.idCounter);
@@ -111,7 +178,7 @@ public class GUI extends JPanel {
 					while (j < drawableTiles.size() && drawableTiles.get(j).getId() != neighbour.id) {
 						j++;
 					}
-					if (j != drawableTiles.size() && tile.id < neighbour.id) {
+					if (j != drawableTiles.size()) {
 						drawableConnections.add(new DrawableConnection(drawableTile, drawableTiles.get(j)));
 					}
 				}
@@ -171,4 +238,5 @@ public class GUI extends JPanel {
 			System.out.println("Load failed");
 		} 
 	}
+
 }

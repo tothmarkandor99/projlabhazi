@@ -1,8 +1,8 @@
 package projlabhazi;
 
 public class SleepPanda extends Panda {
-	public SleepPanda(Game g) {
-		super(g);
+	public SleepPanda(Game g, Tile tile) {
+		super(g, tile);
 		
 	}
 

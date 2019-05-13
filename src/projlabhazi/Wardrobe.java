@@ -7,7 +7,8 @@ public class Wardrobe extends Object{
 	private static ArrayList<Wardrobe> wardrobes = new ArrayList<Wardrobe>(); // Minden gardrób össze van kötve
 	private Wardrobe nextWardrobe;
 	
-	public Wardrobe() {
+	public Wardrobe(Tile tile) {
+		this.tile = tile;
 		if (!wardrobes.contains(this))
 			wardrobes.add(this);
 	}

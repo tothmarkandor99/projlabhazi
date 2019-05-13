@@ -3,9 +3,6 @@ package projlabhazi;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.Shape;
-import java.awt.Stroke;
 
 public class DrawableOrangutan extends DrawableObject {
 	private DrawableTile nextTile;
@@ -21,8 +18,8 @@ public class DrawableOrangutan extends DrawableObject {
 	public void Draw(Graphics2D g2) {
 		g2.setColor(Color.ORANGE);
 		g2.fillOval(tile.getX() - radius, tile.getY() - radius, radius * 2, radius * 2);
-		//g2.setColor(Color.BLACK);
-		//g2.drawString( ((Integer)id).toString(), tile.getX(), tile.getY());
+		g2.setColor(Color.BLACK);
+		g2.drawString( ((Integer)id).toString(), tile.getX(), tile.getY());
 		if (active && nextTile != null) {
 			g2.setColor(Color.BLACK);
 			g2.setStroke(new BasicStroke(3.0f));

@@ -53,7 +53,7 @@ public class Orangutan extends Character {
 	}
 	
 	public void step() { //A felhasználói bemenet alapján próbálja mozgatni az orángutánt
-		
+		System.out.print(tile + "\t");
 		if (tile.getSides() != 0) {
 			while (game.getInputDir() < 0) {
 				game.addInputDir(tile.getSides());
@@ -62,6 +62,7 @@ public class Orangutan extends Character {
 				this.moveTo(tile.getNeighbour(game.getInputDir() % tile.getSides())); //TODO: user input
 			}
 		}
+		System.out.println(tile);
 	}
 	
 	public void release() { //Elengedi az utána álló pandát
