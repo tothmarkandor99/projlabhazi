@@ -3,7 +3,7 @@ package projlabhazi;
 import java.util.Random;
 
 /**
- * @author Mark
+ * @author Corvinusplusplus
  * Panda õsosztály
  * A karakter funkcionalitását azzal bõvíti ki, hogy van elõzõ karakter tulajdonsága
  */

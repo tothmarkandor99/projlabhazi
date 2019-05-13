@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.AbstractAction;
 import javax.swing.JComponent;
@@ -22,7 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 /**
- * @author Mark
+ * @author Corvinusplusplus
  * Megjeleníthetõ felhasználói felület
  */
 public class GUI extends JPanel implements Steppable {
@@ -50,12 +51,35 @@ public class GUI extends JPanel implements Steppable {
 	 * Billentyûleütések eseményének elkapásához kell
 	 */
 	private static final int IFW = JComponent.WHEN_IN_FOCUSED_WINDOW;
+	/**
+	 * Csempék fix pozíciókon vannak-e
+	 */
+	private boolean fixed_position = true;
+	/**
+	 * Csempék x pozíciók
+	 */
+	private HashMap<Integer, Integer> tiles_posx;
+	/**
+	 * Csempék y pozíciók
+	 */
+	private HashMap<Integer, Integer> tiles_posy;
 	
 	public GUI(int initialWidth) {
 		super();
 		this.initialWidth = initialWidth;
 		drawableTiles = new ArrayList<DrawableTile>();
 		drawableConnections = new ArrayList<DrawableConnection>();
+		tiles_posx = new HashMap<Integer, Integer>();
+		tiles_posy = new HashMap<Integer, Integer>();
+	}
+	
+	void setFixedPos(boolean fixed) {
+		fixed_position = fixed;
+	}
+	
+	void addTileFixedPos(int i, int x, int y) {
+		tiles_posx.put(i, x);
+		tiles_posy.put(i, y);
 	}
 	
 	/**
@@ -65,6 +89,7 @@ public class GUI extends JPanel implements Steppable {
 	public void setGame(Game g) {
 		game = g;
 		generateDrawableTiles(initialWidth);
+		
 		generateDrawableConnections();
 		
 		obj1.getInputMap(IFW).put(KeyStroke.getKeyStroke("LEFT"), "LEFT");
@@ -134,18 +159,26 @@ public class GUI extends JPanel implements Steppable {
 		drawableTiles.clear();
 		for (Tile tile : game.getTiles()) {
 			int x, y;
-			if (drawableTiles.isEmpty()) {
-				x = DrawableTile.radius;
-				y = DrawableTile.radius;
-			} else {
-				x = drawableTiles.get(drawableTiles.size() - 1).getX() + DrawableTile.radius * 4;
-				if (x + DrawableTile.radius > WIDTH) {
+			
+			//ha megadott pozíciókon kell lennie
+			if(fixed_position && tiles_posx.containsKey(tile.id) && tiles_posy.containsKey(tile.id)) {
+				x = tiles_posx.get(tile.id);
+				y = tiles_posy.get(tile.id);
+			} else {	
+				if (drawableTiles.isEmpty()) {
 					x = DrawableTile.radius;
-					y = drawableTiles.get(drawableTiles.size() - 1).getY() + DrawableTile.radius * 4;
+					y = DrawableTile.radius;
 				} else {
-					y = drawableTiles.get(drawableTiles.size() - 1).getY();
+					x = drawableTiles.get(drawableTiles.size() - 1).getX() + DrawableTile.radius * 4;
+					if (x + DrawableTile.radius > WIDTH) {
+						x = DrawableTile.radius;
+						y = drawableTiles.get(drawableTiles.size() - 1).getY() + DrawableTile.radius * 4;
+					} else {
+						y = drawableTiles.get(drawableTiles.size() - 1).getY();
+					}
 				}
 			}
+
 			DrawableTile drawableTile;
 			if (tile instanceof BreakingTile) {
 				drawableTile = new DrawableBreakingTile(tile.id, x, y);
@@ -198,6 +231,18 @@ public class GUI extends JPanel implements Steppable {
 				drawableObject = new DrawableWardrobe(--DrawableObject.idCounter);
 			}
 			drawableTile.setObject(drawableObject);
+		}
+	}
+	
+	/** 
+	 * Megadott pályának ha van definiált pozíciója akkor ott jelenítsük meg
+	 * @return 
+	 */
+	private Integer generateFixedPositionTiles(Tile tile, int xy) {
+		if(xy == 0) {
+			return tiles_posx.get(tile.id);
+		} else {
+			return tiles_posy.get(tile.id);	
 		}
 	}
 	

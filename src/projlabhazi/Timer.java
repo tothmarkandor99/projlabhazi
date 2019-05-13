@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.TimerTask;
 
 /**
- * @author Mark
+ * @author Corvinusplusplus
  * Saját idõzítõ osztály, ami 2 másodpercenként értesíti a feliratkozott objektumokat
  * Külön számon tartja a megjelenítõ objektomot, ezt utoljára értesíti
  */

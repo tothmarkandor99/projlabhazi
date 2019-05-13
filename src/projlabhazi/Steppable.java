@@ -1,7 +1,7 @@
 package projlabhazi;
 
 /**
- * @author Mark
+ * @author Corvinusplusplus
  * Annak kell megvalósítani ezt az interfészt, aki fel akar iratkozni a Timer Tick eseményére
  */
 public interface Steppable {

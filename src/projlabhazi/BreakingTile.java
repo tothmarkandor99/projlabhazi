@@ -1,7 +1,7 @@
 package projlabhazi;
 
 /**
- * @author Mark
+ * @author Corvinusplusplus
  * Törékeny csempe. Ha egy panda ugrik rajta vagy rálép, csökken az élettartama.
  */
 public class BreakingTile extends Tile {

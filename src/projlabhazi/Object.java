@@ -1,7 +1,7 @@
 package projlabhazi;
 
 /**
- * @author Mark
+ * @author Corvinusplusplus
  * Objektum õsosztály, tartalmaz egy referenciát az alatta levõ csempére
  */
 public abstract class Object implements Receiver, Steppable {

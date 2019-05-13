@@ -3,7 +3,7 @@ package projlabhazi;
 import java.util.ArrayList;
 
 /**
- * @author Mark
+ * @author Corvinusplusplus
  * Csempe
  * Tárolja a szomszédait és tárolhat egy objektumot is
  * Egyedi azonosítóal kell rendelkeznie, ez fontos a megjelenítés miatt

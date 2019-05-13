@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * @author Mark
+ * @author Corvinusplusplus
  * Szekrény objektum. Ezen keresztül tudnak a karakterek teleportálni
  * Önszántából csak orángután léphet rá, de ráhúzhat pandákat is
  * Véletlenszerûen választott másik szekrényhez teleportál

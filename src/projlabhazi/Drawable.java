@@ -3,7 +3,7 @@ package projlabhazi;
 import java.awt.Graphics2D;
 
 /**
- * @author Mark
+ * @author Corvinusplusplus
  * Grafikusan megjeleníthetõ elem
  * Mivel mindegyik nagyjából ugyanazt csinálja, ezért itt foglalom össze
  * A DrawableConnection kivételével minden ilyen osztály egy kört rajzol

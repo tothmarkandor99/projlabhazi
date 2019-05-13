@@ -3,7 +3,7 @@ package projlabhazi;
 import java.util.Random;
 
 /**
- * @author Mark
+ * @author Corvinusplusplus
  * Csokiautomata, célja sípolással megijeszteni a szomszédos mezõkön álló erre fogékony pandákat
  */
 public class ChocolateMachine extends Object implements Interact {

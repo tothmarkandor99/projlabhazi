@@ -139,7 +139,56 @@ public class Foprogram {
 		tiles.get(36).setObject(new ChocolateMachine(tiles.get(36)));
 		tiles.get(39).setObject(new Wardrobe(tiles.get(39)));
 		
+
+		//beállítani hogy a játékban a csempéknek a pozíciója adott, nem autómatikusan kell kiszámolni
+		G.setFixedPos(true);
+		
+		
+		G.addTileFixedPos(0, 150, 190);
+		G.addTileFixedPos(1, 80, 30);
+		G.addTileFixedPos(2, 140, 30);
+		G.addTileFixedPos(3, 250, 30);
+		G.addTileFixedPos(4, 320, 30);
+		G.addTileFixedPos(5, 400, 30);
+		G.addTileFixedPos(6, 460, 30);
+		G.addTileFixedPos(7, 520, 40);
+		G.addTileFixedPos(8, 600, 30);
+		G.addTileFixedPos(9, 650, 25);
+		G.addTileFixedPos(10, 710, 55);
+		G.addTileFixedPos(11, 650, 75);
+		G.addTileFixedPos(12, 570, 80);
+		G.addTileFixedPos(13, 500, 110);
+		G.addTileFixedPos(14, 360, 110);
+		G.addTileFixedPos(15, 230, 70);
+		G.addTileFixedPos(16, 120, 100);
+		G.addTileFixedPos(17, 50, 150);
+		G.addTileFixedPos(18, 110, 150);
+		G.addTileFixedPos(19, 170, 150);
+		G.addTileFixedPos(20, 220, 120);
+		G.addTileFixedPos(21, 300, 150);
+		G.addTileFixedPos(22, 360, 155);
+		G.addTileFixedPos(23, 410, 155);
+		G.addTileFixedPos(24, 490, 160);
+		G.addTileFixedPos(25, 570, 150);
+		G.addTileFixedPos(26, 600, 120);
+		G.addTileFixedPos(27, 700, 110);
+		G.addTileFixedPos(28, 760, 160);
+		G.addTileFixedPos(29, 710, 160);
+		G.addTileFixedPos(30, 660, 150);
+		G.addTileFixedPos(31, 650, 210);
+		G.addTileFixedPos(32, 650, 260);
+		G.addTileFixedPos(33, 600, 230);
+		G.addTileFixedPos(34, 530, 200);
+		G.addTileFixedPos(35, 530, 250);
+		G.addTileFixedPos(36, 420, 210);
+		G.addTileFixedPos(37, 330, 205);
+		G.addTileFixedPos(38, 330, 260);
+		G.addTileFixedPos(39, 240, 230);
+		G.addTileFixedPos(40, 240, 180);
+		G.addTileFixedPos(41, 600, 180);
+		
 		g.newGame(tiles, entranceTiles, countPandas);
+
 		G.setGame(g);
 		F.add(G);
 		F.setSize(800, 600);

@@ -3,7 +3,7 @@ package projlabhazi;
 import java.util.ArrayList;
 
 /**
- * @author Mark
+ * @author Corvinusplusplus
  * Játék osztály
  * Tartalmaz minden a játék szempontjából lényeges elemet, kivéve a megjelenítéshez szükségeseket
  * Azok a GUI és a Drawable kezdetû osztályokban vannak

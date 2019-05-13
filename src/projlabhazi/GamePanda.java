@@ -1,7 +1,7 @@
 package projlabhazi;
 
 /**
- * @author Mark
+ * @author Corvinusplusplus
  * Ijedõs panda
  */
 public class GamePanda extends Panda {

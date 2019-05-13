@@ -1,7 +1,7 @@
 package projlabhazi;
 
 /**
- * @author Mark
+ * @author Corvinusplusplus
  * A játékos által irányítható egyik orángután
  */
 public class Orangutan extends Character {

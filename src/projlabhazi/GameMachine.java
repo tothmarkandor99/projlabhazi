@@ -3,7 +3,7 @@ package projlabhazi;
 import java.util.Random;
 
 /**
- * @author Mark
+ * @author Corvinusplusplus
  * Játékgép, ami megijeszti a mellette álló ijedõs pandákat
  */
 public class GameMachine extends Object {

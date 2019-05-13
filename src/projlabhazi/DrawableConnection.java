@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
 /**
- * @author Mark
+ * @author Corvinusplusplus
  * Két DrawableTile középpontját összekötõ vonal
  */
 public class DrawableConnection implements Drawable {

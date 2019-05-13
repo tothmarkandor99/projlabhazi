@@ -3,7 +3,7 @@ package projlabhazi;
 import java.util.Random;
 
 /**
- * @author Mark
+ * @author Corvinusplusplus
  * Karosszék osztály. Célja a mellette levõ pandát alvásra csábítani
  */
 public class ArmChair extends Object implements Interact {

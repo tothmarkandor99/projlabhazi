@@ -1,7 +1,7 @@
 package projlabhazi;
 
 /**
- * @author Mark
+ * @author Corvinusplusplus
  * Karakter õsosztály a pandáknak és az orángutánnak
  */
 public abstract class Character extends Object {

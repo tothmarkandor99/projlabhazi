@@ -3,7 +3,7 @@ package projlabhazi;
 import java.util.Random;
 
 /**
- * @author Mark
+ * @author Corvinusplusplus
  * Aluszékony panda
  * A karosszék képes alvásra csábítani
  * Ekkor az alvási idõ lejártáig nem mozdul a karosszékbõl

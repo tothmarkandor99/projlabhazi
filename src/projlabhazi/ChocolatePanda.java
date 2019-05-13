@@ -1,7 +1,7 @@
 package projlabhazi;
 
 /**
- * @author Mark
+ * @author Corvinusplusplus
  * Csokiautomatától félõ panda
  * Az automata csilingelésétõl ugrik egyet
  */

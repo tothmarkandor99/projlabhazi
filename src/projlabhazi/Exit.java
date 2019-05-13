@@ -1,7 +1,7 @@
 package projlabhazi;
 
 /**
- * @author Mark
+ * @author Corvinusplusplus
  * Kijárat
  * Ha rálép egy orángután, kezdeményezi a pontozást az összegyûjtött pandák alapján
  */
