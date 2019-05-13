@@ -2,8 +2,20 @@ package projlabhazi;
 
 import java.util.Random;
 
+/**
+ * @author Mark
+ * Csokiautomata, célja sípolással megijeszteni a szomszédos mezõkön álló erre fogékony pandákat
+ */
 public class ChocolateMachine extends Object implements Interact {
-	public void beep() { //Minden szomszédjával megpróbál interaktálni 
+
+	public ChocolateMachine(Tile tile) {
+		this.tile = tile;
+	}
+
+	/**
+	 * Minden szomszédjával megpróbál interaktálni
+	 */
+	public void beep() {
 		
 		for (int i = 0; i < tile.getSides(); i++) {
 			if (tile.getNeighbour(i).getObject() != null) {
@@ -12,14 +24,19 @@ public class ChocolateMachine extends Object implements Interact {
 		}
 	}
 	
+	/**
+	 * Véletlen idõközönként sípol
+	 */
 	public void step() {
 		if (new Random().nextBoolean())
 			beep();
 	}
 
 
-	public void interact(Object o) { //Ugrásra kényszeríti o-t
-		
+	/**
+	 * Ugrásra kényszeríti o-t
+	 */
+	public void interact(Object o) {		
 		o.jump();
 	}
 

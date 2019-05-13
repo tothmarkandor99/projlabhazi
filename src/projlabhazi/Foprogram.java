@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-public class ComInt {
+public class Foprogram {
 	
 	public static void main(String[] args) {
 		JFrame F = new JFrame();
 		F.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GUI G = new GUI(800);
 		Timer timer = new Timer();
-		
+		timer.setGUI(G);
 		ArrayList<Tile> tiles = new ArrayList<Tile>();
 		ArrayList<Tile> entranceTiles = new ArrayList<Tile>();
 
@@ -127,11 +127,11 @@ public class ComInt {
 		tiles.get(33).setObject(new SleepPanda(g, tiles.get(33)));
 		int countPandas = 6;
 		
-		tiles.get(13).setObject(new GameMachine());
+		tiles.get(13).setObject(new GameMachine(tiles.get(13)));
 		tiles.get(27).setObject(new Exit());
 		tiles.get(28).setObject(new Wardrobe(tiles.get(28)));
-		tiles.get(32).setObject(new ArmChair());
-		tiles.get(36).setObject(new ChocolateMachine());
+		tiles.get(32).setObject(new ArmChair(tiles.get(32)));
+		tiles.get(36).setObject(new ChocolateMachine(tiles.get(36)));
 		tiles.get(39).setObject(new Wardrobe(tiles.get(39)));
 		
 		g.newGame(tiles, entranceTiles, countPandas);

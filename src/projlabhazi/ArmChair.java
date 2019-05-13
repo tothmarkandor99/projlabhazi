@@ -2,20 +2,37 @@ package projlabhazi;
 
 import java.util.Random;
 
+/**
+ * @author Mark
+ * Karosszék osztály. Célja a mellette levõ pandát alvásra csábítani
+ */
 public class ArmChair extends Object implements Interact {
+	/**
+	 * Karosszékben alvó panda
+	 */
 	private SleepPanda p;
+	/**
+	 * Ennyi ideje van még hátra az alvásból a pandának
+	 */
 	private int sleepTime;
 	
-	public ArmChair() {	}
+	public ArmChair(Tile tile) {	
+		this.tile = tile;
+	}
 	
+	/**
+	 * Megpróbálja elaltatni az o objektumot
+	 * Ha már foglalt, más nem alhat benn
+	 * Ha tud aludni az objektum, csak SleepPanda lehet, áthelyezzük a SleepPandát az ArmChair-be
+	 */
 	@Override
-	public void interact(Object o) { // Megpróbálja elaltatni az o objektumot
-		if (this.p != null) // Ha már foglalt, más nem alhat benn
+	public void interact(Object o) {
+		if (this.p != null)
 			return;
-		if (o.sleep()) { // Ha tud aludni az objektum, csak SleepPanda lehet
+		if (o.sleep()) {
 			setPanda((SleepPanda)o);
-			p.getTile().setObject(null); // Áthelyezzük a SleepPandát az ArmChair-be
-			p.setTile(null);
+			p.getTile().setObject(null);
+			p.setTile(tile);
 			setSleepTime(new Random().nextInt(10));
 
 		}
@@ -34,7 +51,11 @@ public class ArmChair extends Object implements Interact {
 		return sleepTime;
 	}
 	
-	public void step() { //Megpróbál minden szomszédos mezõrõl becsábítani bárkit, lehetõleg SleepPandát
+	/**
+	 * Megpróbál minden szomszédos mezõrõl becsábítani bárkit, lehetõleg SleepPandát
+	 * Ha már valaki alszik és lejárt az idõ, megpróbálja kirakni egy üres szomszédos mezõre
+	 */
+	public void step() {
 		if (sleepTime > 0)
 			sleepTime--;
 		if (p == null) {		
@@ -43,7 +64,7 @@ public class ArmChair extends Object implements Interact {
 					interact(getTile().getNeighbour(i).getObject());
 				}
 			}
-		} else if (sleepTime == 0) { //Ha már valaki alszik és lejárt az idõ, megpróbálja kirakni egy üres szomszédos mezõre
+		} else if (sleepTime == 0) {
 			int i;
 			for (i = 0; i < this.getTile().getSides(); i++) {
 				if (this.getTile().getNeighbour(i).receive(p)) {

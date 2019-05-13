@@ -1,36 +1,58 @@
 package projlabhazi;
 
+/**
+ * @author Mark
+ * Karakter õsosztály a pandáknak és az orángutánnak
+ */
 public abstract class Character extends Object {
+	/**
+	 * Következõ karakter a láncban
+	 * Csak valamilyen panda lehet
+	 */
 	protected Panda next;
-	protected Game game; //Eltér a dokumentációtól
-	
+
+	protected Game game;
+
 	public Character(Game g) {
 		
 		game = g;
 	}
 	
+	/**
+	 * Engedje el az elõzõ karaktert
+	 */
 	public abstract void release();
 	
-	public void die() {
-		
-	}
+	/**
+	 * Meghal
+	 */
+	public abstract void die();
 	
+	/**
+	 * Engedje el a következõ pandát
+	 */
 	public void Notify() {
 		
 		next.release();
 		this.setNext(null);
 	}
 	
-	public void moveTo(Tile t) { // A karaktert a t csempére viszi át, feltételezve, hogy szabad odalépnie
+	/**
+	 * @param t
+	 * A karaktert a t csempére viszi át, feltételezve, hogy szabad odalépnie
+	 * Rekurzívan lépteti az utána sorban álló pandákat is
+	 * Ahol állt, onnan kiveszi magát
+	 */
+	public void moveTo(Tile t) {
 		
 		Tile tempTile = this.getTile();
 		this.setTile(t);
 		t.setObject(this);
 		if (next != null) {
-			next.moveTo(tempTile); // Rekurzívan lépteti az utána sorban álló pandákat is
+			next.moveTo(tempTile);
 		} else {
 			if (tempTile != null)
-				tempTile.setObject(null); //Ahol állt, onnan kiveszi magát
+				tempTile.setObject(null);
 		}
 	}
 	

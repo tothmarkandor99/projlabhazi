@@ -3,6 +3,10 @@ package projlabhazi;
 import java.util.Random;
 
 public class GameMachine extends Object {
+	public GameMachine(Tile tile) {
+		this.tile = tile;
+	}
+	
 	public void ring() { //Minden szomszédjával megpróbál interaktálni 
 		
 		for (int i = 0; i < tile.getSides(); i++) {

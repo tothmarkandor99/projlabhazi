@@ -7,8 +7,8 @@ public class GamePanda extends Panda {
 	}
 
 	public void scare() { //Csak GamePanda tud megijedni
-		
-		prev.Notify();
+		if (prev != null)
+			prev.Notify();
 	}
 	
 }

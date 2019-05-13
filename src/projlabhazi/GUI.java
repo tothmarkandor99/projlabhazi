@@ -21,7 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
-public class GUI extends JPanel {
+public class GUI extends JPanel implements Steppable {
 	private static final long serialVersionUID = 1L;
 	private Game game;
 	private ArrayList<DrawableTile> drawableTiles;
@@ -63,8 +63,6 @@ public class GUI extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			game.simulateTurn(left);
-			generateDrawableTiles(WIDTH);
-			generateDrawableConnections();
 			repaint();
 		}
 	}
@@ -73,8 +71,6 @@ public class GUI extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			game.getOrangutan().step();
-			generateDrawableTiles(WIDTH);
-			generateDrawableConnections();
 			repaint();
 		}
 	}
@@ -83,8 +79,6 @@ public class GUI extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			game.getOrangutan().release();
-			generateDrawableTiles(WIDTH);
-			generateDrawableConnections();
 			repaint();
 		}
 	}
@@ -206,6 +200,11 @@ public class GUI extends JPanel {
 
 		drawableConnections.forEach((DrawableConnection drawableConnection) -> {drawableConnection.Draw(g2);}) ;
 		drawableTiles.forEach((DrawableTile drawableTile) -> {drawableTile.Draw(g2);}) ;
+	}
+
+	@Override
+	public void step() {
+		repaint();	
 	}
 	
 }
