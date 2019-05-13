@@ -2,33 +2,63 @@ package projlabhazi;
 
 import java.util.ArrayList;
 
+/**
+ * @author Mark
+ * Játék osztály
+ * Tartalmaz minden a játék szempontjából lényeges elemet, kivéve a megjelenítéshez szükségeseket
+ * Azok a GUI és a Drawable kezdetû osztályokban vannak
+ */
 public class Game implements Steppable {
+	/**
+	 * Pontszám
+	 */
 	private int score;
+	/**
+	 * Összegyûjtendõ pandák száma
+	 */
 	private int remainingPandas;
-	private ArrayList<Tile> entranceTiles; // Eltér a dokumentációtól
+	/**
+	 * Ezeken a csempéken jelenik meg orángután a játék indításakor
+	 */
+	private ArrayList<Tile> entranceTiles;
+	/**
+	 * Orángutánok
+	 */
 	private ArrayList<Orangutan> orangutans;
+	/**
+	 * Éppen irányított orángután
+	 */
 	private Orangutan activeOrangutan;
+	/**
+	 * Csempék
+	 */
 	private ArrayList<Tile> tiles;
+	/**
+	 * Idõzítõ
+	 */
 	private Timer timer;
 	
-	private int inputDir = 0; //Teszteléshez TODO: kivenni
-	
-	public Timer getTimer () { //Teszteléshez TODO: kivenni
+	/**
+	 * Aktív orángután merre lépjen tovább
+	 */
+	private int inputDir = 0;
+
+	public Timer getTimer () {
 		
 		return timer;
 	}
-	
-	public int getInputDir() { //Teszteléshez TODO: kivenni
+
+	public int getInputDir() {
 		
 		return inputDir;
 	}
-	
-	public void addInputDir(int i) { //Teszteléshez TODO: kivenni
+
+	public void addInputDir(int i) {
 		
 		inputDir += i;
 	}
-	
-	public int getScore() { //Teszteléshez TODO: kivenni
+
+	public int getScore() {
 		
 		return score;
 	}
@@ -44,25 +74,29 @@ public class Game implements Steppable {
 			return;
 		activeOrangutan = orangutans.get(i);
 	}
-	
+
 	public Orangutan getOrangutan( ) { //Teszteléshez TODO: kivenni
 		
 		return activeOrangutan;
 	}
-	
-	Game(Timer t) { //Ez nincs benn a dokumentációban
+
+	Game(Timer t) {
 		timer = t;
 	}
 	
-	public void newGame(ArrayList<Tile> tiles, ArrayList<Tile> entranceTiles, int countPandas) { //Eltér a dokumentációtól, teszteléshez átalakítva
+	/**
+	 * @param tiles
+	 * @param entranceTiles
+	 * @param countPandas
+	 * Külsõ forrásból inicializálja a játékot
+	 */
+	public void newGame(ArrayList<Tile> tiles, ArrayList<Tile> entranceTiles, int countPandas) {
 		timer.clearSteppables();
 		
 		for (Tile tile : tiles) {
 			if (tile.getObject() != null)
 				timer.addSteppable(tile.getObject());
 		}
-		
-		//Külsõ forrásból inicializálja a játékot
 		orangutans = new ArrayList<Orangutan>();
 		this.tiles = tiles;
 		this.entranceTiles = entranceTiles;
@@ -76,17 +110,20 @@ public class Game implements Steppable {
 		}
 		timer.start();
 	}
-	
+
 	public void addScore(int s) {
 		
 		score += s;
 	}
-	
+
 	public void pandaDies() {
 		
 		remainingPandas--;
 	}
 	
+	/**
+	 * Kezdõállapotba viszi a játékot
+	 */
 	public void toStart() {
 		activeOrangutan.tile.setObject(null);
 		orangutans.clear();
@@ -114,7 +151,7 @@ public class Game implements Steppable {
 	public ArrayList<Tile> getTiles() {
 		return tiles;
 	}
-	
+
 	public ArrayList<Tile> getEntranceTiles() {
 		return entranceTiles;
 	}

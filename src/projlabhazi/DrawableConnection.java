@@ -4,6 +4,10 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
+/**
+ * @author Mark
+ * Két DrawableTile középpontját összekötõ vonal
+ */
 public class DrawableConnection implements Drawable {
 	DrawableTile from, to;
 	
@@ -18,6 +22,7 @@ public class DrawableConnection implements Drawable {
 		g2.setColor(Color.BLACK);
 		g2.drawLine(from.getX(), from.getY(), to.getX(), to.getY());
 		/*
+		// Ezt a részt kikommentezve lehet nyilat rajzoltatni a vonal to felõli végéhez
 		double dist = Math.sqrt((to.getX() - from.getX()) * (to.getX() - from.getX()) + (to.getY() - from.getY()) * (to.getY() - from.getY()));
 		double nx = (to.getX() - from.getX()) / dist;
 		double ny = (to.getY() - from.getY()) / dist;

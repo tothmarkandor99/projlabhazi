@@ -2,12 +2,20 @@ package projlabhazi;
 
 import java.util.Random;
 
+/**
+ * @author Mark
+ * Játékgép, ami megijeszti a mellette álló ijedõs pandákat
+ */
 public class GameMachine extends Object {
+
 	public GameMachine(Tile tile) {
 		this.tile = tile;
 	}
 	
-	public void ring() { //Minden szomszédjával megpróbál interaktálni 
+	/**
+	 * Minden szomszédjával megpróbál interaktálni 
+	 */
+	public void ring() {
 		
 		for (int i = 0; i < tile.getSides(); i++) {
 			if (tile.getNeighbour(i).getObject() != null) {
@@ -16,12 +24,19 @@ public class GameMachine extends Object {
 		}
 	}
 	
+	/**
+	 * @param o
+	 * Megijeszti o-t
+	 */
 	public void interact(Object o) {
 		
 		o.scare();
 	}
 
 
+	/**
+	 * Véletlen idõközönként ijeszt
+	 */
 	public void step() {
 		if (new Random().nextBoolean())
 			ring();

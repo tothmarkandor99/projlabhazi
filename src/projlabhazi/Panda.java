@@ -62,9 +62,9 @@ public abstract class Panda extends Character {
 	}
 	
 	/**
-	 *
+	 * Rekurzívan elengedi az egymás mögött álló pandák kezét
 	 */
-	public void release() { //Rekurzívan elengedi az egymás mögött álló pandák kezét
+	public void release() {
 		
 		if (next != null) {
 			next.release();
@@ -74,11 +74,12 @@ public abstract class Panda extends Character {
 	}
 	
 	/**
-	 *
+	 * A panda a játék során meghal
+	 * A mögötte állók elengedik egymás kezét
 	 */
-	public void die() { // A panda a játék során meghal
+	public void die() {
 		
-		if (prev != null) { //A mögötte állók elengedik egymás kezét
+		if (prev != null) {
 			prev.Notify();
 		}
 		game.getTimer().removeSteppable(this);
@@ -87,9 +88,9 @@ public abstract class Panda extends Character {
 	}
 	
 	/**
-	 * 
+	 * A pandát megszámolás során megöljük. Megölünk a láncban minden más pandát is
 	 */
-	public void kill() { // A pandát megszámolás során megöljük. Megölünk a láncban minden más pandát is
+	public void kill() {
 		
 		game.getTimer().removeSteppable(this);
 		game.pandaDies();

@@ -1,16 +1,26 @@
 package projlabhazi;
 
+/**
+ * @author Mark
+ * Objektum õsosztály, tartalmaz egy referenciát az alatta levõ csempére
+ */
 public abstract class Object implements Receiver, Steppable {
 	protected Tile tile;
 
+	/**
+	 * Nem tud ugrani
+	 */
 	public void jump() {
 		
 	}
 	
+	/**
+	 * Nem tud megijedni
+	 */
 	public void scare() {
 		
 	}
-	
+
 	public boolean sleep() {
 		
 		return false;
@@ -30,7 +40,7 @@ public abstract class Object implements Receiver, Steppable {
 		
 		tile = t;
 	}
-	
+
 	public Tile getTile() {
 		
 		return tile;
@@ -40,5 +50,4 @@ public abstract class Object implements Receiver, Steppable {
 		
 	}
 	
-	//public abstract Object clone();
 }

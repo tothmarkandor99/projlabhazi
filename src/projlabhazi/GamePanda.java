@@ -1,12 +1,20 @@
 package projlabhazi;
 
+/**
+ * @author Mark
+ * Ijedõs panda
+ */
 public class GamePanda extends Panda {
+
 	public GamePanda(Game g, Tile tile) {
 		super(g, tile);
 		
 	}
 
-	public void scare() { //Csak GamePanda tud megijedni
+	/**
+	 * Csak GamePanda tud megijedni
+	 */
+	public void scare() {
 		if (prev != null)
 			prev.Notify();
 	}

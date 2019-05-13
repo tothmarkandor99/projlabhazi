@@ -1,10 +1,19 @@
 package projlabhazi;
 
+/**
+ * @author Mark
+ * A játékos által irányítható egyik orángután
+ */
 public class Orangutan extends Character {
 	public Orangutan(Game g) {
 		super(g);
 	}
 	
+	/**
+	 * @param p
+	 * Új panda becsatolása a pandaláncba
+	 * Részletes leírás a kód mellett
+	 */
 	public void add(Panda p) {
 		
 		if (p.prev == null) {
@@ -38,7 +47,10 @@ public class Orangutan extends Character {
 		}
 	}
 	
-	public void countPanda() { //Megöli és megszámolja a begyûjtött pandákat
+	/**
+	 * Megöli és megszámolja a begyûjtött pandákat
+	 */
+	public void countPanda() {
 		
 		Panda temp = next;
 		int pcs = 0;
@@ -52,7 +64,10 @@ public class Orangutan extends Character {
 		game.toStart();
 	}
 	
-	public void step() { //A felhasználói bemenet alapján próbálja mozgatni az orángutánt
+	/**
+	 * A felhasználói bemenet alapján próbálja mozgatni az orángutánt
+	 */
+	public void step() {
 		if (tile.getSides() != 0) {
 			while (game.getInputDir() < 0) {
 				game.addInputDir(tile.getSides());
@@ -63,7 +78,10 @@ public class Orangutan extends Character {
 		}
 	}
 	
-	public void release() { //Elengedi az utána álló pandát
+	/**
+	 * Elengedi az utána álló pandát
+	 */
+	public void release() {
 		
 		if (next != null) {
 			next.release();
@@ -71,6 +89,9 @@ public class Orangutan extends Character {
 		setNext(null);
 	}
 	
+	/**
+	 * Ha meghal, vége a játéknak
+	 */
 	public void die() {
 		
 		game.endGame();

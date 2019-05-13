@@ -6,6 +6,11 @@ import javax.swing.JFrame;
 
 public class Foprogram {
 	
+	/**
+	 * @param args
+	 * A jportán megadott topológiát implementálja
+	 * Kipróbáláshoz célszerû az ablakot összenyomni úgy, hogy 7x6 vagy 6x7 soros/oszopos legyen, úgy kicsit szebb
+	 */
 	public static void main(String[] args) {
 		JFrame F = new JFrame();
 		F.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

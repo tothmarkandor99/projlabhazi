@@ -21,13 +21,34 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+/**
+ * @author Mark
+ * Megjeleníthetõ felhasználói felület
+ */
 public class GUI extends JPanel implements Steppable {
-	private static final long serialVersionUID = 1L;
+	/**
+	 * Referencia a játékra, amit megjelenít
+	 */
 	private Game game;
+	/**
+	 * Csempék kirajzolható view-i
+	 */
 	private ArrayList<DrawableTile> drawableTiles;
+	/**
+	 * Csempék közötti szomszédságok kirajzolható view-i
+	 */
 	private ArrayList<DrawableConnection> drawableConnections;
+	/**
+	 * Ablak kezdõ szélessége, az elsõ renderelésig kell
+	 */
 	private int initialWidth;
+	/**
+	 * Billentyûleütések eseményének elkapásához kell
+	 */
 	static JLabel obj1 = new JLabel();
+	/**
+	 * Billentyûleütések eseményének elkapásához kell
+	 */
 	private static final int IFW = JComponent.WHEN_IN_FOCUSED_WINDOW;
 	
 	public GUI(int initialWidth) {
@@ -37,6 +58,10 @@ public class GUI extends JPanel implements Steppable {
 		drawableConnections = new ArrayList<DrawableConnection>();
 	}
 	
+	/**
+	 * @param g
+	 * Inicializálja a view-kat és regisztrálja a billentyûleütés eseménykezelõket
+	 */
 	public void setGame(Game g) {
 		game = g;
 		generateDrawableTiles(initialWidth);
@@ -55,6 +80,10 @@ public class GUI extends JPanel implements Steppable {
 		add(obj1);
 	}
 	
+	/**
+	 * @author Mark
+	 * Akció osztály a nyilak megnyomásának eseményhez rendeléséhez
+	 */
 	private class TurnAction extends AbstractAction{
 		private boolean left;
 		TurnAction(boolean left) {
@@ -67,6 +96,10 @@ public class GUI extends JPanel implements Steppable {
 		}
 	}
 	
+	/**
+	 * @author Mark
+	 * Akció osztály a szóköz megnyomásának eseményhez rendeléséhez
+	 */
 	private class StepAction extends AbstractAction{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -75,6 +108,10 @@ public class GUI extends JPanel implements Steppable {
 		}
 	}
 	
+	/**
+	 * @author Mark
+	 * Akció osztály az 'R' megnyomásának eseményhez rendeléséhez
+	 */
 	private class ReleaseAction extends AbstractAction{
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -85,6 +122,14 @@ public class GUI extends JPanel implements Steppable {
 	
 	
 	
+	/**
+	 * @param WIDTH
+	 * A játékban tárolt modellbõl megjeleníthetõ view-t állít elõ
+	 * Elõször minden csempéhez készít egy view-t, aztán minden csempé álló objektumhoz is
+	 * A view-k id-je a csempe modellek id-je lesz, így ez is egyedi
+	 * A view-kat automatán helyezi el az ablakban
+	 * Az objektumok view-inak egyedi id-t ad
+	 */
 	private void generateDrawableTiles(int WIDTH) {
 		drawableTiles.clear();
 		for (Tile tile : game.getTiles()) {
@@ -156,6 +201,9 @@ public class GUI extends JPanel implements Steppable {
 		}
 	}
 	
+	/**
+	 * A szomszédos csempék közötti kapcsolatokat jelzõ view-kat generálja
+	 */
 	private void generateDrawableConnections() {
 		drawableConnections.clear();
 		for (DrawableTile drawableTile : drawableTiles) {
@@ -179,6 +227,9 @@ public class GUI extends JPanel implements Steppable {
 		}
 	}
 	
+	/**
+	 * Kirajzolja a view-kat és kiírja a pontszámot
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		int WIDTH = this.getWidth();
