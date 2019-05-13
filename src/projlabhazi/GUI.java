@@ -131,7 +131,6 @@ public class GUI extends JPanel {
 				while (game.getInputDir() < 0)
 					game.addInputDir(tile.getSides());
 				while (i < drawableTiles.size() && drawableTiles.get(i).getId() != tile.getNeighbour(game.getInputDir() % tile.getSides()).id) {
-					System.out.println(drawableTiles.get(i).getId() + "\t" + tile.getNeighbour(game.getInputDir() % tile.getSides()).id);
 					i++;
 				}
 				if (i != drawableTiles.size()) {
@@ -209,34 +208,4 @@ public class GUI extends JPanel {
 		drawableTiles.forEach((DrawableTile drawableTile) -> {drawableTile.Draw(g2);}) ;
 	}
 	
-	public void saveToFile(String fileName) {
-		try {
-			FileOutputStream file = new FileOutputStream(fileName); 
-			ObjectOutputStream out = new ObjectOutputStream(file);
-			
-			out.writeObject(drawableTiles);
-			out.close();
-		} catch (IOException e) {
-			System.out.println("Save failed");
-		}
-	}
-
-	public void loadFromFile(String fileName) {
-		try {
-			FileInputStream file = new FileInputStream(fileName);
-			ObjectInputStream in = new ObjectInputStream(file);
-			
-			drawableTiles = (ArrayList<DrawableTile>)in.readObject();
-			in.close();
-			drawableConnections.clear();
-			generateDrawableConnections();
-		} catch (FileNotFoundException e) {
-			System.out.println("Load failed");
-		} catch (IOException e) {
-			System.out.println("Load failed");
-		} catch (ClassNotFoundException e) {
-			System.out.println("Load failed");
-		} 
-	}
-
 }
